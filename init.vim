@@ -33,6 +33,9 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'scrooloose/syntastic'
   " Autocompletion
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  " Multiple cursors
+  Plug 'terryma/vim-multiple-cursors'
+
 call plug#end()
 
 " Custom configuration 
@@ -50,21 +53,20 @@ set autoindent " enable auto indentation
 set shiftwidth=2 " set size of tab
 set number " show line numbers
 set expandtab " change tab to space
+set updatetime=100
 
 " Deoplete configuration
 let g:deoplete#enable_at_startup = 1
 
 " Syntastic config
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+let g:syntastic_enable_signs = 0
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_ruby_checkers = ['rubocop']
 
-
 " Indent guides configuration
-" let g:indentLine_setColors = 0
 let g:indentLine_leadingSpaceChar = '·'
 let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_conceallevel = 1
@@ -114,7 +116,18 @@ command! -nargs=* Rag
 nmap <C-S> :Ag<CR>
 
 " NerdTree
-nmap <C-N> :NERDTreeToggle<CR>
+nmap <C-\> :NERDTreeToggle<CR>
 
 " deoplete tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+" Toggle syntastic
+nmap <F6> :SyntasticToggleMode<CR>
+nmap <F7> :SyntasticCheck<CR>
+
+" Multicursor configuration
+let g:multi_cursor_use_default_mapping=0
+
+" Default mapping
+let g:multi_cursor_start_word_key      = '<C-n>'
+let g:multi_cursor_quit_key            = '<Esc>'

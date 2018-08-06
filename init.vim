@@ -61,8 +61,8 @@ let g:deoplete#enable_at_startup = 1
 " Syntastic config
 let g:syntastic_enable_signs = 0
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_ruby_checkers = ['rubocop']
 
@@ -123,8 +123,18 @@ inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " Toggle syntastic
 nmap <F6> :SyntasticToggleMode<CR>
-nmap <F7> :SyntasticCheck<CR>
+map <F7> :call SyntasticToggle()<CR>
 
+let g:syntastic_is_open = 0  
+function! SyntasticToggle()
+  if g:syntastic_is_open == 1
+      lclose
+      let g:syntastic_is_open = 0 
+  else
+      Errors
+      let g:syntastic_is_open = 1 
+  endif
+endfunction
 " Multicursor configuration
 let g:multi_cursor_use_default_mapping=0
 

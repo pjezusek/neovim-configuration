@@ -71,8 +71,12 @@ let g:indentLine_leadingSpaceChar = '·'
 let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_conceallevel = 1
 let g:indentLine_char = '│'
+
 " Theme configuration
 colorscheme monokai
+
+" Deoplete configuration
+call deoplete#custom#option('max_list', 5)
 
 " Lightline configuration
 
@@ -106,6 +110,9 @@ nmap <C-E> :Buffers<CR>
 " Fuzzy finder for current buffer
 nmap <C-F> :BLines<CR>
 
+" Fuzzy finder for changed files
+nmap <A-\> :GFiles?<CR>
+
 " Fuzzy finder for all files in git repo or actual dir
 function! s:with_git_root()
   let root = systemlist('git rev-parse --show-toplevel')[0]
@@ -135,9 +142,13 @@ function! SyntasticToggle()
       let g:syntastic_is_open = 1 
   endif
 endfunction
+
 " Multicursor configuration
 let g:multi_cursor_use_default_mapping=0
 
 " Default mapping
 let g:multi_cursor_start_word_key      = '<C-n>'
 let g:multi_cursor_quit_key            = '<Esc>'
+
+" git diff
+nmap <F5> :Gdiff<CR>

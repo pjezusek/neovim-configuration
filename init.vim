@@ -65,6 +65,8 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_ruby_checkers = ['rubocop']
+let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_mode_map = { 'mode': 'passive' }
 
 " Indent guides configuration
 let g:indentLine_leadingSpaceChar = '·'
@@ -77,6 +79,9 @@ colorscheme monokai
 
 " Deoplete configuration
 call deoplete#custom#option('max_list', 5)
+
+" NERDTree configuration
+:let g:NERDTreeWinSize=60
 
 " Lightline configuration
 

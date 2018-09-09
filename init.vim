@@ -38,7 +38,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 call plug#end()
 
-" Custom configuration 
+" Custom configuration
 set nocompatible      " We're running Vim, not Vi!
 syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
@@ -57,6 +57,9 @@ set updatetime=100
 
 " Deoplete configuration
 let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option('max_list', 5)
+" tab-complete
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " Syntastic config
 let g:syntastic_enable_signs = 0
@@ -67,6 +70,20 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_mode_map = { 'mode': 'passive' }
+
+let g:syntastic_is_open = 0
+function! SyntasticToggle()
+  if g:syntastic_is_open == 1
+      lclose
+      let g:syntastic_is_open = 0
+  else
+      Errors
+      let g:syntastic_is_open = 1
+  endif
+endfunction
+" Toggle syntastic
+nmap <F6> :SyntasticToggleMode<CR>
+map <F7> :call SyntasticToggle()<CR>
 
 " Indent guides configuration
 let g:indentLine_leadingSpaceChar = '·'
@@ -90,7 +107,6 @@ function! LightlineFilename()
   return expand('%:p')
 endfunction
 
-" Configure lighline plugin
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
@@ -101,6 +117,8 @@ let g:lightline = {
       \   'filename': 'LightlineFilename',
       \ },
       \ }
+
+" Fuzzy finder configuration
 
 " Fuzzy finder for files from git repository
 function! s:find_git_root()
@@ -118,7 +136,7 @@ nmap <C-F> :BLines<CR>
 " Fuzzy finder for changed files
 nmap <A-\> :GFiles?<CR>
 
-" Fuzzy finder for all files in git repo or actual dir
+" Fuzzy finder for all files and it's content in git repo or actual dir
 function! s:with_git_root()
   let root = systemlist('git rev-parse --show-toplevel')[0]
   return v:shell_error ? {} : {'dir': root}
@@ -127,33 +145,21 @@ command! -nargs=* Rag
   \ call fzf#vim#ag(<q-args>, extend(s:with_git_root(), g:fzf#vim#default_layout))
 nmap <C-S> :Ag<CR>
 
-" NerdTree
-nmap <C-\> :NERDTreeToggle<CR>
-
-" deoplete tab-complete
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
-" Toggle syntastic
-nmap <F6> :SyntasticToggleMode<CR>
-map <F7> :call SyntasticToggle()<CR>
-
-let g:syntastic_is_open = 0  
-function! SyntasticToggle()
-  if g:syntastic_is_open == 1
-      lclose
-      let g:syntastic_is_open = 0 
-  else
-      Errors
-      let g:syntastic_is_open = 1 
-  endif
-endfunction
 
 " Multicursor configuration
+
+" Disable default mapping
 let g:multi_cursor_use_default_mapping=0
 
-" Default mapping
 let g:multi_cursor_start_word_key      = '<C-n>'
-let g:multi_cursor_quit_key            = '<Esc>'
+let g:multi_cursor_quit_key            = '<C-c>'
+let g:multi_cursor_next_key            = '<C-n>'
 
-" git diff
+" NerdTree configuration
+nmap <C-\> :NERDTreeToggle<CR>
+
+" Git fugitive configuration
 nmap <F5> :Gdiff<CR>
+
+" Map C-c to ESC
+nmap <C-c> <ESC>

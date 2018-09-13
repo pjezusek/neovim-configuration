@@ -35,7 +35,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   " Multiple cursors
   Plug 'terryma/vim-multiple-cursors'
-
+  " Markdown preview
+  Plug 'iamcco/markdown-preview.vim'
 call plug#end()
 
 " Custom configuration
@@ -90,6 +91,7 @@ let g:indentLine_leadingSpaceChar = '·'
 let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_conceallevel = 1
 let g:indentLine_char = '│'
+let g:indentLine_fileTypeExclude = ['markdown']
 
 " Theme configuration
 colorscheme monokai

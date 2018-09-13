@@ -4,8 +4,8 @@ Configuration file for **Neovim** program. It includes basic editor configuratio
 
 # Table of contents
 
-* [Installation](#installation)
 * [Prerequirements](#prerequirements)
+* [Installation](#installation)
 * [Description](#description)
 	* [Plugins manager](#plugins_manager)
 	* [Plugins](#plugins)

@@ -6,8 +6,9 @@ Configuration file for **Neovim** program. It includes basic editor configuratio
 
 * [Prerequirements](#prerequirements)
 * [Installation](#installation)
+* [Additional configuration](#additional-configuration)
 * [Description](#description)
-	* [Plugins manager](#plugins_manager)
+	* [Plugins manager](#plugins-manager)
 	* [Plugins](#plugins)
 	* [Shortcuts](#shortcuts)
 
@@ -28,12 +29,23 @@ Configuration file for **Neovim** program. It includes basic editor configuratio
 
 Clone repository and copy `init.vim` to `~/.config/nvim/` directory. If you launch Neovim, plugins manager and plugins should install automatically.
 
-If something went wrong use `:PlugInstall` to install all plugins.
+If something is wrong, use `:PlugInstall` to install all plugins.
+
+<h1 id="additional-configuration"> Additional configuration </h1>
+
+* Debian 9
+  * Add following lines to `~/.bash_profile`:
+  ```
+  export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+  ```
+
+
 
 
 # Description
 
-<h2 id="plugins_manager">Plugins manager</h2>
+<h2 id="plugins-manager">Plugins manager</h2>
 
 To manage plugins, this configuration uses [vim-plug](https://github.com/junegunn/vim-plug).
 
@@ -71,6 +83,6 @@ List of shortcuts with their meaning. This list does not include shortcuts provi
 | C-S      | :Ag<CR>             | Search words in whole project                    |
 | C-\      | :NERDTreeToggle<CR> | Toggle NERDTree                                  |
 | F5       | :Gdiff<CR>          | Show changes in current buffer                   |
-| C-c      | <ESC>               | Override default behaviour for C-c               |
+| C-c      | ESC                 | Override default behaviour for C-c               |
 | C-n      |                     | Start multicursor/next cursor                    |
 | C-c      |                     | Quit from multicursor                            |

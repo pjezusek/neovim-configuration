@@ -176,4 +176,4 @@ nmap <C-\> :NERDTreeToggle<CR>
 nmap <F5> :Gdiff<CR>
 
 " Map C-c to ESC
-map <C-c> <ESC>
+map! <C-c> <ESC>

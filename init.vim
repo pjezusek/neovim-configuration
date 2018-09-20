@@ -148,6 +148,8 @@ nmap <C-F> :BLines<CR>
 " Fuzzy finder for changed files
 nmap <A-\> :GFiles?<CR>
 
+nmap <C-H> :History:<CR>
+
 " Fuzzy finder for all files and it's content in git repo or actual dir
 function! s:with_git_root()
   let root = systemlist('git rev-parse --show-toplevel')[0]

@@ -37,6 +37,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'terryma/vim-multiple-cursors'
   " Markdown preview
   Plug 'iamcco/markdown-preview.vim'
+  " Typescript syntax
+  Plug 'leafgarland/typescript-vim'
 call plug#end()
 
 " Custom configuration
@@ -70,6 +72,7 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_typescript_checkers = ['tslint']
 let g:syntastic_mode_map = { 'mode': 'passive' }
 
 let g:syntastic_is_open = 0

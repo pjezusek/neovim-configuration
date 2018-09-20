@@ -115,13 +115,14 @@ call deoplete#custom#option('max_list', 5)
 
 " Show full path of file
 function! LightlineFilename()
-  return expand('%:p')
+  return expand('%F')
 endfunction
 
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'readonly', 'filename', 'modified' ] ],
+      \ 'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype'], ['gitbranch']]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head',

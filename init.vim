@@ -39,9 +39,15 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'iamcco/markdown-preview.vim'
   " Typescript syntax
   Plug 'leafgarland/typescript-vim'
+  " Visualisation of history of file
+  Plug 'mbbill/undotree'
+  " Tagbar with tags
+  Plug 'majutsushi/tagbar'
+  " Quick jumps
+  Plug 'easymotion/vim-easymotion'
 call plug#end()
 
-" Custom configuration
+" General
 set nocompatible      " We're running Vim, not Vi!
 syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
@@ -51,22 +57,39 @@ set t_Co=256
 set splitright " split by adding new buffor on the right of existing one
 set splitbelow " split by adding new buffor below of the existing one
 set noshowmode " disable default modes showing
+set nowrap " Do not wrap long lines
 set tabstop=2 " set indenation size
 set autoindent " enable auto indentation
 set shiftwidth=2 " set size of tab
 set number " show line numbers
 set expandtab " change tab to space
 set updatetime=100
-set number relativenumber
+set number relativenumber " set relative numbers
+set history=1000 " expand history size
+set hidden " allow buffer switching without saving
+set iskeyword-=. " '.' is an end of word designator
+set iskeyword-=# " '#' is an end of word designator
+set iskeyword-=- " '-' is an end of word designator
 augroup numbertoggle
   autocmd!
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
 
+let mapleader = ','
+
+" Clipboard
+if has('clipboard')
+  if has('unnamedplus')  " When possible use + register for copy-paste
+      set clipboard=unnamed,unnamedplus
+    else
+      set clipboard=unnamed
+  endif
+endif
+
 " Deoplete configuration
 let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option('max_list', 5)
+call deoplete#custom#option('max_list', 10)
 " tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
@@ -109,7 +132,7 @@ colorscheme monokai
 call deoplete#custom#option('max_list', 5)
 
 " NERDTree configuration
-:let g:NERDTreeWinSize=60
+let g:NERDTreeWinSize=60
 
 " Lightline configuration
 
@@ -173,7 +196,22 @@ let g:multi_cursor_next_key            = '<C-n>'
 nmap <C-\> :NERDTreeToggle<CR>
 
 " Git fugitive configuration
-nmap <F5> :Gdiff<CR>
+nmap <leader>gd :Gdiff<CR>
+nmap <leader>gs :Gstatus<CR>
+nmap <leader>gb :Gblame<CR>
+nmap <leader>gl :Glog<CR>
+
+" Undotree configuration
+nnoremap <leader>u :UndotreeToggle<cr>
+if has("persistent_undo")
+  set undodir=~/.undodir/
+  set undofile
+endif
+
+" Tagbar configuration
+nmap <silent> <leader>tt :TagbarToggle<CR>
+
+" Key mapping
 
 " Map C-c to ESC
 nmap <C-c> <ESC>
@@ -184,3 +222,5 @@ smap <C-c> <ESC>
 cmap <C-c> <ESC>
 omap <C-c> <ESC>
 
+" Simpler noh
+nmap <leader>nh :noh<CR>

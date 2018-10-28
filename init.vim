@@ -38,6 +38,15 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'majutsushi/tagbar'
   " Quick jumps
   Plug 'easymotion/vim-easymotion'
+  " Focus
+  Plug 'junegunn/goyo.vim'
+  Plug 'amix/vim-zenroom2'
+  " Expand selection
+  Plug 'terryma/vim-expand-region'
+  " Comment blocks, lines etc.
+  Plug 'tpope/vim-commentary'
+  " Yanks stack
+  Plug 'maxbrunsfeld/vim-yankstack'
 call plug#end()
 
 " General
@@ -60,9 +69,6 @@ set updatetime=100
 set number relativenumber " set relative numbers
 set history=1000 " expand history size
 set hidden " allow buffer switching without saving
-set iskeyword-=. " '.' is an end of word designator
-set iskeyword-=# " '#' is an end of word designator
-set iskeyword-=- " '-' is an end of word designator
 augroup numbertoggle
   autocmd!
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
@@ -108,8 +114,8 @@ function! SyntasticToggle()
   endif
 endfunction
 " Toggle syntastic
-nmap <F6> :SyntasticToggleMode<CR>
-map <F7> :call SyntasticToggle()<CR>
+nmap <silent><leader>sm :SyntasticToggleMode<CR>
+map  <silent><leader>st :call SyntasticToggle()<CR>
 
 " Indent guides configuration
 let g:indentLine_leadingSpaceChar = '·'
@@ -154,17 +160,11 @@ function! s:find_git_root()
 endfunction
 command! ProjectFiles execute 'Files' s:find_git_root()
 nmap <C-P> :ProjectFiles<CR>
-
-" Fuzzy finder for opened buffers
 nmap <C-E> :Buffers<CR>
-
-" Fuzzy finder for current buffer
-nmap <C-F> :BLines<CR>
-
-" Fuzzy finder for changed files
-nmap <A-\> :GFiles?<CR>
-
-nmap <C-H> :History:<CR>
+nmap <C-F> :Tags<CR>
+nmap <silent><leader>bl :BLines<CR>
+nmap <silent><leader>gf :GFiles?<CR>
+nmap <silent><leader>hi :History:<CR>
 
 " Fuzzy finder for all files and it's content in git repo or actual dir
 function! s:with_git_root()
@@ -203,6 +203,32 @@ endif
 
 " Tagbar configuration
 nmap <silent> <leader>tt :TagbarToggle<CR>
+if executable('ripper-tags')
+  let g:tagbar_type_ruby = {
+      \ 'kinds'      : ['m:modules',
+                      \ 'c:classes',
+                      \ 'C:constants',
+                      \ 'F:singleton methods',
+                      \ 'f:methods',
+                      \ 'a:aliases'],
+      \ 'kind2scope' : { 'c' : 'class',
+                       \ 'm' : 'class' },
+      \ 'scope2kind' : { 'class' : 'c' },
+      \ 'ctagsbin'   : 'ripper-tags',
+      \ 'ctagsargs'  : ['-f', '-']
+      \ }
+endif
+
+" Goyo configuration
+nnoremap <silent> <leader>z :Goyo<cr>
+
+"Vim Expand Region configuration
+map <C-k> <Plug>(expand_region_expand)
+map <C-j> <Plug>(expand_region_shrink)
+
+" Vim Yankstack configuration
+nmap <leader>p <Plug>yankstack_substitute_older_paste
+nmap <leader>P <Plug>yankstack_substitute_newer_paste
 
 " Key mapping
 
@@ -214,6 +240,13 @@ xmap <C-c> <ESC>
 smap <C-c> <ESC>
 cmap <C-c> <ESC>
 omap <C-c> <ESC>
+
+" Buffers
+" Close current buffer
+map <leader>bd :Bclose<cr>
+
+" Close all buffers
+map <leader>ba :1,1000 bd!<cr>
 
 " Simpler noh
 nmap <leader>nh :noh<CR>

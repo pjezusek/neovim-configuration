@@ -32,7 +32,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'iamcco/markdown-preview.vim'
   " Typescript syntax
   Plug 'leafgarland/typescript-vim'
-  " Visualisation of history of file
+  " Visualization of history of file
   Plug 'mbbill/undotree'
   " Tagbar with tags
   Plug 'majutsushi/tagbar'
@@ -232,6 +232,11 @@ map <C-j> <Plug>(expand_region_shrink)
 nmap <leader>p <Plug>yankstack_substitute_older_paste
 nmap <leader>P <Plug>yankstack_substitute_newer_paste
 
+" Markdown preview configuration
+let g:mkdp_path_to_chrome = "google-chrome"
+nmap <silent><leader>mp :MarkdownPreview<CR>
+nmap <silent><leader>ms :MarkdownPreviewStop<CR>
+
 " Key mapping
 
 " Map C-c to ESC
@@ -245,7 +250,7 @@ omap <C-c> <ESC>
 
 " Buffers
 " Close current buffer
-map <leader>bd :Bclose<cr>
+map <leader>bd :bd<cr>
 
 " Close all buffers
 map <leader>ba :1,1000 bd!<cr>

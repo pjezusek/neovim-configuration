@@ -18,7 +18,7 @@ This is repository with configuration for **Neovim** program. It includes basic 
 * Python 3
 * Neovim v0.3.1
 	* Debian 9 - `apt install -t=unstable neovim=0.3.1`
-* vim-plug([More info](https://github.com/junegunn/vim-plug))
+* vim-plug ([More info](https://github.com/junegunn/vim-plug))
   * `curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`
 * pylint ([More info](https://www.pylint.org/))
@@ -33,7 +33,7 @@ This is repository with configuration for **Neovim** program. It includes basic 
   * `pip3 install neovim`
 * Ctags ([More info](https://github.com/universal-ctags/ctags))
   * Debian 9 - `apt install ctags`
-* Ripper tags([More info](https://github.com/tmm1/ripper-tags))
+* Ripper tags ([More info](https://github.com/tmm1/ripper-tags))
   * `gem install ripper-tags`
 
 # Installation

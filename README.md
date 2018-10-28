@@ -15,21 +15,24 @@ Configuration file for **Neovim** program. It includes basic editor configuratio
 # Prerequirements
 
 * Neovim v0.3.1
-	* Debian 9 - `apt install neovim`
+	* Debian 9 - `apt install -t=unstable neovim`
+* vim-plug([More info](https://github.com/junegunn/vim-plug))
+  * `curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`
 * pylint ([More info](https://www.pylint.org/))
-	* Debian 9
-		* python 3 - `pip3 install pylint`
-		* python 2 - `apt install pylint`
+  * python 3 - `pip3 install pylint`
 * rubocop ([More info](https://github.com/rubocop-hq/rubocop))
-	* Debian 9 - `gem install rubocop`
+	* `gem install rubocop`
 * Silver Search ([More info](https://github.com/ggreer/the_silver_searcher))
 	* Debian 9 - `apt install silversearcher-ag`
+* Ruby client for neovim
+  * `gem install neovim`
+* Python client for neovim
+  * `pip3 install neovim`
 
 # Installation
 
-Clone repository and copy `init.vim` to `~/.config/nvim/` directory. If you launch Neovim, plugins manager and plugins should install automatically.
-
-If something is wrong, use `:PlugInstall` to install all plugins.
+Clone repository and copy `init.vim` to `~/.config/nvim/` directory.  Use `:PlugInstall` to install all plugins.
 
 <h1 id="additional-configuration"> Additional configuration </h1>
 
@@ -39,9 +42,6 @@ If something is wrong, use `:PlugInstall` to install all plugins.
   export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
   ```
-
-
-
 
 # Description
 

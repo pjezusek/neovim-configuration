@@ -47,6 +47,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'tpope/vim-commentary'
   " Yanks stack
   Plug 'maxbrunsfeld/vim-yankstack'
+  " Vimgrep
+  Plug 'dkprice/vim-easygrep'
 call plug#end()
 
 " General

@@ -38,17 +38,16 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'majutsushi/tagbar'
   " Quick jumps
   Plug 'easymotion/vim-easymotion'
-  " Focus
-  Plug 'junegunn/goyo.vim'
-  Plug 'amix/vim-zenroom2'
-  " Expand selection
-  Plug 'terryma/vim-expand-region'
   " Comment blocks, lines etc.
   Plug 'tpope/vim-commentary'
   " Yanks stack
   Plug 'maxbrunsfeld/vim-yankstack'
   " Vimgrep
   Plug 'dkprice/vim-easygrep'
+  " Better word splitting
+  Plug 'bkad/CamelCaseMotion'
+  " Async run
+  Plug 'skywind3000/asyncrun.vim'
 call plug#end()
 
 " General
@@ -71,6 +70,7 @@ set updatetime=100
 set number relativenumber " set relative numbers
 set history=1000 " expand history size
 set hidden " allow buffer switching without saving
+set tags=.tags
 augroup numbertoggle
   autocmd!
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
@@ -88,9 +88,6 @@ if has('clipboard')
   endif
 endif
 
-" Deoplete configuration
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option('max_list', 10)
 " tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
@@ -130,37 +127,43 @@ let g:indentLine_fileTypeExclude = ['markdown']
 colorscheme monokai
 
 " Deoplete configuration
-call deoplete#custom#option('max_list', 5)
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option('max_list', 10)
+let g:deoplete#sources = {}
+let g:deoplete#sources._ = ['buffer', 'tag']
+let deoplete#tag#cache_limit_size = 5000000
 
 " NERDTree configuration
 let g:NERDTreeWinSize=60
+map <leader>\ :NERDTreeFind<cr>
 
 " Lightline configuration
 
 " Show full path of file
 function! LightlineFilename()
-  return expand('%F')
+return expand('%F')
 endfunction
 
 let g:lightline = {
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified' ] ],
-      \ 'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype'], ['gitbranch']]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head',
-      \   'filename': 'LightlineFilename',
-      \ },
-      \ }
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'readonly', 'filename', 'modified' ] ],
+    \ 'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype'], ['gitbranch']]
+    \ },
+    \ 'component_function': {
+    \   'gitbranch': 'fugitive#head',
+    \   'filename': 'LightlineFilename',
+    \ },
+    \ }
 
 " Fuzzy finder configuration
 
 " Fuzzy finder for files from git repository
 function! s:find_git_root()
-	return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
 endfunction
 command! ProjectFiles execute 'Files' s:find_git_root()
+
 nmap <C-P> :ProjectFiles<CR>
 nmap <C-E> :Buffers<CR>
 nmap <C-F> :Tags<CR>
@@ -205,6 +208,9 @@ endif
 
 " Tagbar configuration
 nmap <silent> <leader>tt :TagbarToggle<CR>
+let g:tagbar_autoclose=1
+let g:tagbar_autofocus = 1
+let g:tagbar_show_linenumbers = -1
 if executable('ripper-tags')
   let g:tagbar_type_ruby = {
       \ 'kinds'      : ['m:modules',
@@ -221,13 +227,6 @@ if executable('ripper-tags')
       \ }
 endif
 
-" Goyo configuration
-nnoremap <silent> <leader>z :Goyo<cr>
-
-"Vim Expand Region configuration
-map <C-k> <Plug>(expand_region_expand)
-map <C-j> <Plug>(expand_region_shrink)
-
 " Vim Yankstack configuration
 nmap <leader>p <Plug>yankstack_substitute_older_paste
 nmap <leader>P <Plug>yankstack_substitute_newer_paste
@@ -236,6 +235,26 @@ nmap <leader>P <Plug>yankstack_substitute_newer_paste
 let g:mkdp_path_to_chrome = "google-chrome"
 nmap <silent><leader>mp :MarkdownPreview<CR>
 nmap <silent><leader>ms :MarkdownPreviewStop<CR>
+
+" CamelCaseMotion configuration
+call camelcasemotion#CreateMotionMappings('<leader>')
+map <silent> w <Plug>CamelCaseMotion_w
+map <silent> b <Plug>CamelCaseMotion_b
+map <silent> e <Plug>CamelCaseMotion_e
+map <silent> ge <Plug>CamelCaseMotion_ge
+sunmap w
+sunmap b
+sunmap e
+sunmap ge
+
+" Vim easygrep configuration
+let g:EasyGrepReplaceWindowMode=2
+let g:EasyGrepRecursive=1
+let g:EasyGrepCommand=1
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
 
 " Key mapping
 
@@ -257,3 +276,6 @@ map <leader>ba :1,1000 bd!<cr>
 
 " Simpler noh
 nmap <leader>nh :noh<CR>
+
+" Ripper-tags shortcut
+nmap <leader>rt :%AsyncRun ripper-tags -R -f .tags --exclude=@.gitignore<CR>

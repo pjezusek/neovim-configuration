@@ -22,16 +22,12 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'brooth/far.vim'
   " Ruby support
   Plug 'vim-ruby/vim-ruby'
-  " Syntax linter
-  Plug 'scrooloose/syntastic'
   " Autocompletion
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   " Multiple cursors
   Plug 'terryma/vim-multiple-cursors'
   " Markdown preview
   Plug 'iamcco/markdown-preview.vim'
-  " Typescript syntax
-  Plug 'leafgarland/typescript-vim'
   " Visualization of history of file
   Plug 'mbbill/undotree'
   " Tagbar with tags
@@ -46,8 +42,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'dkprice/vim-easygrep'
   " Better word splitting
   Plug 'bkad/CamelCaseMotion'
-  " Async run
-  Plug 'skywind3000/asyncrun.vim'
+  " Async run neovim makers
+  Plug 'neomake/neomake'
 call plug#end()
 
 " General
@@ -90,31 +86,6 @@ endif
 
 " tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
-" Syntastic config
-let g:syntastic_enable_signs = 0
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_ruby_checkers = ['rubocop']
-let g:syntastic_python_checkers = ['pylint']
-let g:syntastic_typescript_checkers = ['tslint']
-let g:syntastic_mode_map = { 'mode': 'passive' }
-
-let g:syntastic_is_open = 0
-function! SyntasticToggle()
-  if g:syntastic_is_open == 1
-      lclose
-      let g:syntastic_is_open = 0
-  else
-      Errors
-      let g:syntastic_is_open = 1
-  endif
-endfunction
-" Toggle syntastic
-nmap <silent><leader>sm :SyntasticToggleMode<CR>
-map  <silent><leader>st :call SyntasticToggle()<CR>
 
 " Indent guides configuration
 let g:indentLine_leadingSpaceChar = '·'
@@ -256,6 +227,9 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
+" Neomake configuration 
+call neomake#configure#automake('nrwi', 500)
+
 " Key mapping
 
 " Map C-c to ESC
@@ -278,4 +252,17 @@ map <leader>ba :1,1000 bd!<cr>
 nmap <leader>nh :noh<CR>
 
 " Ripper-tags shortcut
-nmap <leader>rt :%AsyncRun ripper-tags -R -f .tags --exclude=@.gitignore<CR>
+nmap <leader>rt :NeomakeSh ripper-tags -R -f .tags --exclude=@.gitignore<CR>
+
+" Rubocop autocorrect
+nmap <leader>rca :!rubocop -a %<CR>
+
+" Remap save and quit commands
+:command WQ wq
+:command Wq wq
+:command W w
+:command Q q
+
+" Add mapping for quickfix list
+map <leader>lw :lwindow<CR>
+map <leader>lp :lprev<CR>

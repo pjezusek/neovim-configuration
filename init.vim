@@ -16,7 +16,9 @@ let included_files = [
       \ 'tabs.vim',
       \ 'mapping.vim',
       \ 'plugins.vim',
-      \ 'status_line.vim'
+      \ 'status_line.vim',
+      \ 'commands.vim',
+      \ 'abbreviations.vim',
       \	]
 
 for file in included_files

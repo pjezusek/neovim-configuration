@@ -122,7 +122,6 @@ endif
 " Deoplete configuration
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('sources', {
-\ '_': ['buffer', 'around'],
 \ 'ruby': ['buffer', 'around', 'tag', 'ultisnips'],
 \ 'python3': ['buffer', 'around', 'tag', 'ultisnips'],
 \ 'javascript': ['buffer', 'around', 'tag', 'ultisnips'],

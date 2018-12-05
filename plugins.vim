@@ -36,6 +36,12 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Neomake
   Plug 'neomake/neomake'
+
+  " Ultisnips
+  Plug 'SirVer/ultisnips'
+
+  " Snippets
+  Plug 'honza/vim-snippets'
 call plug#end()
 
 " FZF configuration
@@ -55,7 +61,6 @@ command! -nargs=* ProjectFiles
   \                 extend({'dir': s:find_git_root()},
   \                         fzf#vim#with_preview('right:60%'))
   \                )
-
 
 " Hide status line if fzf is on
 autocmd! FileType fzf
@@ -96,7 +101,6 @@ nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gl :silent Glog<CR>:cw<CR>
 nnoremap <leader>ge :Gedit<CR>
 
-
 " Multiple cursor configuration
 let g:multi_cursor_use_default_mapping=0
 let g:multi_cursor_start_word_key      = '<C-n>'
@@ -118,6 +122,19 @@ endif
 " Deoplete configuration
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('sources', {
-\ '_': ['buffer', 'tag', 'around'],
+\ '_': ['buffer', 'around'],
+\ 'ruby': ['buffer', 'around', 'tag', 'ultisnips'],
+\ 'python3': ['buffer', 'around', 'tag', 'ultisnips'],
+\ 'javascript': ['buffer', 'around', 'tag', 'ultisnips'],
+\ 'vim': ['buffer', 'around', 'tag', 'ultisnips']
 \})
 let deoplete#tag#cache_limit_size = 5000000
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+" Neomake configuration
+call neomake#configure#automake('nrwi', 500)
+
+" Ultisnips configuration
+let g:UltiSnipsExpandTrigger="<A-s>"
+let g:UltiSnipsJumpForwardTrigger="<C-j>"
+let g:UltiSnipsJumpBackwardTrigger="<C-k>"

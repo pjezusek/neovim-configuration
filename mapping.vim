@@ -18,6 +18,10 @@ nnoremap <leader>cw :cw<CR>
 nnoremap <leader>cc :ccl<CR>
 nnoremap <leader>cp :cprev<CR>
 nnoremap <leader>cn :cnext<CR>
+nnoremap <leader>lw :lw<CR>
+nnoremap <leader>lc :lcl<CR>
+nnoremap <leader>lp :cprev<CR>
+nnoremap <leader>ln :cnext<CR>
 
 " Remap <C-W>Q behaviour
 nnoremap <C-W>q :bd<CR>
@@ -37,11 +41,3 @@ vnoremap <leader>pt <C-W>}
 nnoremap <leader>pc :pc<CR>
 vnoremap <leader>pc :pc<CR>
 
-" Ripper-tags shortcut
-nnoremap <silent> <leader>rt :NeomakeSh ripper-tags -R -f .tags --exclude=@.gitignore<CR>
-
-" Ctags shortcut
-nnoremap <silent> <leader>ct :NeomakeSh ctags -R -f .tags --exclude=@.gitignore<CR>
-
-" Rubocop autocorrect
-nnoremap <silent> <leader>rca :!rubocop -a %<CR>

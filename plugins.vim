@@ -42,6 +42,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Snippets
   Plug 'honza/vim-snippets'
+
+  " Rails
+  Plug 'tpope/vim-rails'
 call plug#end()
 
 " FZF configuration
@@ -128,6 +131,10 @@ call deoplete#custom#option('sources', {
 \ 'vim': ['buffer', 'around', 'tag', 'ultisnips']
 \})
 let deoplete#tag#cache_limit_size = 5000000
+call deoplete#custom#source('ruby', 'matchers', ['matcher_full_fuzzy'])
+call deoplete#custom#source('python3', 'matchers', ['matcher_full_fuzzy'])
+call deoplete#custom#source('javascript', 'matchers', ['matcher_full_fuzzy'])
+call deoplete#custom#source('vim', 'matchers', ['matcher_full_fuzzy'])
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " Neomake configuration

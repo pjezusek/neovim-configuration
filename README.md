@@ -1,3 +1,1 @@
 # Neovim configuration
-
-Description comming is comming...

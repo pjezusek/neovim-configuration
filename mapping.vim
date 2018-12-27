@@ -41,3 +41,5 @@ vnoremap <leader>pt <C-W>}
 nnoremap <leader>pc :pc<CR>
 vnoremap <leader>pc :pc<CR>
 
+" Disable some default behaviour
+nnoremap q: <Nop>

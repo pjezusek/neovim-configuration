@@ -43,8 +43,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Snippets
   Plug 'honza/vim-snippets'
 
-  " Rails
-  Plug 'tpope/vim-rails'
 call plug#end()
 
 " FZF configuration
@@ -103,9 +101,10 @@ colorscheme gruvbox
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gl :silent Glog<CR>:cw<CR>
 nnoremap <leader>ge :Gedit<CR>
+nnoremap <leader>gd :Gdiff<CR>
 
 " Multiple cursor configuration
-let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_use_default_mapping =  0
 let g:multi_cursor_start_word_key      = '<C-n>'
 let g:multi_cursor_select_all_word_key = '<A-n>'
 let g:multi_cursor_start_key           = 'g<C-n>'
@@ -128,13 +127,15 @@ call deoplete#custom#option('sources', {
 \ 'ruby': ['buffer', 'around', 'tag', 'ultisnips'],
 \ 'python3': ['buffer', 'around', 'tag', 'ultisnips'],
 \ 'javascript': ['buffer', 'around', 'tag', 'ultisnips'],
-\ 'vim': ['buffer', 'around', 'tag', 'ultisnips']
+\ 'vim': ['buffer', 'around', 'tag', 'ultisnips'],
+\ 'c': ['buffer', 'around', 'tag', 'ultisnips'],
+\ 'sh': ['buffer', 'around', 'tag', 'ultisnips'],
+\ 'arduino': ['buffer', 'around', 'tag', 'ultisnips'],
+\ 'java': ['buffer', 'around', 'tag', 'ultisnips']
 \})
+
+call deoplete#custom#source('ultisnips', 'min_pattern_length', 1)
 let deoplete#tag#cache_limit_size = 5000000
-call deoplete#custom#source('ruby', 'matchers', ['matcher_full_fuzzy'])
-call deoplete#custom#source('python3', 'matchers', ['matcher_full_fuzzy'])
-call deoplete#custom#source('javascript', 'matchers', ['matcher_full_fuzzy'])
-call deoplete#custom#source('vim', 'matchers', ['matcher_full_fuzzy'])
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " Neomake configuration

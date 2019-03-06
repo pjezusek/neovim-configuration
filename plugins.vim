@@ -43,6 +43,9 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Snippets
   Plug 'honza/vim-snippets'
 
+  " Far
+  Plug 'brooth/far.vim'
+
 call plug#end()
 
 " FZF configuration

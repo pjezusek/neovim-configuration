@@ -140,6 +140,12 @@ call deoplete#custom#option('sources', {
 call deoplete#custom#source('ultisnips', 'min_pattern_length', 1)
 let deoplete#tag#cache_limit_size = 5000000
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+let g:neomake_java_enabled_makers = ['gradle']
+augroup my_neomake_gradle
+  au!
+  au BufWritePost *.java Neomake! gradle
+  au BufEnter *.java Neomake! gradle
+augroup END
 
 " Neomake configuration
 call neomake#configure#automake('nrwi', 500)

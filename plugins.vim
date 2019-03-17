@@ -12,7 +12,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " NERDTree
   Plug 'scrooloose/nerdtree'
-  
+  Plug 'Xuyuanp/nerdtree-git-plugin' 
+
   " Easymotion
   Plug 'easymotion/vim-easymotion'
 
@@ -46,6 +47,18 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Far
   Plug 'brooth/far.vim'
 
+  " LanguageClient
+  Plug 'autozimu/LanguageClient-neovim', {
+      \ 'branch': 'next',
+      \ 'do': 'bash install.sh',
+      \ }
+
+  " Echodoc
+  Plug 'Shougo/echodoc.vim'
+
+  " Vim rails
+  Plug 'tpope/vim-rails'
+
 call plug#end()
 
 " FZF configuration
@@ -67,9 +80,11 @@ command! -nargs=* ProjectFiles
   \                )
 
 " Hide status line if fzf is on
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+augroup fzf
+  autocmd! FileType fzf
+  autocmd  FileType fzf set laststatus=0 noshowmode noruler
+    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+augroup end
 
 nnoremap <C-P> :ProjectFiles<CR>
 nnoremap <C-E> :Buffers<CR>
@@ -127,32 +142,56 @@ endif
 " Deoplete configuration
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('sources', {
-\ 'ruby': ['buffer', 'around', 'tag', 'ultisnips'],
+\ 'ruby': ['LanguageClient', 'buffer', 'around', 'tag', 'ultisnips'],
 \ 'python3': ['buffer', 'around', 'tag', 'ultisnips'],
 \ 'javascript': ['buffer', 'around', 'tag', 'ultisnips'],
 \ 'vim': ['buffer', 'around', 'tag', 'ultisnips'],
-\ 'c': ['buffer', 'around', 'tag', 'ultisnips'],
+\ 'c': ['LanguageClient', 'buffer', 'around', 'tag', 'ultisnips'],
 \ 'sh': ['buffer', 'around', 'tag', 'ultisnips'],
 \ 'arduino': ['buffer', 'around', 'tag', 'ultisnips'],
-\ 'java': ['buffer', 'around', 'tag', 'ultisnips']
+\ 'java': ['LanguageClient', 'buffer', 'around', 'tag', 'ultisnips']
 \})
 
 call deoplete#custom#source('ultisnips', 'min_pattern_length', 1)
 let deoplete#tag#cache_limit_size = 5000000
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
+" fix problem with multicursor
+function Multiple_cursors_before()
+  let g:deoplete#disable_auto_complete = 1
+endfunction
+function Multiple_cursors_after()
+  let g:deoplete#disable_auto_complete = 0
+endfunction
 
 " Neomake configuration
 call neomake#configure#automake('nrwi', 500)
-
-let g:neomake_java_enabled_makers = ['gradle']
-augroup my_neomake_gradle
-  au!
-  au BufWritePost *.java Neomake! gradle
-  au BufEnter *.java Neomake! gradle
-augroup END
+let g:neomake_tempfile_dir = '/tmp/'
 
 " Ultisnips configuration
-let g:UltiSnipsExpandTrigger="<A-s>"
-let g:UltiSnipsJumpForwardTrigger="<C-j>"
-let g:UltiSnipsJumpBackwardTrigger="<C-k>"
+let g:UltiSnipsExpandTrigger='<A-s>'
+let g:UltiSnipsJumpForwardTrigger='<C-j>'
+let g:UltiSnipsJumpBackwardTrigger='<C-k>'
+
+" Far configuration
+let g:far#source = 'ag'
+let g:far#window_layout = 'tab'
+let g:far#default_file_mask = './'
+let g:far#cwd = s:find_git_root()
+
+" LanguageClient configuration
+let g:LanguageClient_diagnosticsEnable = 0
+let g:LanguageClient_serverCommands = {
+    \ 'java': ['/usr/local/bin/jdtls', '-data', getcwd()],
+    \ 'ruby': [ 'solargraph', 'stdio' ],
+    \ 'c': [ 'clangd' ],
+		\ 'cpp': [ 'clangd' ]
+    \ }
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+" Echodoc configuration
+let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'signature'

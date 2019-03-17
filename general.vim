@@ -26,6 +26,10 @@ set nowrap
 set tabstop=2 
 set shiftwidth=2
 set expandtab
+augroup tab_settings
+  autocmd!
+  autocmd FileType java setlocal shiftwidth=4 tabstop=4
+augroup END
 
 " Copy indentation from previous file
 set autoindent
@@ -50,3 +54,9 @@ set previewheight=30
 
 " Tags file
 set tags=.tags
+
+" Signcolumns
+set signcolumn=yes
+
+" Cmd height
+set cmdheight=2

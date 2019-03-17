@@ -1,4 +1,4 @@
-" Rippert tags
+" Ripper tags
 cnoreabbrev <expr> rt getcmdtype() == ":" && getcmdline() == 'rt' ? 'silent NeomakeSh ripper-tags -R -f .tags --exclude=@.gitignore' : 'rt' 
 
 " Ctags
@@ -12,3 +12,15 @@ cnoreabbrev <expr> esf getcmdtype() == ":" && getcmdline() == 'esf' ? 'silent !e
 
 " js-beautify
 cnoreabbrev <expr> jsb getcmdtype() == ":" && getcmdline() == 'jsb' ? 'silent !js-beautify -r -q -B %' : 'jsb'
+
+" maven package
+cnoreabbrev <expr> mvp getcmdtype() == ":" && getcmdline() == 'mvb' ? '!maven package <bar> messages' : 'mvp'
+
+" maven compile
+cnoreabbrev <expr> mvc getcmdtype() == ":" && getcmdline() == 'mvc' ? '!maven compile <bar> messages' : 'mvc'
+
+" makefile
+cnoreabbrev <expr> mk getcmdtype() == ":" && getcmdline() == 'mk' ? '!make <bar> messages' : 'mk'
+
+" messages
+cnoreabbrev <expr> msg getcmdtype() == ":" && getcmdline() == 'msg' ? 'messages' : 'msg'

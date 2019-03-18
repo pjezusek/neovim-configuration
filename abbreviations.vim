@@ -14,13 +14,16 @@ cnoreabbrev <expr> esf getcmdtype() == ":" && getcmdline() == 'esf' ? 'silent !e
 cnoreabbrev <expr> jsb getcmdtype() == ":" && getcmdline() == 'jsb' ? 'silent !js-beautify -r -q -B %' : 'jsb'
 
 " maven package
-cnoreabbrev <expr> mvp getcmdtype() == ":" && getcmdline() == 'mvb' ? '!maven package <bar> messages' : 'mvp'
+cnoreabbrev <expr> mvp getcmdtype() == ":" && getcmdline() == 'mvp' ? '!mvn package' : 'mvp'
+
+" maven install
+cnoreabbrev <expr> mvi getcmdtype() == ":" && getcmdline() == 'mvi' ? '!mvn install' : 'mvi'
 
 " maven compile
-cnoreabbrev <expr> mvc getcmdtype() == ":" && getcmdline() == 'mvc' ? '!maven compile <bar> messages' : 'mvc'
+cnoreabbrev <expr> mvc getcmdtype() == ":" && getcmdline() == 'mvc' ? '!mvn compile' : 'mvc'
 
 " makefile
-cnoreabbrev <expr> mk getcmdtype() == ":" && getcmdline() == 'mk' ? '!make <bar> messages' : 'mk'
+cnoreabbrev <expr> mk getcmdtype() == ":" && getcmdline() == 'mk' ? '!make' : 'mk'
 
 " messages
 cnoreabbrev <expr> msg getcmdtype() == ":" && getcmdline() == 'msg' ? 'messages' : 'msg'

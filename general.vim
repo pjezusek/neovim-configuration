@@ -60,3 +60,6 @@ set signcolumn=yes
 
 " Cmd height
 set cmdheight=2
+
+" Set autoread
+set autoread

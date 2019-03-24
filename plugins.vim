@@ -53,11 +53,11 @@ call plug#begin('~/.local/share/nvim/plugged')
       \ 'do': 'bash install.sh',
       \ }
 
-  " Echodoc
-  Plug 'Shougo/echodoc.vim'
-
   " Vim rails
   Plug 'tpope/vim-rails'
+
+  " Tagbar
+  Plug 'majutsushi/tagbar'
 
 call plug#end()
 
@@ -120,6 +120,7 @@ nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gl :silent Glog<CR>:cw<CR>
 nnoremap <leader>ge :Gedit<CR>
 nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gb :Gblame<CR>
 
 " Multiple cursor configuration
 let g:multi_cursor_use_default_mapping =  0
@@ -134,7 +135,7 @@ let g:multi_cursor_quit_key            = '<C-c>'
 
 " UndoTree configuration
 nnoremap <leader>u :UndotreeToggle<CR>
-if has("persistent_undo")
+if has('persistent_undo')
     set undodir=~/.undodir/
     set undofile
 endif
@@ -149,7 +150,8 @@ call deoplete#custom#option('sources', {
 \ 'c': ['LanguageClient', 'buffer', 'around', 'tag', 'ultisnips'],
 \ 'sh': ['buffer', 'around', 'tag', 'ultisnips'],
 \ 'arduino': ['buffer', 'around', 'tag', 'ultisnips'],
-\ 'java': ['LanguageClient', 'buffer', 'around', 'tag', 'ultisnips']
+\ 'java': ['LanguageClient', 'buffer', 'around', 'tag', 'ultisnips'],
+\ 'matlab': ['buffer', 'around', 'tag']
 \})
 
 call deoplete#custom#source('ultisnips', 'min_pattern_length', 1)
@@ -182,16 +184,21 @@ let g:far#cwd = s:find_git_root()
 " LanguageClient configuration
 let g:LanguageClient_diagnosticsEnable = 0
 let g:LanguageClient_serverCommands = {
-    \ 'java': ['/usr/local/bin/jdtls', '-data', getcwd()],
+    \ 'java': ['/usr/bin/jdtls', '-data', getcwd()],
     \ 'ruby': [ 'solargraph', 'stdio' ],
     \ 'c': [ 'clangd' ],
 		\ 'cpp': [ 'clangd' ]
     \ }
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+nnoremap <leader>ld :call LanguageClient#textDocument_definition({'gotoCmd': 'split'})<CR>
+nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
+nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
+nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
+nnoremap <leader>lx :call LanguageClient#textDocument_references()<CR>
+nnoremap <leader>la :call LanguageClient_workspace_applyEdit()<CR>
+nnoremap <leader>lc :call LanguageClient#textDocument_completion()<CR>
+nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
+nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
+nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
 
-" Echodoc configuration
-let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = 'signature'
+" Tagbar configuration
+nnoremap <leader>t :TagbarToggle<CR>

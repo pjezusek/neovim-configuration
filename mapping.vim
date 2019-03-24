@@ -19,9 +19,9 @@ nnoremap <leader>cc :ccl<CR>
 nnoremap <leader>cp :cprev<CR>
 nnoremap <leader>cn :cnext<CR>
 nnoremap <leader>lw :lw<CR>
-nnoremap <leader>lc :lcl<CR>
-nnoremap <leader>lp :lprev<CR>
-nnoremap <leader>ln :lnext<CR>
+nnoremap <leader>lcl :lcl<CR>
+nnoremap <leader>lp :cprev<CR>
+nnoremap <leader>ln :cnext<CR>
 
 " Remap <C-W>Q behaviour
 nnoremap <C-W>q :bd<CR>

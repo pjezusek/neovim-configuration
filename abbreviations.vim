@@ -27,3 +27,6 @@ cnoreabbrev <expr> mk getcmdtype() == ":" && getcmdline() == 'mk' ? '!make' : 'm
 
 " messages
 cnoreabbrev <expr> msg getcmdtype() == ":" && getcmdline() == 'msg' ? 'messages' : 'msg'
+
+" octave
+cnoreabbrev <expr> oct getcmdtype() == ":" && getcmdline() == 'oct' ? '!octave %' : 'oct'

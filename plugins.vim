@@ -1,204 +1,207 @@
-" Autoinstall vim-plug
+" File: plugins.vim
+" Description: List of plugins (manage by vim-plug) with their configurations
+
+" Autoinstall vim-plug if it is needed
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+
+  augroup vim_plug
+    autocmd!
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  augroup end
 endif
 
+" List of plugins
 call plug#begin('~/.local/share/nvim/plugged')
-  " FZF
+
+  " THEME "
+  """""""""
+
+  " Name: Gruvbox
+  " Description: Theme
+  Plug 'morhetz/gruvbox'
+
+  " SEARCHING AND MOVEMENT "
+  """"""""""""""""""""""""""
+
+  " Name: FZF
+  " Description: Fuzzy finder
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
 
-  " NERDTree
+  " Name: NERDTree
+  " Description: File tree manager
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin' 
 
-  " Easymotion
+  " Name: Easymotion
+  " Description: Fast jumping
   Plug 'easymotion/vim-easymotion'
 
-  " Gruvbox
-  Plug 'morhetz/gruvbox'
-
-  " Fugitive
-  Plug 'tpope/vim-fugitive'
-
-  " Multiple cursors
-  Plug 'terryma/vim-multiple-cursors'
-
-  " UndoTree
-  Plug 'mbbill/undotree'
-
-  " Deoplete
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
-  " Surround
-  Plug 'tpope/vim-surround'
-
-  " Neomake
-  Plug 'neomake/neomake'
-
-  " Ultisnips
-  Plug 'SirVer/ultisnips'
-
-  " Snippets
-  Plug 'honza/vim-snippets'
-
-  " Far
+  " Name: Far
+  " Description: Find and replace tool
   Plug 'brooth/far.vim'
 
-  " LanguageClient
+  " CODE REPOSITORY "
+  """""""""""""""""""
+
+  " Name: Fugitive
+  " Description: Wrapper for git commands
+  Plug 'tpope/vim-fugitive'
+
+  " EDITING "
+  """""""""""
+  
+  " Name: Multiple cursors
+  " Description: Editing multiple places in the same time
+  Plug 'terryma/vim-multiple-cursors'
+
+  " Name: Surround
+  " Description: Fast editing surrounding characters
+  Plug 'tpope/vim-surround'
+
+  " Name: Ultisnips
+  " Description: Engine for snippets
+  Plug 'SirVer/ultisnips'
+
+  " Name: Snippets
+  " Description: Pack of common snippets supported by Ultisnips
+  Plug 'honza/vim-snippets'
+
+  " Name: UndoTree
+  " Description: Permanent undo tree
+  Plug 'mbbill/undotree'
+
+  " Name: Deoplete
+  " Description: Completion engine
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+  " Name: Tagbar
+  " Description: Easy tags browser
+  Plug 'majutsushi/tagbar'
+
+  " BACKGROUND WORKERS "
+  """"""""""""""""""""""
+
+  " Name: Neomake
+  " Description: Asynchronous linting and make framework
+  Plug 'neomake/neomake'
+
+  " Name: LanguageClient
+  " Description: Client for language servers
   Plug 'autozimu/LanguageClient-neovim', {
       \ 'branch': 'next',
       \ 'do': 'bash install.sh',
       \ }
 
-  " Vim rails
+  " SPECIFIC LANGUAGES/FRAMEWORKS "
+  """""""""""""""""""""""""""""""""
+
+  " Name: Vim rails
+  " Description: Support tool for rails projects
   Plug 'tpope/vim-rails'
-
-  " Tagbar
-  Plug 'majutsushi/tagbar'
-
 call plug#end()
 
-" FZF configuration
-let g:fzf_layout = { 'down': '~50%' }
 function! s:find_git_root()
   return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
 endfunction
 
-command! -nargs=* Ag
-  \ call fzf#vim#ag(<q-args>,
-  \                 extend({'dir': s:find_git_root()},
-  \                         fzf#vim#with_preview('right:60%'))
-  \                )
+" Configuration
 
-command! -nargs=* ProjectFiles
-  \ call fzf#vim#files(<q-args>,
-  \                 extend({'dir': s:find_git_root()},
-  \                         fzf#vim#with_preview('right:60%'))
-  \                )
+" FZF "
+"""""""
+let g:fzf_layout = { 'down': '~50%' }
 
 " Hide status line if fzf is on
 augroup fzf
   autocmd! FileType fzf
-  autocmd  FileType fzf set laststatus=0 noshowmode noruler
-    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+  autocmd  FileType fzf set laststatus=0 noshowmode noruler showtabline=0
+    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler showtabline=2
 augroup end
 
-nnoremap <C-P> :ProjectFiles<CR>
-nnoremap <C-E> :Buffers<CR>
-nnoremap <C-T> :Tags<CR>
-nnoremap <C-S> :Ag<CR>
-nnoremap <C-F> :BLines<CR>
-nnoremap <C-H> :History:<CR>
-nnoremap <silent><leader>gf :GFiles?<CR>
-nnoremap <silent><leader>gc :Commits<CR>
-nnoremap <silent><leader>gbc :BCommits<CR>
-
-" NERDTree configuration
+" NERDTree "
+""""""""""""
 let g:NERDTreeWinSize=40
 let g:NERDTreeShowHidden=1
 let g:NERDTreeShowLineNumbers=1
-function! ToggleNERDTree()
-  if g:NERDTree.IsOpen()
-    :NERDTreeToggle 
-  else
-    :NERDTreeFind
-  endif
-endfunction
-nnoremap <C-\> :call ToggleNERDTree()<CR>
-nnoremap <leader>\ :NERDTreeToggle<CR>
 
-" Gruvbox configuration
+" Gruvbox "
+"""""""""""
 let g:gruvbox_contrast_dark='hard'
 set background=dark
 colorscheme gruvbox
 
-" Fugitive configuration
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gl :silent Glog<CR>:cw<CR>
-nnoremap <leader>ge :Gedit<CR>
-nnoremap <leader>gd :Gdiff<CR>
-nnoremap <leader>gb :Gblame<CR>
-
-" Multiple cursor configuration
+" Multiple cursor "
+"""""""""""""""""""
 let g:multi_cursor_use_default_mapping =  0
-let g:multi_cursor_start_word_key      = '<C-n>'
-let g:multi_cursor_select_all_word_key = '<A-n>'
-let g:multi_cursor_start_key           = 'g<C-n>'
-let g:multi_cursor_select_all_key      = 'g<A-n>'
-let g:multi_cursor_next_key            = '<C-n>'
-let g:multi_cursor_prev_key            = '<C-p>'
-let g:multi_cursor_skip_key            = '<C-x>'
-let g:multi_cursor_quit_key            = '<C-c>'
 
-" UndoTree configuration
-nnoremap <leader>u :UndotreeToggle<CR>
+" UndoTree "
+""""""""""""
 if has('persistent_undo')
     set undodir=~/.undodir/
     set undofile
 endif
 
-" Deoplete configuration
+" Deoplete "
+""""""""""""
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('sources', {
-\ 'ruby': ['LanguageClient', 'buffer', 'around', 'tag', 'ultisnips'],
-\ 'python3': ['buffer', 'around', 'tag', 'ultisnips'],
-\ 'javascript': ['buffer', 'around', 'tag', 'ultisnips'],
-\ 'vim': ['buffer', 'around', 'tag', 'ultisnips'],
-\ 'c': ['LanguageClient', 'buffer', 'around', 'tag', 'ultisnips'],
-\ 'sh': ['buffer', 'around', 'tag', 'ultisnips'],
-\ 'arduino': ['buffer', 'around', 'tag', 'ultisnips'],
-\ 'java': ['LanguageClient', 'buffer', 'around', 'tag', 'ultisnips'],
+\ 'ruby': ['LanguageClient', 'buffer', 'around', 'tag'],
+\ 'python3': ['buffer', 'around', 'tag'],
+\ 'javascript': ['buffer', 'around', 'tag'],
+\ 'vim': ['buffer', 'around', 'tag'],
+\ 'c': ['LanguageClient', 'buffer', 'around', 'tag'],
+\ 'sh': ['buffer', 'around', 'tag'],
+\ 'arduino': ['buffer', 'around', 'tag'],
 \ 'matlab': ['buffer', 'around', 'tag']
 \})
-
-call deoplete#custom#source('ultisnips', 'min_pattern_length', 1)
 let deoplete#tag#cache_limit_size = 5000000
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " fix problem with multicursor
-function Multiple_cursors_before()
+function! Multiple_cursors_before()
   let g:deoplete#disable_auto_complete = 1
 endfunction
-function Multiple_cursors_after()
+function! Multiple_cursors_after()
   let g:deoplete#disable_auto_complete = 0
 endfunction
 
-" Neomake configuration
+" Neomake "
+"""""""""""
 call neomake#configure#automake('nrwi', 500)
 let g:neomake_tempfile_dir = '/tmp/'
 
-" Ultisnips configuration
-let g:UltiSnipsExpandTrigger='<A-s>'
-let g:UltiSnipsJumpForwardTrigger='<C-j>'
-let g:UltiSnipsJumpBackwardTrigger='<C-k>'
-
-" Far configuration
+" Far "
+"""""""
 let g:far#source = 'ag'
 let g:far#window_layout = 'tab'
-let g:far#default_file_mask = './'
-let g:far#cwd = s:find_git_root()
+let g:far#default_file_mask = './*'
+let g:far#cwd = lib#FindProjectRoot()
 
-" LanguageClient configuration
+" LanguageClient "
+""""""""""""""""""
 let g:LanguageClient_diagnosticsEnable = 0
 let g:LanguageClient_serverCommands = {
-    \ 'java': ['/usr/bin/jdtls', '-data', getcwd()],
     \ 'ruby': [ 'solargraph', 'stdio' ],
     \ 'c': [ 'clangd' ],
 		\ 'cpp': [ 'clangd' ]
     \ }
-nnoremap <leader>ld :call LanguageClient#textDocument_definition({'gotoCmd': 'split'})<CR>
-nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
-nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
-nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
-nnoremap <leader>lx :call LanguageClient#textDocument_references()<CR>
-nnoremap <leader>la :call LanguageClient_workspace_applyEdit()<CR>
-nnoremap <leader>lc :call LanguageClient#textDocument_completion()<CR>
-nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
-nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
-nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
 
-" Tagbar configuration
-nnoremap <leader>t :TagbarToggle<CR>
+" Tagbar "
+""""""""""
+if executable('ripper-tags')                                                                       
+  let g:tagbar_type_ruby = {                                                                       
+      \ 'kinds'      : ['m:modules',                                                               
+                      \ 'c:classes',                                                               
+                      \ 'C:constants',                                                             
+                      \ 'F:singleton methods',                                                     
+                      \ 'f:methods',                                                               
+                      \ 'a:aliases'],                                                              
+      \ 'kind2scope' : { 'c' : 'class',                                                            
+                       \ 'm' : 'class' },                                                          
+      \ 'scope2kind' : { 'class' : 'c' },                                                          
+      \ 'ctagsbin'   : 'ripper-tags',                                                              
+      \ 'ctagsargs'  : ['-f', '-']                                                                 
+      \ }                                                                                          
+endif 

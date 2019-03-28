@@ -63,3 +63,8 @@ set cmdheight=2
 
 " Set autoread
 set autoread
+
+" Always show tab line
+set showtabline=2
+
+set tabline=%!lib#TabLineConfiguration()

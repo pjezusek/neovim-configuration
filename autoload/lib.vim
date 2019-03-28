@@ -1,23 +1,27 @@
-" Always show tab line
-set showtabline=2
+" Returns git root path if exists
+"
+" Return: String
+function lib#FindGitRoot()
+  return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+endfunction
 
-" Jumping between tabs. We assume that we only need 5 tabs.
-nnoremap <A-1> 1gt
-nnoremap <A-2> 2gt
-nnoremap <A-3> 3gt
-nnoremap <A-4> 4gt
-nnoremap <A-5> 5gt
-
-" Create new tab
-nnoremap <leader>tn :tabnew<CR>
-
-" Move tabs in tabsbar
-nnoremap <leader>tmr :tabmove +1<CR>
-nnoremap <leader>tml :tabmove -1<CR>
-
+" Returns git root path if exists or actual dir path
+" It does not include '/' symbol at the end of path
+"
+" Return: String
+function lib#FindProjectRoot()
+  let git_root = lib#FindGitRoot()
+  if git_root ==? ''
+    return '.'
+  else
+    return git_root
+  endif
+endfunction
 
 " Configure tab line design
-function! TabLineConfiguration()
+"
+" Return: String
+function! lib#TabLineConfiguration()
   let s = ''
   for i in range(tabpagenr('$'))
     let buffers = tabpagebuflist(i + 1)
@@ -36,7 +40,7 @@ function! TabLineConfiguration()
       let s.= ' '
     endif
 
-    let s .= '%{TabLabel(' . (i + 1) . ')} '
+    let s .= '%{lib#TabLabel(' . (i + 1) . ')} '
   endfor
 
   " after the last tab fill with TabLineFill and reset tab page nr
@@ -45,14 +49,15 @@ function! TabLineConfiguration()
   return s
 endfunction
 
-function! TabLabel(n)
+" Configure tab label
+"
+" Return: String
+function! lib#TabLabel(n)
   let buflist = tabpagebuflist(a:n)
   let winnr = tabpagewinnr(a:n)
   let name = bufname(buflist[winnr - 1])
-  if name == ''
+  if name ==? ''
     let name = '[NEW]'
   endif
   return name
 endfunction
-
-set tabline=%!TabLineConfiguration()

@@ -18,7 +18,7 @@ function lib#FindProjectRoot()
   endif
 endfunction
 
-" Configure tab line design
+" Returns configuration for tab line design
 "
 " Return: String
 function! lib#TabLineConfiguration()
@@ -49,7 +49,7 @@ function! lib#TabLineConfiguration()
   return s
 endfunction
 
-" Configure tab label
+" Returns tab label
 "
 " Return: String
 function! lib#TabLabel(n)
@@ -60,4 +60,13 @@ function! lib#TabLabel(n)
     let name = '[NEW]'
   endif
   return name
+endfunction
+
+" Toggle NERDTree
+function! lib#NERDTreeToggle()
+  if g:NERDTree.IsOpen()
+    :NERDTreeToggle
+  else
+    :NERDTreeFind
+  endif
 endfunction

@@ -53,21 +53,23 @@ nnoremap <C-P> :ProjectFiles<CR>
 nnoremap <C-E> :Buffers<CR>
 nnoremap <C-T> :Tags<CR>
 nnoremap <C-S> :Ag<CR>
-nnoremap <C-F>l :BLines<CR>
-nnoremap <C-F>h :History:<CR>
-nnoremap <C-F>m :RailsModelsFiles<CR>                                                                
-nnoremap <C-F>c :RailsControllersFiles<CR>                                                           
-nnoremap <C-F>v :RailsViewsFiles<CR> 
+nnoremap <C-M> :Marks<CR>
+nnoremap <C-F><C-t> :BTags<CR>
+nnoremap <C-F><C-l> :BLines<CR>
+nnoremap <C-F><C-h> :History:<CR>
+nnoremap <C-F><C-m> :RailsModelFiles<CR>
+nnoremap <C-F><C-c> :RailsControllerFiles<CR>
+nnoremap <C-F><C-v> :RailsViewFiles<CR>
 
 
 " FILES TREE MANAGER "
 """"""""""""""""""""""
-nnoremap <C-\> g:NERDTree.IsOpen() ? :NERDTreeToggle : NERDTreeFind<CR>
+nnoremap <C-\> :NERDTreeLibToggle<CR>
 nnoremap <leader>\ :NERDTreeToggle<CR>
 
 " GIT REPOSITORY "
 """"""""""""""""""
-nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gs :Gtabedit :<CR>
 nnoremap <leader>gl :silent Glog<CR>:cw<CR>
 nnoremap <leader>ge :Gedit<CR>
 nnoremap <leader>gd :Gdiff<CR>
@@ -113,3 +115,15 @@ nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
 " TAGBAR "
 """"""""""
 nnoremap <leader>t :TagbarToggle<CR>
+
+" FAR "
+"""""""""""""
+nnoremap <leader>se :F <c-r>=expand("<cword>")<CR>
+vnoremap <leader>se "gy <bar> :F <c-r>g
+nnoremap <leader>sh :F <c-r>=expand("<cword>")<CR> %
+vnoremap <leader>sh "gy <bar> :F <c-r>g %
+nnoremap <leader>re :Far <c-r>=expand("<cword>")<CR>
+vnoremap <leader>re "gy <bar> :Far <c-r>g
+nnoremap <leader>rh :Far <c-r>=expand("<cword>")<CR> %
+vnoremap <leader>rh "gy <bar> :Far <c-r>g %
+nnoremap <leader>rr :Refar

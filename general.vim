@@ -23,9 +23,13 @@ set splitbelow
 set nowrap
 
 " Set settings for <Tab>
+
+" Default
 set tabstop=2 
 set shiftwidth=2
 set expandtab
+
+" Java
 augroup tab_settings
   autocmd!
   autocmd FileType java setlocal shiftwidth=4 tabstop=4
@@ -67,4 +71,5 @@ set autoread
 " Always show tab line
 set showtabline=2
 
+" Set tabline
 set tabline=%!lib#TabLineConfiguration()

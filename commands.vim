@@ -39,3 +39,7 @@ command! -nargs=* RailsControllerFiles
 command! -nargs=* RailsViewFiles
   \ call fzf#vim#files(lib#FindProjectRoot() . '/app/views' . <q-args>,
   \                    fzf#vim#with_preview('right:55%'))
+
+command! -nargs=* RailsSpecFiles
+  \ call fzf#vim#files(lib#FindProjectRoot() . '/spec' . <q-args>,
+  \                    fzf#vim#with_preview('right:55%'))

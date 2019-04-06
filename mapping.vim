@@ -60,6 +60,7 @@ nnoremap <C-F><C-h> :History:<CR>
 nnoremap <C-F><C-m> :RailsModelFiles<CR>
 nnoremap <C-F><C-c> :RailsControllerFiles<CR>
 nnoremap <C-F><C-v> :RailsViewFiles<CR>
+nnoremap <C-F><C-s> :RailsSpecFiles<CR>
 
 
 " FILES TREE MANAGER "
@@ -120,10 +121,10 @@ nnoremap <leader>t :TagbarToggle<CR>
 """""""""""""
 nnoremap <leader>se :F <c-r>=expand("<cword>")<CR>
 vnoremap <leader>se "gy <bar> :F <c-r>g
-nnoremap <leader>sh :F <c-r>=expand("<cword>")<CR> %
-vnoremap <leader>sh "gy <bar> :F <c-r>g %
+nnoremap <leader>sh :F <c-r>=expand("<cword>")<CR> %<CR>
+vnoremap <leader>sh "gy <bar> :F <c-r>g %<CR>
 nnoremap <leader>re :Far <c-r>=expand("<cword>")<CR>
 vnoremap <leader>re "gy <bar> :Far <c-r>g
-nnoremap <leader>rh :Far <c-r>=expand("<cword>")<CR> %
-vnoremap <leader>rh "gy <bar> :Far <c-r>g %
+nnoremap <leader>rh :Far <c-r>=expand("<cword>")<CR>  %<Left><Left>
+vnoremap <leader>rh "gy <bar> :Far <c-r>g  %<Left><Left>
 nnoremap <leader>rr :Refar

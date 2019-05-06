@@ -95,7 +95,7 @@ call plug#begin('~/.local/share/nvim/plugged')
       \ 'do': 'bash install.sh',
       \ }
 
-  " SPECIFIC LANGUAGES/FRAMEWORKS "
+  " SPECIFIC LANGUAGES/FRAMEWORKS/ENVIRONMENTS "
   """""""""""""""""""""""""""""""""
 
   " Name: Vim rails
@@ -160,11 +160,11 @@ let deoplete#tag#cache_limit_size = 5000000
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " fix problem with multicursor
-function! Multiple_cursors_before()
-  let g:deoplete#disable_auto_complete = 1
+function g:Multiple_cursors_before()
+ call deoplete#custom#buffer_option('auto_complete', v:false)
 endfunction
-function! Multiple_cursors_after()
-  let g:deoplete#disable_auto_complete = 0
+function g:Multiple_cursors_after()
+ call deoplete#custom#buffer_option('auto_complete', v:true)
 endfunction
 
 " Neomake "
@@ -204,4 +204,4 @@ if executable('ripper-tags')
       \ 'ctagsbin'   : 'ripper-tags',                                                              
       \ 'ctagsargs'  : ['-f', '-']                                                                 
       \ }                                                                                          
-endif 
+endif

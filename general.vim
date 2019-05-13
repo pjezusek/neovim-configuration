@@ -25,7 +25,7 @@ set nowrap
 " Set settings for <Tab>
 
 " Default
-set tabstop=2 
+set tabstop=2
 set shiftwidth=2
 set expandtab
 
@@ -63,7 +63,7 @@ set tags=.tags
 set signcolumn=yes
 
 " Cmd height
-set cmdheight=2
+set cmdheight=1
 
 " Set autoread
 set autoread
@@ -73,3 +73,6 @@ set showtabline=2
 
 " Set tabline
 set tabline=%!lib#TabLineConfiguration()
+
+" No mode line
+set noshowmode 

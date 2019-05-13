@@ -22,6 +22,11 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Description: Theme
   Plug 'morhetz/gruvbox'
 
+  " Name: Vim airline
+  " Description: Status bar and more
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+
   " SEARCHING AND MOVEMENT "
   """"""""""""""""""""""""""
 
@@ -33,7 +38,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Name: NERDTree
   " Description: File tree manager
   Plug 'scrooloose/nerdtree'
-  Plug 'Xuyuanp/nerdtree-git-plugin' 
+  Plug 'Xuyuanp/nerdtree-git-plugin'
 
   " Name: Easymotion
   " Description: Fast jumping
@@ -52,7 +57,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " EDITING "
   """""""""""
-  
+
   " Name: Multiple cursors
   " Description: Editing multiple places in the same time
   Plug 'terryma/vim-multiple-cursors'
@@ -101,6 +106,10 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Name: Vim rails
   " Description: Support tool for rails projects
   Plug 'tpope/vim-rails'
+
+  " Name: CSV vim
+  " Description: Better editing csv files
+  Plug '/chrisbra/csv.vim'
 call plug#end()
 
 function! s:find_git_root()
@@ -185,23 +194,28 @@ let g:LanguageClient_diagnosticsEnable = 0
 let g:LanguageClient_serverCommands = {
     \ 'ruby': [ 'solargraph', 'stdio' ],
     \ 'c': [ 'clangd' ],
-		\ 'cpp': [ 'clangd' ]
+    \ 'cpp': [ 'clangd' ]
     \ }
 
 " Tagbar "
 """"""""""
-if executable('ripper-tags')                                                                       
-  let g:tagbar_type_ruby = {                                                                       
-      \ 'kinds'      : ['m:modules',                                                               
-                      \ 'c:classes',                                                               
-                      \ 'C:constants',                                                             
-                      \ 'F:singleton methods',                                                     
-                      \ 'f:methods',                                                               
-                      \ 'a:aliases'],                                                              
-      \ 'kind2scope' : { 'c' : 'class',                                                            
-                       \ 'm' : 'class' },                                                          
-      \ 'scope2kind' : { 'class' : 'c' },                                                          
-      \ 'ctagsbin'   : 'ripper-tags',                                                              
-      \ 'ctagsargs'  : ['-f', '-']                                                                 
-      \ }                                                                                          
+if executable('ripper-tags')
+  let g:tagbar_type_ruby = {
+      \ 'kinds'      : ['m:modules',
+                      \ 'c:classes',
+                      \ 'C:constants',
+                      \ 'F:singleton methods',
+                      \ 'f:methods',
+                      \ 'a:aliases'],
+      \ 'kind2scope' : { 'c' : 'class',
+                       \ 'm' : 'class' },
+      \ 'scope2kind' : { 'class' : 'c' },
+      \ 'ctagsbin'   : 'ripper-tags',
+      \ 'ctagsargs'  : ['-f', '-']
+      \ }
 endif
+
+" Vim airline "
+"""""""""""""""
+let g:airline_powerline_fonts = 1
+let g:airline_theme='badwolf'

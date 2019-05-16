@@ -11,7 +11,7 @@ command! Rconf :execute 'source $MYVIMRC'
 command! -nargs=* Ag
   \ call fzf#vim#ag(<q-args>,
   \                 extend({'dir': lib#FindProjectRoot()},
-  \                         fzf#vim#with_preview('up:40%'))
+  \                         fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:40%'))
   \                )
 
 " Search files in whole project

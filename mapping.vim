@@ -118,7 +118,7 @@ nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
 nnoremap <leader>t :TagbarToggle<CR>
 
 " FAR "
-"""""""""""""
+"""""""
 nnoremap <leader>se :F <c-r>=expand("<cword>")<CR>
 vnoremap <leader>se "gy <bar> :F <c-r>g
 nnoremap <leader>sh :F <c-r>=expand("<cword>")<CR> %<CR>
@@ -128,3 +128,9 @@ vnoremap <leader>re "gy <bar> :Far <c-r>g
 nnoremap <leader>rh :Far <c-r>=expand("<cword>")<CR>  %<Left><Left>
 vnoremap <leader>rh "gy <bar> :Far <c-r>g  %<Left><Left>
 nnoremap <leader>rr :Refar
+
+" QUICKFIX LIST "
+"""""""""""""""""
+nnoremap <leader>cw :cw<CR>
+nnoremap <leader>cp :cp<CR>
+nnoremap <leader>ccl :ccl<CR>

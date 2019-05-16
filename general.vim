@@ -76,3 +76,8 @@ set tabline=%!lib#TabLineConfiguration()
 
 " No mode line
 set noshowmode 
+
+" set python environment
+let g:python_host_prog = $HOME . '/.pyenv/versions/neovim-python2/bin/python'
+let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim-python3/bin/python'
+

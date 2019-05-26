@@ -35,7 +35,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
 
-  " Name: NERDTree
+  " Name: NERDTree, NERDTree-git-plugin
   " Description: File tree manager
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -109,7 +109,11 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Name: CSV vim
   " Description: Better editing csv files
-  Plug '/chrisbra/csv.vim'
+  Plug 'chrisbra/csv.vim'
+
+  " Name: Diffconflicts
+  " Description: Better vimdiff tool
+  Plug 'whiteinge/diffconflicts'
 call plug#end()
 
 function! s:find_git_root()

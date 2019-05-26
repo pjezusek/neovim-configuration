@@ -1,7 +1,7 @@
 " Returns git root path if exists
 "
 " Return: String
-function lib#FindGitRoot()
+function! lib#FindGitRoot() abort
   return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
 endfunction
 
@@ -9,7 +9,7 @@ endfunction
 " It does not include '/' symbol at the end of path
 "
 " Return: String
-function lib#FindProjectRoot()
+function! lib#FindProjectRoot() abort
   let git_root = lib#FindGitRoot()
   if git_root ==? ''
     return '.'
@@ -21,7 +21,7 @@ endfunction
 " Returns configuration for tab line design
 "
 " Return: String
-function! lib#TabLineConfiguration()
+function! lib#TabLineConfiguration() abort
   let s = ''
   for i in range(tabpagenr('$'))
     let buffers = tabpagebuflist(i + 1)
@@ -52,7 +52,7 @@ endfunction
 " Returns tab label
 "
 " Return: String
-function! lib#TabLabel(n)
+function! lib#TabLabel(n) abort
   let buflist = tabpagebuflist(a:n)
   let winnr = tabpagewinnr(a:n)
   let name = bufname(buflist[winnr - 1])
@@ -63,10 +63,23 @@ function! lib#TabLabel(n)
 endfunction
 
 " Toggle NERDTree
-function! lib#NERDTreeToggle()
+function! lib#NERDTreeToggle() abort
   if g:NERDTree.IsOpen()
     :NERDTreeToggle
   else
     :NERDTreeFind
   endif
+endfunction
+
+" Run fzf in given dir
+function! lib#FzfInDir(dir, args) abort
+  call fzf#vim#files(lib#FindProjectRoot() . a:dir . a:args, fzf#vim#with_preview('right:55%'))
+endfunction
+
+" Run ag in given dir
+function! lib#AgInDir(dir, args) abort
+  call fzf#vim#ag(a:args,
+  \               extend({'dir': lib#FindProjectRoot() . a:dir},
+  \               fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:40%'))
+  \               )
 endfunction

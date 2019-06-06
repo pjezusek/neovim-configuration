@@ -1,7 +1,7 @@
 " Returns git root path if exists
 "
 " Return: String
-function! lib#FindGitRoot() abort
+function! lib#GitRoot() abort
   return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
 endfunction
 
@@ -9,8 +9,8 @@ endfunction
 " It does not include '/' symbol at the end of path
 "
 " Return: String
-function! lib#FindProjectRoot() abort
-  let git_root = lib#FindGitRoot()
+function! lib#ProjectRoot() abort
+  let git_root = lib#GitRoot()
   if git_root ==? ''
     return '.'
   else
@@ -62,7 +62,7 @@ function! lib#TabLabel(n) abort
   return name
 endfunction
 
-" Toggle NERDTree
+" Toggles NERDTree
 function! lib#NERDTreeToggle() abort
   if g:NERDTree.IsOpen()
     :NERDTreeToggle
@@ -71,15 +71,50 @@ function! lib#NERDTreeToggle() abort
   endif
 endfunction
 
-" Run fzf in given dir
+" Starts fzf in given dir
 function! lib#FzfInDir(dir, args) abort
-  call fzf#vim#files(lib#FindProjectRoot() . a:dir . a:args, fzf#vim#with_preview('right:55%'))
+  call fzf#vim#files(lib#ProjectRoot() . a:dir . a:args, fzf#vim#with_preview('right:55%'))
 endfunction
 
-" Run ag in given dir
+" Starts fzf in given dir (searches files with given extension)
+function! lib#FzfInDirWithExtensions(dir, args, extensions) abort
+  let joined_extensions = join(a:extensions, '|')
+  let extensions_pattern = '.(' . joined_extensions . ')$'
+  let source = "ag -g \'" . extensions_pattern . "\' " . lib#ProjectRoot() . a:dir
+  call fzf#vim#files(lib#ProjectRoot() . a:dir . a:args,
+        \            extend({'source': source},
+        \            fzf#vim#with_preview('right:55%'))
+        \           )
+endfunction
+
+" Starts ag in given dir
 function! lib#AgInDir(dir, args) abort
   call fzf#vim#ag(a:args,
-  \               extend({'dir': lib#FindProjectRoot() . a:dir},
+  \               extend({'dir': lib#ProjectRoot() . a:dir},
   \               fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:40%'))
   \               )
+endfunction
+
+" Returns project type names
+"
+" Return: List<String>
+function! lib#GetProjectTypes() abort
+  let file_name = get(g:, 'project_type_file', '.project_type')
+  let path = lib#ProjectRoot() . '/' . file_name
+  if filereadable(path)
+    return readfile(path)
+  else
+    return []
+  endif
+endfunction
+
+" Loads configuration files that are defined by type names in g:project_type_file
+function! lib#LoadProjectConfig() abort
+  let config_files = lib#GetProjectTypes()
+  for config_file in config_files
+    let path = fnamemodify($MYVIMRC, ':p:h') . '/pplugin/' . config_file . '.vim'
+    if(filereadable(path))
+      exec 'source ' . path
+    endif
+  endfor
 endfunction

@@ -16,7 +16,7 @@ call g:NERDTreeAddKeyMap({
        \ 'quickhelpText': 'search in selected dir using ag',
        \ 'scope': 'DirNode' })
 
-" Search in dir using Far
+" Searches in dir using Far
 function! FarFindInDir(dirNode) abort
   call inputsave()
   let searched_string = input('Find: ')
@@ -25,7 +25,7 @@ function! FarFindInDir(dirNode) abort
   exe ':F ' . searched_string . ' ' . file_pattern
 endfunction
 
-" Search in dir using Far
+" Searches in dir using Far
 function! FarReplaceInDir(dirNode) abort
   call inputsave()
   let searched_string = input('Find: ')
@@ -35,10 +35,10 @@ function! FarReplaceInDir(dirNode) abort
   exe ':Far ' . searched_string . ' ' . replace . ' ' . file_pattern
 endfunction
 
-" Search in dir using Far
+" Searches in dir using Far
 function! AgSearchInDir(dirNode) abort
-  let relative_dir_path = substitute(a:dirNode.path.str(), lib#FindProjectRoot(), '', '')
-  let full_path = lib#FindProjectRoot() . relative_dir_path
+  let relative_dir_path = substitute(a:dirNode.path.str(), lib#ProjectRoot(), '', '')
+  let full_path = lib#ProjectRoot() . relative_dir_path
   call fzf#vim#ag('',
   \               extend({'dir': full_path },
   \               fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:40%'))

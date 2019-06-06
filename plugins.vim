@@ -165,6 +165,7 @@ call deoplete#custom#option('sources', {
 \ 'javascript': ['buffer', 'around', 'tag'],
 \ 'vim': ['buffer', 'around', 'tag'],
 \ 'c': ['LanguageClient', 'buffer', 'around', 'tag'],
+\ 'cpp': ['LanguageClient', 'buffer', 'around', 'tag'],
 \ 'sh': ['buffer', 'around', 'tag'],
 \ 'arduino': ['buffer', 'around', 'tag'],
 \ 'matlab': ['buffer', 'around', 'tag']
@@ -184,13 +185,18 @@ endfunction
 """""""""""
 call neomake#configure#automake('nrwi', 500)
 let g:neomake_tempfile_dir = '/tmp/'
+let g:neomake_cpp_enabled_makers = ['clang']
+let g:neomake_cpp_clang_maker = {
+\ 'exe': 'clang++',
+\ 'args': ['-Wall', '-Isrc'],
+\ }
 
 " Far "
 """""""
 let g:far#source = 'ag'
 let g:far#window_layout = 'tab'
 let g:far#default_file_mask = './*'
-let g:far#cwd = lib#FindProjectRoot()
+let g:far#cwd = lib#ProjectRoot()
 
 " LanguageClient "
 """"""""""""""""""

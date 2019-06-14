@@ -15,9 +15,7 @@ endif
 " List of plugins
 call plug#begin('~/.local/share/nvim/plugged')
 
-  " THEME "
-  """""""""
-
+  " Theme {{{
   " Name: Gruvbox
   " Description: Theme
   Plug 'morhetz/gruvbox'
@@ -26,10 +24,9 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Description: Status bar and more
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
+  " }}}
 
-  " SEARCHING AND MOVEMENT "
-  """"""""""""""""""""""""""
-
+  " Searching and movement {{{
   " Name: FZF
   " Description: Fuzzy finder
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -47,17 +44,15 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Name: Far
   " Description: Find and replace tool
   Plug 'brooth/far.vim'
+  " }}}
 
-  " CODE REPOSITORY "
-  """""""""""""""""""
-
+  " Code repository {{{
   " Name: Fugitive
   " Description: Wrapper for git commands
   Plug 'tpope/vim-fugitive'
+  " }}}
 
-  " EDITING "
-  """""""""""
-
+  " Editing {{{
   " Name: Multiple cursors
   " Description: Editing multiple places in the same time
   Plug 'terryma/vim-multiple-cursors'
@@ -85,10 +80,9 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Name: Tagbar
   " Description: Easy tags browser
   Plug 'majutsushi/tagbar'
+  " }}}
 
-  " BACKGROUND WORKERS "
-  """"""""""""""""""""""
-
+  " Background workers {{{
   " Name: Neomake
   " Description: Asynchronous linting and make framework
   Plug 'neomake/neomake'
@@ -99,10 +93,9 @@ call plug#begin('~/.local/share/nvim/plugged')
       \ 'branch': 'next',
       \ 'do': 'bash install.sh',
       \ }
+  " }}}
 
-  " SPECIFIC LANGUAGES/FRAMEWORKS/ENVIRONMENTS "
-  """""""""""""""""""""""""""""""""
-
+  " Specific languages/frameworks/environments {{{
   " Name: Vim rails
   " Description: Support tool for rails projects
   Plug 'tpope/vim-rails'
@@ -114,6 +107,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Name: Diffconflicts
   " Description: Better vimdiff tool
   Plug 'whiteinge/diffconflicts'
+  " }}}
 call plug#end()
 
 function! s:find_git_root()
@@ -122,8 +116,7 @@ endfunction
 
 " Configuration
 
-" FZF "
-"""""""
+" FZF {{{
 let g:fzf_layout = { 'down': '~50%' }
 
 " Hide status line if fzf is on
@@ -132,32 +125,32 @@ augroup fzf
   autocmd  FileType fzf set laststatus=0 noshowmode noruler showtabline=0
     \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler showtabline=2
 augroup end
+" }}}
 
-" NERDTree "
-""""""""""""
+" NERDTree {{{
 let g:NERDTreeWinSize=40
 let g:NERDTreeShowHidden=1
 let g:NERDTreeShowLineNumbers=1
+" }}}
 
-" Gruvbox "
-"""""""""""
+" Gruvbox {{{
 let g:gruvbox_contrast_dark='hard'
 set background=dark
 colorscheme gruvbox
+" }}}
 
-" Multiple cursor "
-"""""""""""""""""""
+" Multiple cursor {{{
 let g:multi_cursor_use_default_mapping =  0
+" }}}
 
-" UndoTree "
-""""""""""""
+" UndoTree {{{
 if has('persistent_undo')
     set undodir=~/.undodir/
     set undofile
 endif
+" }}}
 
-" Deoplete "
-""""""""""""
+" Deoplete {{{
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('sources', {
 \ 'ruby': ['LanguageClient', 'buffer', 'around', 'tag'],
@@ -180,35 +173,30 @@ endfunction
 function g:Multiple_cursors_after()
  call deoplete#custom#buffer_option('auto_complete', v:true)
 endfunction
+" }}}
 
-" Neomake "
-"""""""""""
+" Neomake {{{
 call neomake#configure#automake('nrwi', 500)
 let g:neomake_tempfile_dir = '/tmp/'
-let g:neomake_cpp_enabled_makers = ['clang']
-let g:neomake_cpp_clang_maker = {
-\ 'exe': 'clang++',
-\ 'args': ['-Wall', '-Isrc'],
-\ }
+" }}}
 
-" Far "
-"""""""
+" Far {{{
 let g:far#source = 'ag'
 let g:far#window_layout = 'tab'
 let g:far#default_file_mask = './*'
 let g:far#cwd = lib#ProjectRoot()
+" }}}
 
-" LanguageClient "
-""""""""""""""""""
+" LanguageClient {{{
 let g:LanguageClient_diagnosticsEnable = 0
 let g:LanguageClient_serverCommands = {
     \ 'ruby': [ 'solargraph', 'stdio' ],
     \ 'c': [ 'clangd' ],
     \ 'cpp': [ 'clangd' ]
     \ }
+" }}}
 
-" Tagbar "
-""""""""""
+" Tagbar {{{
 if executable('ripper-tags')
   let g:tagbar_type_ruby = {
       \ 'kinds'      : ['m:modules',
@@ -224,8 +212,9 @@ if executable('ripper-tags')
       \ 'ctagsargs'  : ['-f', '-']
       \ }
 endif
+" }}}
 
-" Vim airline "
-"""""""""""""""
+" Vim airline {{{
 let g:airline_powerline_fonts = 1
 let g:airline_theme='badwolf'
+" }}}

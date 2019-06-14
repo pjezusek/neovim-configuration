@@ -129,3 +129,7 @@ nnoremap <leader>cw :cw<CR>
 nnoremap <leader>cp :cp<CR>
 nnoremap <leader>ccl :ccl<CR>
 " }}}
+
+" Neomake {{{
+nnoremap <leader>nm :Neomake<CR>
+" }}}

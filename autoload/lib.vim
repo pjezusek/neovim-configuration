@@ -115,6 +115,7 @@ function! lib#FzfInDir(dir) abort
   let s:Sink = opts['sink*']
   let opts['sink*'] = function('s:edit_file')
   let opts.options .= l:fzf_files_options
+  let opts['down'] = '40%'
   call fzf#run(opts)
 endfunction
 

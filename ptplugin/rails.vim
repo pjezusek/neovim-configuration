@@ -1,15 +1,15 @@
 " Commands {{{
 " Search model files in rails project
-command! -nargs=* RailsModelFiles call lib#FzfInDir('/app/models', <q-args>)
+command! -nargs=* RailsModelFiles call lib#FzfInDir('/app/models')
 
 " Search controller files in rails project
-command! -nargs=* RailsControllerFiles call lib#FzfInDir('/app/controllers', <q-args>)
+command! -nargs=* RailsControllerFiles call lib#FzfInDir('/app/controllers')
 
 " Search view files in rails project
-command! -nargs=* RailsViewFiles call lib#FzfInDir('/app/views', <q-args>)
+command! -nargs=* RailsViewFiles call lib#FzfInDir('/app/views')
 
 " Search in spec files
-command! -nargs=* RailsSpecFiles call lib#FzfInDir('/app/spec', <q-args>)
+command! -nargs=* RailsSpecFiles call lib#FzfInDir('/app/spec')
 " }}}
 
 " Mapping {{{

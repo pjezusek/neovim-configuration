@@ -14,7 +14,6 @@ endif
 
 " List of plugins
 call plug#begin('~/.local/share/nvim/plugged')
-
   " Theme {{{
   " Name: Gruvbox
   " Description: Theme
@@ -73,13 +72,17 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Description: Permanent undo tree
   Plug 'mbbill/undotree'
 
-  " Name: Deoplete
-  " Description: Completion engine
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
   " Name: Tagbar
   " Description: Easy tags browser
   Plug 'majutsushi/tagbar'
+
+  " Name: commentary
+  " Description: Easy comments
+  Plug 'tpope/vim-commentary'
+
+  " Name: devicons
+  " Description: Icons
+  Plug 'ryanoasis/vim-devicons'
   " }}}
 
   " Background workers {{{
@@ -87,12 +90,10 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Description: Asynchronous linting and make framework
   Plug 'neomake/neomake'
 
-  " Name: LanguageClient
+  " Name: Coc.nvim
   " Description: Client for language servers
-  Plug 'autozimu/LanguageClient-neovim', {
-      \ 'branch': 'next',
-      \ 'do': 'bash install.sh',
-      \ }
+  " Use release branch
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
   " }}}
 
   " Specific languages/frameworks/environments {{{
@@ -107,12 +108,12 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Name: Diffconflicts
   " Description: Better vimdiff tool
   Plug 'whiteinge/diffconflicts'
+
+  " Name: vim-javascript
+  " Description: Better javascript syntax highlighting
+  Plug 'pangloss/vim-javascript'
   " }}}
 call plug#end()
-
-function! s:find_git_root()
-  return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
-endfunction
 
 " Configuration
 
@@ -128,9 +129,10 @@ augroup end
 " }}}
 
 " NERDTree {{{
-let g:NERDTreeWinSize=40
+let g:NERDTreeWinSize=60
 let g:NERDTreeShowHidden=1
 let g:NERDTreeShowLineNumbers=1
+let g:NERDTreeWinPos='right'
 " }}}
 
 " Gruvbox {{{
@@ -150,31 +152,6 @@ if has('persistent_undo')
 endif
 " }}}
 
-" Deoplete {{{
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option('sources', {
-\ 'ruby': ['LanguageClient', 'buffer', 'around', 'tag'],
-\ 'python3': ['buffer', 'around', 'tag'],
-\ 'javascript': ['buffer', 'around', 'tag'],
-\ 'vim': ['buffer', 'around', 'tag'],
-\ 'c': ['LanguageClient', 'buffer', 'around', 'tag'],
-\ 'cpp': ['LanguageClient', 'buffer', 'around', 'tag'],
-\ 'sh': ['buffer', 'around', 'tag'],
-\ 'arduino': ['buffer', 'around', 'tag'],
-\ 'matlab': ['buffer', 'around', 'tag']
-\})
-let deoplete#tag#cache_limit_size = 5000000
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
-" fix problem with multicursor
-function g:Multiple_cursors_before()
- call deoplete#custom#buffer_option('auto_complete', v:false)
-endfunction
-function g:Multiple_cursors_after()
- call deoplete#custom#buffer_option('auto_complete', v:true)
-endfunction
-" }}}
-
 " Neomake {{{
 call neomake#configure#automake('nrwi', 500)
 let g:neomake_tempfile_dir = '/tmp/'
@@ -185,15 +162,6 @@ let g:far#source = 'ag'
 let g:far#window_layout = 'tab'
 let g:far#default_file_mask = './*'
 let g:far#cwd = lib#ProjectRoot()
-" }}}
-
-" LanguageClient {{{
-let g:LanguageClient_diagnosticsEnable = 0
-let g:LanguageClient_serverCommands = {
-    \ 'ruby': [ 'solargraph', 'stdio' ],
-    \ 'c': [ 'clangd' ],
-    \ 'cpp': [ 'clangd' ]
-    \ }
 " }}}
 
 " Tagbar {{{
@@ -217,4 +185,46 @@ endif
 " Vim airline {{{
 let g:airline_powerline_fonts = 1
 let g:airline_theme='badwolf'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#exclude_preview = 1
+let g:airline#extensions#tabline#show_splits = 0
+let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#coc#enabled = 1
+" }}}
+
+" vim-javascript {{{
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_flow = 1
+augroup javascript_folding
+    au!
+    au FileType javascript setlocal foldmethod=syntax
+augroup END
+" }}}
+
+" Coc.vim {{{
+" Map <tab> for trigger completion, completion confirm, snippet expand and jump like VSCode.c
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? coc#_select_confirm() :
+  \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <C-J> and <C-K> to navigate the completion list:
+
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+
+let g:coc_snippet_next = '<tab>'
+
+" use ctrl+space to trigger autocopletion
+inoremap <silent><expr> <c-space> coc#refresh()
+
+autocmd FileType * let b:coc_root_patterns = ['.git', '.env']
+autocmd CursorHold * silent call CocActionAsync('highlight')
 " }}}

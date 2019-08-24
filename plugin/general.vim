@@ -1,6 +1,8 @@
 " Ensure that compatibility with vi is disabled
 set nocompatible
 
+set encoding=UTF-8
+
 " Set line numbers
 set number relativenumber
 augroup numbertoggle
@@ -75,11 +77,21 @@ set showtabline=2
 set tabline=%!lib#TabLineConfiguration()
 
 " No mode line
-set noshowmode 
+set noshowmode
 
 " Set python environment
 let g:python_host_prog = $HOME . '/.pyenv/versions/neovim-python2/bin/python'
 let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim-python3/bin/python'
 
-" Load project configuration
-call lib#LoadProjectConfig()
+" Load project type configuration
+call lib#LoadProjectTypeConfig()
+
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
+" Better display for messages
+set cmdheight=2
+
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300

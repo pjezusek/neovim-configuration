@@ -1,12 +1,12 @@
-" Returns git root path if exists
+" Returns the git root path if exists
 "
 " Return: String
 function! lib#GitRoot() abort
   return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
 endfunction
 
-" Returns git root path if exists or actual dir path
-" It does not include '/' symbol at the end of path
+" Returns the git root path if exists or an actual dir path
+" It does not include the '/' symbol at the end of the path
 "
 " Return: String
 function! lib#ProjectRoot() abort
@@ -18,7 +18,7 @@ function! lib#ProjectRoot() abort
   endif
 endfunction
 
-" Returns configuration for tab line design
+" Returns the configuration for the tab line design
 "
 " Return: String
 function! lib#TabLineConfiguration() abort
@@ -43,13 +43,13 @@ function! lib#TabLineConfiguration() abort
     let s .= '%{lib#TabLabel(' . (i + 1) . ')} '
   endfor
 
-  " after the last tab fill with TabLineFill and reset tab page nr
+  " after the last tab fill with TabLineFill and reset the tab page nr
   let s .= '%#TabLineFill#%T'
 
   return s
 endfunction
 
-" Returns tab label
+" Returns a tab label
 "
 " Return: String
 function! lib#TabLabel(n) abort
@@ -71,12 +71,54 @@ function! lib#NERDTreeToggle() abort
   endif
 endfunction
 
-" Starts fzf in given dir
-function! lib#FzfInDir(dir, args) abort
-  call fzf#vim#files(lib#ProjectRoot() . a:dir . a:args, fzf#vim#with_preview('right:55%'))
+" Starts fzf in the given dir
+" It supports font icons
+function! lib#FzfInDir(dir) abort
+  let l:fzf_files_options = ' -m --preview "[[ \$(file --mime {2..-1}) =~ binary ]] && echo {2..-1} is a binary file || (highlight -O ansi -l {2..-1} || coderay {2..-1} || rougify {2..-1} || cat {2..-1}) 2> /dev/null | head -'.&lines.'"'
+  let s:dir = lib#ProjectRoot() . a:dir
+  let s:dir_root = lib#ProjectRoot()
+
+  function! s:files()
+    let command = "ag -g \"\"  --hidden --ignore .git " . s:dir
+    let files = split(system(command), '\n')
+    return s:prepend_icon(files)
+  endfunction
+
+  function! s:prepend_icon(candidates)
+    let result = []
+    for candidate in a:candidates
+      let filename = fnamemodify(candidate, ':p:t')
+      let icon = WebDevIconsGetFileTypeSymbol(filename, isdirectory(filename))
+      let filename_to_show = substitute(candidate, s:dir_root . '/', '', '')
+      call add(result, printf("%s %s", icon, filename_to_show))
+    endfor
+
+    return result
+  endfunction
+
+ function! s:edit_file(items)
+    let items = a:items
+    let i = 1
+    let ln = len(items)
+    while i < ln
+      let item = items[i]
+      let parts = split(item, ' ')
+      let file_path = get(parts, 1, '')
+      let items[i] = file_path
+      let i += 1
+    endwhile
+    call s:Sink(items)
+  endfunction
+
+  let opts = fzf#wrap({})
+  let opts.source = <sid>files()
+  let s:Sink = opts['sink*']
+  let opts['sink*'] = function('s:edit_file')
+  let opts.options .= l:fzf_files_options
+  call fzf#run(opts)
 endfunction
 
-" Starts fzf in given dir (searches files with given extension)
+" Starts fzf in the given dir (searches files with the given extension)
 function! lib#FzfInDirWithExtensions(dir, args, extensions) abort
   let joined_extensions = join(a:extensions, '|')
   let extensions_pattern = '.(' . joined_extensions . ')$'
@@ -87,7 +129,7 @@ function! lib#FzfInDirWithExtensions(dir, args, extensions) abort
         \           )
 endfunction
 
-" Starts ag in given dir
+" Starts ag in the given dir
 function! lib#AgInDir(dir, args) abort
   call fzf#vim#ag(a:args,
   \               extend({'dir': lib#ProjectRoot() . a:dir},
@@ -95,12 +137,14 @@ function! lib#AgInDir(dir, args) abort
   \               )
 endfunction
 
-" Returns project type names
+" Returns project type names. They are received from the file defined by g:project_type_file (default project_types).
+" The file with list of types is searched in g:workspace_config_dir (default .vim)
 "
 " Return: List<String>
 function! lib#GetProjectTypes() abort
-  let file_name = get(g:, 'project_type_file', '.project_type')
-  let path = lib#ProjectRoot() . '/' . file_name
+  let config_dir = get(g:, 'workspace_config_dir', '.vim')
+  let file_name = get(g:, 'project_type_file', 'project_type')
+  let path = lib#ProjectRoot() . '/' . config_dir . '/' . file_name
   if filereadable(path)
     return readfile(path)
   else
@@ -108,13 +152,25 @@ function! lib#GetProjectTypes() abort
   endif
 endfunction
 
-" Loads configuration files that are defined by type names in g:project_type_file
-function! lib#LoadProjectConfig() abort
+" Loads files from ptplugin dir. The list of files to load is received from lib#GetProjectTypes
+function! lib#LoadProjectTypeConfig() abort
   let config_files = lib#GetProjectTypes()
   for config_file in config_files
-    let path = fnamemodify($MYVIMRC, ':p:h') . '/pplugin/' . config_file . '.vim'
+    let path = fnamemodify($MYVIMRC, ':p:h') . '/ptplugin/' . config_file . '.vim'
     if(filereadable(path))
       exec 'source ' . path
+    endif
+  endfor
+endfunction
+
+" Loads configuration files that are define in the actual workspace.
+" They should be located in g:workspace_config_dir (default .vim).
+function! lib#LoadWorkspaceConfig() abort
+  let config_dir = get(g:, 'workspace_config_dir', '.vim')
+  let path = lib#ProjectRoot() . '/' . config_dir
+  for config_file in split(globpath(path, '*.vim'), '\n')
+    if(filereadable(config_file))
+      exec 'source ' . config_file
     endif
   endfor
 endfunction

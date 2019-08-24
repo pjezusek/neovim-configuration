@@ -1,2 +1,5 @@
-" Set folding methods
-setlocal foldmethod=marker
+" General {{{
+  set foldmethod=marker
+  set foldnestmax=2
+  set foldlevel=0
+" }}}

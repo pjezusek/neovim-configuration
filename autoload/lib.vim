@@ -165,9 +165,9 @@ function! lib#LoadProjectTypeConfig() abort
 endfunction
 
 " Loads configuration files that are define in the actual workspace.
-" They should be located in g:workspace_config_dir (default .vim).
+" They should be located in g:workspace_config_dir (default .vim_workspace).
 function! lib#LoadWorkspaceConfig() abort
-  let config_dir = get(g:, 'workspace_config_dir', '.vim')
+  let config_dir = get(g:, 'workspace_config_dir', '.vim_workspace')
   let path = lib#ProjectRoot() . '/' . config_dir
   for config_file in split(globpath(path, '*.vim'), '\n')
     if(filereadable(config_file))

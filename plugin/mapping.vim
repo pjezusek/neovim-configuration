@@ -53,8 +53,8 @@ nnoremap <C-E> :Buffers<CR>
 nnoremap <C-T> :Tags<CR>
 nnoremap <C-S> :Ag<CR>
 nnoremap <C-M> :Marks<CR>
+nnoremap <C-l> :BLines<CR>
 nnoremap <C-F><C-t> :BTags<CR>
-nnoremap <C-F><C-l> :BLines<CR>
 nnoremap <C-F><C-h> :History:<CR>
 " }}}
 

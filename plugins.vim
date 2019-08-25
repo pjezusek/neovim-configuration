@@ -154,7 +154,7 @@ endif
 
 " Neomake {{{
 call neomake#configure#automake('nrwi', 500)
-let g:neomake_tempfile_dir = '/tmp/'
+let g:neomake_tempfile_dir = '.vim/'
 " }}}
 
 " Far {{{

@@ -41,8 +41,8 @@ nnoremap <leader>tml :tabmove -1<CR>
 " }}}
 
 " Preview {{{
-nnoremap <leader>pt <C-W>} 
-vnoremap <leader>pt <C-W>} 
+nnoremap <leader>pt <C-W>}
+vnoremap <leader>pt <C-W>}
 nnoremap <leader>pc :pc<CR>
 vnoremap <leader>pc :pc<CR>
 " }}}

@@ -112,6 +112,10 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Name: vim-javascript
   " Description: Better javascript syntax highlighting
   Plug 'pangloss/vim-javascript'
+
+  " Name: markdown-preview.nvim
+  " Description: Markdown preview
+  Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
   " }}}
 call plug#end()
 

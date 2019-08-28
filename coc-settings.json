@@ -11,5 +11,7 @@
       "filetypes": ["sh"],
       "ignoredRootPaths": ["~"]
     }
-  }
+  },
+  "prettier.singleQuote": true
+
 }

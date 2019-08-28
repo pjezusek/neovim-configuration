@@ -9,7 +9,7 @@ command! -nargs=* RailsControllerFiles call lib#FzfInDir('/app/controllers')
 command! -nargs=* RailsViewFiles call lib#FzfInDir('/app/views')
 
 " Search in spec files
-command! -nargs=* RailsSpecFiles call lib#FzfInDir('/app/spec')
+command! -nargs=* RailsSpecFiles call lib#FzfInDir('/spec')
 " }}}
 
 " Mapping {{{

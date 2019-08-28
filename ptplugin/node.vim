@@ -1,6 +1,6 @@
 " Commands {{{
 " Search model files in node project
-command! -nargs=* NodeModelFiles call lib#FzfInDir('/models')
+command! -nargs=* NodeModelFiles call lib#FzfInDir('/db/models')
 
 " Search routes files in node project
 command! -nargs=* NodeRoutesFiles call lib#FzfInDir('/routes')

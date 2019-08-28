@@ -19,14 +19,14 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Description: Theme
   Plug 'morhetz/gruvbox'
 
-  " Name: Vim airline
+  " Name: vim-airline
   " Description: Status bar and more
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   " }}}
 
   " Searching and movement {{{
-  " Name: FZF
+  " Name: fzf.vim
   " Description: Fuzzy finder
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
@@ -36,7 +36,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
 
-  " Name: Easymotion
+  " Name: vim-easymotion
   " Description: Fast jumping
   Plug 'easymotion/vim-easymotion'
 
@@ -46,17 +46,17 @@ call plug#begin('~/.local/share/nvim/plugged')
   " }}}
 
   " Code repository {{{
-  " Name: Fugitive
+  " Name: vim-fugitive
   " Description: Wrapper for git commands
   Plug 'tpope/vim-fugitive'
   " }}}
 
   " Editing {{{
-  " Name: Multiple cursors
+  " Name: vim-multiple-cursors
   " Description: Editing multiple places in the same time
   Plug 'terryma/vim-multiple-cursors'
 
-  " Name: Surround
+  " Name: vim-surround
   " Description: Fast editing surrounding characters
   Plug 'tpope/vim-surround'
 
@@ -64,9 +64,13 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Description: Engine for snippets
   Plug 'SirVer/ultisnips'
 
-  " Name: Snippets
+  " Name: vim-snippets
   " Description: Pack of common snippets supported by Ultisnips
   Plug 'honza/vim-snippets'
+
+  " Name: vim-react-snippets
+  " Description: Pack of common snippets supported by Ultisnips
+  Plug 'epilande/vim-react-snippets'
 
   " Name: UndoTree
   " Description: Permanent undo tree
@@ -76,11 +80,11 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Description: Easy tags browser
   Plug 'majutsushi/tagbar'
 
-  " Name: commentary
+  " Name: vim-commentary
   " Description: Easy comments
   Plug 'tpope/vim-commentary'
 
-  " Name: devicons
+  " Name: vim-devicons
   " Description: Icons
   Plug 'ryanoasis/vim-devicons'
   " }}}
@@ -97,11 +101,11 @@ call plug#begin('~/.local/share/nvim/plugged')
   " }}}
 
   " Specific languages/frameworks/environments {{{
-  " Name: Vim rails
+  " Name: vim-rails
   " Description: Support tool for rails projects
   Plug 'tpope/vim-rails'
 
-  " Name: CSV vim
+  " Name: CSV.vim
   " Description: Better editing csv files
   Plug 'chrisbra/csv.vim'
 
@@ -113,6 +117,10 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Description: Better javascript syntax highlighting
   Plug 'pangloss/vim-javascript'
 
+  " Name: vim-javascript
+  " Description: Better jsx syntax highlighting
+  Plug 'mxw/vim-jsx'
+
   " Name: markdown-preview.nvim
   " Description: Markdown preview
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
@@ -121,7 +129,7 @@ call plug#end()
 
 " Configuration
 
-" FZF {{{
+" FZF.vim {{{
 let g:fzf_layout = { 'down': '~50%' }
 
 " Hide status line if fzf is on
@@ -145,7 +153,7 @@ set background=dark
 colorscheme gruvbox
 " }}}
 
-" Multiple cursor {{{
+" vim-multiple-cursor {{{
 let g:multi_cursor_use_default_mapping =  0
 " }}}
 
@@ -186,7 +194,7 @@ if executable('ripper-tags')
 endif
 " }}}
 
-" Vim airline {{{
+" vim-airline {{{
 let g:airline_powerline_fonts = 1
 let g:airline_theme='badwolf'
 let g:airline#extensions#tabline#enabled = 1

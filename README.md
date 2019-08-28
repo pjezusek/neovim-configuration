@@ -39,6 +39,7 @@ List of programs/fonts/languages which should be installed to use all features o
   - [coc-vimlsp](https://github.com/iamcco/coc-vimlsp) `CocInstall coc-vimlsp`
   - [coc-tsserver](https://github.com/neoclide/coc-tsserver) `CocInstall coc-tsserver`
   - [coc-sql](https://github.com/fannheyward/coc-sql) `CocInstall coc-sql`
+  - [coc-prettier](https://github.com/neoclide/coc-prettier) `CocInstall coc-prettier`
 
 ### Fonts
 The font which I use is [FiraCode](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode).

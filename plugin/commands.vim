@@ -12,3 +12,6 @@ command! -nargs=* ProjectFiles call lib#FzfInDir('')
 
 " Opens NERDTree
 command! NERDTreeLibToggle  call lib#NERDTreeToggle()
+
+" Format buffer
+command! -nargs=0 Prettier :CocCommand prettier.formatFile

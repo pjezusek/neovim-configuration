@@ -12,7 +12,7 @@ if exists('g:javascript_eslint_docker') && g:javascript_eslint_docker == 1
   let eslint_command = 'silent !docker-compose ' . join(docker_compose_args, ' ') . ' exec -T ' . service . ' ./node_modules/eslint/bin/eslint.js --fix %'
   cnoreabbrev <expr> esf getcmdtype() == ":" && getcmdline() == 'esf' ? eslint_command : 'esf'
 else
-  cnoreabbrev <expr> esf getcmdtype() == ":" && getcmdline() == 'esf' ? 'silent !eslint --fix %' : 'esf'
+  cnoreabbrev <expr> esf getcmdtype() == ":" && getcmdline() == 'esf' ? 'silent !' . lib#ProjectRoot() . '/node_modules/.bin/eslint --fix %' : 'esf'
 endif
 
 " js-beautify
@@ -21,7 +21,7 @@ if exists('g:javascript_js_beautify_docker') && g:javascript_js_beautify_docker 
   let js_beautify_command = 'silent !docker-compose ' . join(docker_compose_args, ' ') . ' exec -T ' . service . ' ./node_modules/eslint/bin/js-beautify -r -q -B %'
   cnoreabbrev <expr> jsb getcmdtype() == ":" && getcmdline() == 'jsb' ? js_beautify_command : 'jsb'
 else
-  cnoreabbrev <expr> jsb getcmdtype() == ":" && getcmdline() == 'jsb' ? 'silent !js-beautify -r -q -B %' : 'jsb'
+  cnoreabbrev <expr> jsb getcmdtype() == ":" && getcmdline() == 'jsb' ? 'silent !' . lib#ProjectRoot() . '/node_modules/.bin/js-beautify -r -q -B %' : 'jsb'
 endif
 " }}}
 

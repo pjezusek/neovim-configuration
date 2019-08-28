@@ -73,30 +73,35 @@ endfunction
 
 " Starts fzf in the given dir
 " It supports font icons
-function! lib#FzfInDir(dir) abort
+function! lib#FzfInDir(dir, ...) abort
   let l:fzf_files_options = ' -m --preview "[[ \$(file --mime {2..-1}) =~ binary ]] && echo {2..-1} is a binary file || (highlight -O ansi -l {2..-1} || coderay {2..-1} || rougify {2..-1} || cat {2..-1}) 2> /dev/null | head -'.&lines.'"'
   let s:dir = lib#ProjectRoot() . a:dir
   let s:dir_root = lib#ProjectRoot()
+  let s:options = get(a:, 1, {})
+  if has_key(s:options, 'source')
+    let s:source = s:options['source']
+  else
+    let s:source = "ag -g \"\"  --hidden --ignore .git " . s:dir
+  endif
 
-  function! s:files()
-    let command = "ag -g \"\"  --hidden --ignore .git " . s:dir
-    let files = split(system(command), '\n')
+  function! s:files() abort
+    let files = split(system(s:source), '\n')
     return s:prepend_icon(files)
   endfunction
 
-  function! s:prepend_icon(candidates)
+  function! s:prepend_icon(candidates) abort
     let result = []
     for candidate in a:candidates
       let filename = fnamemodify(candidate, ':p:t')
       let icon = WebDevIconsGetFileTypeSymbol(filename, isdirectory(filename))
       let filename_to_show = substitute(candidate, s:dir_root . '/', '', '')
-      call add(result, printf("%s %s", icon, filename_to_show))
+      call add(result, printf('%s %s', icon, filename_to_show))
     endfor
 
     return result
   endfunction
 
- function! s:edit_file(items)
+ function! s:edit_file(items) abort
     let items = a:items
     let i = 1
     let ln = len(items)
@@ -120,14 +125,11 @@ function! lib#FzfInDir(dir) abort
 endfunction
 
 " Starts fzf in the given dir (searches files with the given extension)
-function! lib#FzfInDirWithExtensions(dir, args, extensions) abort
+function! lib#FzfInDirWithExtensions(dir, extensions) abort
   let joined_extensions = join(a:extensions, '|')
   let extensions_pattern = '.(' . joined_extensions . ')$'
   let source = "ag -g \'" . extensions_pattern . "\' " . lib#ProjectRoot() . a:dir
-  call fzf#vim#files(lib#ProjectRoot() . a:dir . a:args,
-        \            extend({'source': source},
-        \            fzf#vim#with_preview('right:55%'))
-        \           )
+  call lib#FzfInDir(a:dir, { 'source': source })
 endfunction
 
 " Starts ag in the given dir
@@ -143,7 +145,7 @@ endfunction
 "
 " Return: List<String>
 function! lib#GetProjectTypes() abort
-  let config_dir = get(g:, 'workspace_config_dir', '.vim')
+  let config_dir = get(g:, 'workspace_config_dir', '.vim_workspace')
   let file_name = get(g:, 'project_type_file', 'project_type')
   let path = lib#ProjectRoot() . '/' . config_dir . '/' . file_name
   if filereadable(path)

@@ -47,7 +47,7 @@ nnoremap <leader>pc :pc<CR>
 vnoremap <leader>pc :pc<CR>
 " }}}
 
-" Fuzzy finder {{{
+" FZF {{{
 nnoremap <C-P> :ProjectFiles<CR>
 nnoremap <C-E> :Buffers<CR>
 nnoremap <C-T> :Tags<CR>
@@ -58,12 +58,12 @@ nnoremap <C-F><C-t> :BTags<CR>
 nnoremap <C-F><C-h> :History:<CR>
 " }}}
 
-" Files tree manager {{{
+" NERDTree {{{
 nnoremap <C-\> :NERDTreeLibToggle<CR>
 nnoremap <leader>\ :NERDTreeToggle<CR>
 " }}}
 
-" Git repository {{{
+" Fugitive {{{
 nnoremap <leader>gs :Gtabedit :<CR>
 nnoremap <leader>gl :silent Glog<CR>:cw<CR>
 nnoremap <leader>ge :Gedit<CR>
@@ -74,7 +74,7 @@ nnoremap <leader>gbc :BCommits<CR>
 nnoremap <leader>gf :GFiles?<CR>
 " }}}
 
-" Multiple cursor {{{
+" vim-multiple-cursor {{{
 let g:multi_cursor_start_word_key      = '<C-n>'
 let g:multi_cursor_select_all_word_key = '<A-n>'
 let g:multi_cursor_start_key           = 'g<C-n>'
@@ -85,7 +85,7 @@ let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<C-c>'
 " }}}
 
-" Undo tree {{{
+" UndoTree {{{
 nnoremap <leader>u :UndotreeToggle<CR>
 " }}}
 
@@ -133,7 +133,8 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Remap for format selected region
 xmap <leader>f <Plug>(coc-format-selected)
-nmap <leader>f <Plug>(coc-format-selected)
+
+nmap <leader>f :Prettier<CR>
 
 " Remap for rename current word
 nnoremap <leader>r <Plug>(coc-rename)
@@ -158,3 +159,4 @@ nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document
 nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
 " }}}
+

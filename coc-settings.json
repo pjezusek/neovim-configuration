@@ -12,6 +12,12 @@
       "ignoredRootPaths": ["~"]
     }
   },
-  "prettier.singleQuote": true
-
+  "prettier.singleQuote": true,
+  "eslint.filetypes": [
+      "javascriptreact",
+      "javascript.jsx",
+      "javascript",
+  ],
+  "suggest.maxPreviewWidth": 120,
+  "diagnostic.checkCurrentLine": true
 }

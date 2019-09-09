@@ -40,6 +40,11 @@ List of programs/fonts/languages which should be installed to use all features o
   - [coc-tsserver](https://github.com/neoclide/coc-tsserver) `CocInstall coc-tsserver`
   - [coc-sql](https://github.com/fannheyward/coc-sql) `CocInstall coc-sql`
   - [coc-prettier](https://github.com/neoclide/coc-prettier) `CocInstall coc-prettier`
+  - [coc-eslint](https://github.com/neoclide/coc-eslint) `CocInstall coc-eslint`
+- VSCode snippets
+  - [react](https://github.com/dsznajder/vscode-es7-javascript-react-snippets) `CocInstll https://github.com/dsznajder/vscode-es7-javascript-react-snippets`
+  - [javascript](https://github.com/xabikos/vscode-javascript) `CocInstall https://github.com/xabikos/vscode-javascript`
+
 
 ### Fonts
 The font which I use is [FiraCode](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode).

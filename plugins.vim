@@ -23,6 +23,10 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Description: Status bar and more
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
+
+  " Name: vim-devicons
+  " Description: Icons
+  Plug 'ryanoasis/vim-devicons'
   " }}}
 
   " Searching and movement {{{
@@ -60,18 +64,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Description: Fast editing surrounding characters
   Plug 'tpope/vim-surround'
 
-  " Name: Ultisnips
-  " Description: Engine for snippets
-  Plug 'SirVer/ultisnips'
-
-  " Name: vim-snippets
-  " Description: Pack of common snippets supported by Ultisnips
-  Plug 'honza/vim-snippets'
-
-  " Name: vim-react-snippets
-  " Description: Pack of common snippets supported by Ultisnips
-  Plug 'epilande/vim-react-snippets'
-
   " Name: UndoTree
   " Description: Permanent undo tree
   Plug 'mbbill/undotree'
@@ -84,9 +76,17 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Description: Easy comments
   Plug 'tpope/vim-commentary'
 
-  " Name: vim-devicons
-  " Description: Icons
-  Plug 'ryanoasis/vim-devicons'
+  " Name: Rainbow
+  " Description: Colorize brackets and parentheses
+  Plug 'luochen1990/rainbow'
+
+  " Name: vim-illuminate
+  " Description: Highlight words matching the one under the cursor
+  Plug 'RRethy/vim-illuminate'
+
+  " Name: vim-search-pulse
+  " Description: Pulse on scroll to the next search
+  Plug 'inside/vim-search-pulse'
   " }}}
 
   " Background workers {{{
@@ -239,4 +239,8 @@ inoremap <silent><expr> <c-space> coc#refresh()
 
 autocmd FileType * let b:coc_root_patterns = ['.git', '.env']
 autocmd CursorHold * silent call CocActionAsync('highlight')
+" }}}
+
+" Rainbow {{{
+let g:rainbow_active = 1
 " }}}

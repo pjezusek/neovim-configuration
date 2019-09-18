@@ -31,7 +31,7 @@ List of programs/fonts/languages which should be installed to use all features o
   - Install: `pip install vim-vint`
 - Coc extensions
   - [coc-json](https://github.com/neoclide/coc-json) `CocInstall coc-json`
-  - [coc-solagraph](https://github.com/neoclide/coc-solagraph) `CocInstall coc-solagraph`
+  - [coc-solagraph](https://github.com/neoclide/coc-solagraph) `CocInstall coc-solargraph`
   - [coc-lists](https://github.com/neoclide/coc-lists) `CocInstall coc-lists`
   - [coc-snippets](https://github.com/neoclide/coc-snippets) `CocInstall coc-snippets`
   - [coc-highlight](https://github.com/neoclide/coc-highlight) `CocInstall coc-highlight`
@@ -42,7 +42,7 @@ List of programs/fonts/languages which should be installed to use all features o
   - [coc-prettier](https://github.com/neoclide/coc-prettier) `CocInstall coc-prettier`
   - [coc-eslint](https://github.com/neoclide/coc-eslint) `CocInstall coc-eslint`
 - VSCode snippets
-  - [react](https://github.com/dsznajder/vscode-es7-javascript-react-snippets) `CocInstll https://github.com/dsznajder/vscode-es7-javascript-react-snippets`
+  - [react](https://github.com/dsznajder/vscode-es7-javascript-react-snippets) `CocInstall https://github.com/dsznajder/vscode-es7-javascript-react-snippets`
   - [javascript](https://github.com/xabikos/vscode-javascript) `CocInstall https://github.com/xabikos/vscode-javascript`
 
 

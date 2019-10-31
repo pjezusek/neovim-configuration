@@ -10,7 +10,7 @@ let docker_compose_args = get(g:, 'docker_compose_args', [])
 
 " Abbrevations {{{
 " Rubocop fix
-if exists('g:ruby_rubocop_docker') && &g:ruby_rubocop_docker
+if exists('g:ruby_rubocop_docker') && g:ruby_rubocop_docker == 1
   let service = get(g:, 'ruby_rubocop_docker_service', 'web')
   let command = 'silent !docker-compose ' . join(docker_compose_args, ' ') . ' exec -T ' . service . ' rubocop -a %'
   cnoreabbrev <expr> rcf getcmdtype() == ":" && getcmdline() == 'rcf' ? command : 'rcf'

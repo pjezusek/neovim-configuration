@@ -21,7 +21,7 @@ endif
 
 " Makers {{{
 let g:neomake_ruby_enabled_makers = []
-if g:neomake_ruby_rubocop == 1
+if exists('g:neomake_ruby_rubocop') && g:neomake_ruby_rubocop == 1
   let g:neomake_ruby_enabled_makers = add(g:neomake_ruby_enabled_makers, 'rubocop')
   if exists('g:ruby_rubocop_docker') && g:ruby_rubocop_docker == 1
     let service = get(g:, 'ruby_rubocop_docker_service', 'web')

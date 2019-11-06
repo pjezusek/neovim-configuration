@@ -23,10 +23,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Description: Status bar and more
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-
-  " Name: vim-devicons
-  " Description: Icons
-  Plug 'ryanoasis/vim-devicons'
   " }}}
 
   " Searching and movement {{{
@@ -40,19 +36,9 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
 
-  " Name: vim-easymotion
-  " Description: Fast jumping
-  Plug 'easymotion/vim-easymotion'
-
   " Name: Far
   " Description: Find and replace tool
   Plug 'brooth/far.vim'
-  " }}}
-
-  " Code repository {{{
-  " Name: vim-fugitive
-  " Description: Wrapper for git commands
-  Plug 'tpope/vim-fugitive'
   " }}}
 
   " Editing {{{
@@ -67,10 +53,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Name: UndoTree
   " Description: Permanent undo tree
   Plug 'mbbill/undotree'
-
-  " Name: Tagbar
-  " Description: Easy tags browser
-  Plug 'majutsushi/tagbar'
 
   " Name: vim-commentary
   " Description: Easy comments
@@ -87,6 +69,21 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Name: vim-search-pulse
   " Description: Pulse on scroll to the next search
   Plug 'inside/vim-search-pulse'
+
+  " Name: ReplaceWithRegister
+  " Description: allows to replace a given sentence with the chosen register
+  Plug 'vim-scripts/ReplaceWithRegister'
+
+  " Name: vim-textobj-user
+  " Description: adds possibility to easly create text objects
+  Plug 'kana/vim-textobj-user'
+  Plug 'tek/vim-textobj-ruby'
+  Plug 'bps/vim-textobj-python'
+  Plug 'bps/vim-textobj-python'
+  Plug 'kana/vim-textobj-datetime'
+  Plug 'whatyouhide/vim-textobj-erb'
+  Plug 'kana/vim-textobj-function'
+  Plug 'kana/vim-textobj-line'
   " }}}
 
   " Background workers {{{
@@ -109,10 +106,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Description: Better editing csv files
   Plug 'chrisbra/csv.vim'
 
-  " Name: Diffconflicts
-  " Description: Better vimdiff tool
-  Plug 'whiteinge/diffconflicts'
-
   " Name: vim-javascript
   " Description: Better javascript syntax highlighting
   Plug 'pangloss/vim-javascript'
@@ -124,10 +117,14 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Name: markdown-preview.nvim
   " Description: Markdown preview
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+
+  " Name: vim-snippets
+  " Description: Snippets for vim
+  Plug 'honza/vim-snippets'
   " }}}
 call plug#end()
 
-" Configuration
+" Configuration {{{
 
 " FZF.vim {{{
 let g:fzf_layout = { 'down': '~50%' }
@@ -142,7 +139,7 @@ augroup end
 
 " NERDTree {{{
 let g:NERDTreeWinSize=60
-let g:NERDTreeShowHidden=1
+let g:NERDTreeShowHidden=0
 let g:NERDTreeShowLineNumbers=1
 let g:NERDTreeWinPos='right'
 " }}}
@@ -151,10 +148,6 @@ let g:NERDTreeWinPos='right'
 let g:gruvbox_contrast_dark='hard'
 set background=dark
 colorscheme gruvbox
-" }}}
-
-" vim-multiple-cursor {{{
-let g:multi_cursor_use_default_mapping =  0
 " }}}
 
 " UndoTree {{{
@@ -176,24 +169,6 @@ let g:far#default_file_mask = './*'
 let g:far#cwd = lib#ProjectRoot()
 " }}}
 
-" Tagbar {{{
-if executable('ripper-tags')
-  let g:tagbar_type_ruby = {
-      \ 'kinds'      : ['m:modules',
-                      \ 'c:classes',
-                      \ 'C:constants',
-                      \ 'F:singleton methods',
-                      \ 'f:methods',
-                      \ 'a:aliases'],
-      \ 'kind2scope' : { 'c' : 'class',
-                       \ 'm' : 'class' },
-      \ 'scope2kind' : { 'class' : 'c' },
-      \ 'ctagsbin'   : 'ripper-tags',
-      \ 'ctagsargs'  : ['-f', '-']
-      \ }
-endif
-" }}}
-
 " vim-airline {{{
 let g:airline_powerline_fonts = 1
 let g:airline_theme='badwolf'
@@ -203,6 +178,7 @@ let g:airline#extensions#tabline#exclude_preview = 1
 let g:airline#extensions#tabline#show_splits = 0
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#coc#enabled = 1
+let g:airline_section_b = lib#GitBranchName()
 " }}}
 
 " vim-javascript {{{
@@ -239,8 +215,10 @@ inoremap <silent><expr> <c-space> coc#refresh()
 
 autocmd FileType * let b:coc_root_patterns = ['.git', '.env']
 autocmd CursorHold * silent call CocActionAsync('highlight')
+autocmd CursorHold,CursorMoved,CursorHoldI,CursorMovedI * silent! call CocActionAsync('showSignatureHelp')
 " }}}
 
 " Rainbow {{{
 let g:rainbow_active = 1
+" }}}
 " }}}

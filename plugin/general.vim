@@ -83,9 +83,6 @@ set noshowmode
 let g:python_host_prog = $HOME . '/.pyenv/versions/neovim-python2/bin/python'
 let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim-python3/bin/python'
 
-" Load project type configuration
-call lib#LoadProjectTypeConfig()
-
 " Some servers have issues with backup files, see #649
 set nobackup
 set nowritebackup
@@ -106,3 +103,18 @@ autocmd BufWinLeave * call clearmatches()
 augroup END
 
 set scrolloff=2
+
+" Filetypes
+augroup filetypedetect
+    au BufRead,BufNewFile *.thor setfiletype ruby
+augroup END
+
+" Search down into subfolders
+" Provides tab-completion for all file-related tasks
+set path+=**
+
+" Display all matching files when we tab complete
+set wildmenu
+
+" Load project type configuration
+call lib#LoadProjectTypeConfig()

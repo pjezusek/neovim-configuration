@@ -5,6 +5,13 @@ function! lib#GitRoot() abort
   return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
 endfunction
 
+" Returns the git branch name
+"
+" Return: String
+function! lib#GitBranchName() abort
+  return system("git branch | grep '*' | cut -f2 -d' ' 2> /dev/null")[:-2]
+endfunction
+
 " Returns the git root path if exists or an actual dir path
 " It does not include the '/' symbol at the end of the path
 "
@@ -74,54 +81,8 @@ endfunction
 " Starts fzf in the given dir
 " It supports font icons
 function! lib#FzfInDir(dir, ...) abort
-  let l:fzf_files_options = ' -m --preview "[[ \$(file --mime {2..-1}) =~ binary ]] && echo {2..-1} is a binary file || (highlight -O ansi -l {2..-1} || coderay {2..-1} || rougify {2..-1} || cat {2..-1}) 2> /dev/null | head -'.&lines.'"'
-  let s:dir = lib#ProjectRoot() . a:dir
-  let s:dir_root = lib#ProjectRoot()
   let s:options = get(a:, 1, {})
-  if has_key(s:options, 'source')
-    let s:source = s:options['source']
-  else
-    let s:source = "ag -g \"\"  --hidden --ignore .git " . s:dir
-  endif
-
-  function! s:files() abort
-    let files = split(system(s:source), '\n')
-    return s:prepend_icon(files)
-  endfunction
-
-  function! s:prepend_icon(candidates) abort
-    let result = []
-    for candidate in a:candidates
-      let filename = fnamemodify(candidate, ':p:t')
-      let icon = WebDevIconsGetFileTypeSymbol(filename, isdirectory(filename))
-      let filename_to_show = substitute(candidate, s:dir_root . '/', '', '')
-      call add(result, printf('%s %s', icon, filename_to_show))
-    endfor
-
-    return result
-  endfunction
-
- function! s:edit_file(items) abort
-    let items = a:items
-    let i = 1
-    let ln = len(items)
-    while i < ln
-      let item = items[i]
-      let parts = split(item, ' ')
-      let file_path = get(parts, 1, '')
-      let items[i] = file_path
-      let i += 1
-    endwhile
-    call s:Sink(items)
-  endfunction
-
-  let opts = fzf#wrap({})
-  let opts.source = <sid>files()
-  let s:Sink = opts['sink*']
-  let opts['sink*'] = function('s:edit_file')
-  let opts.options .= l:fzf_files_options
-  let opts['down'] = '40%'
-  call fzf#run(opts)
+  call fzf#vim#files(lib#ProjectRoot() . a:dir, extend(s:options, fzf#vim#with_preview('right:55%')))
 endfunction
 
 " Starts fzf in the given dir (searches files with the given extension)
@@ -141,7 +102,7 @@ function! lib#AgInDir(dir, args) abort
 endfunction
 
 " Returns project type names. They are received from the file defined by g:project_type_file (default project_types).
-" The file with list of types is searched in g:workspace_config_dir (default .vim)
+" The file with list of types is searched in g:workspace_config_dir (default .vim_workspace)
 "
 " Return: List<String>
 function! lib#GetProjectTypes() abort

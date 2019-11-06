@@ -1,5 +1,8 @@
 {
- "languageserver": {
+  "suggest.maxPreviewWidth": 120,
+  "diagnostic.checkCurrentLine": true,
+  "prettier.singleQuote": true,
+  "languageserver": {
     "dockerfile": {
       "command": "docker-langserver",
       "filetypes": ["dockerfile"],
@@ -12,12 +15,18 @@
       "ignoredRootPaths": ["~"]
     }
   },
-  "prettier.singleQuote": true,
   "eslint.filetypes": [
       "javascriptreact",
       "javascript.jsx",
       "javascript",
   ],
-  "suggest.maxPreviewWidth": 120,
-  "diagnostic.checkCurrentLine": true
+  "solargraph.diagnostics": true,
+  "solargraph.formatting": true,
+  "solargraph.hover": true,
+  "solargraph.completion": true,
+  "solargraph.definitions": true,
+  "solargraph.references": true,
+  "solargraph.rename": true,
+  "solargraph.symbols": true,
+  "solargraph.folding": true
 }

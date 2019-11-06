@@ -47,6 +47,12 @@ nnoremap <leader>pc :pc<CR>
 vnoremap <leader>pc :pc<CR>
 " }}}
 
+" Quickfix list {{{
+nnoremap <leader>cw :cw<CR>
+nnoremap <leader>cp :cp<CR>
+nnoremap <leader>ccl :ccl<CR>
+" }}}
+
 " FZF {{{
 nnoremap <C-P> :ProjectFiles<CR>
 nnoremap <C-E> :Buffers<CR>
@@ -61,17 +67,6 @@ nnoremap <C-F><C-h> :History:<CR>
 " NERDTree {{{
 nnoremap <C-\> :NERDTreeLibToggle<CR>
 nnoremap <leader>\ :NERDTreeToggle<CR>
-" }}}
-
-" Fugitive {{{
-nnoremap <leader>gs :Gtabedit :<CR>
-nnoremap <leader>gl :silent Glog<CR>:cw<CR>
-nnoremap <leader>ge :Gedit<CR>
-nnoremap <leader>gd :Gdiff<CR>
-nnoremap <leader>gb :Gblame<CR>
-nnoremap <leader>gc :Commits<CR>
-nnoremap <leader>gbc :BCommits<CR>
-nnoremap <leader>gf :GFiles?<CR>
 " }}}
 
 " vim-multiple-cursor {{{
@@ -89,16 +84,6 @@ let g:multi_cursor_quit_key            = '<C-c>'
 nnoremap <leader>u :UndotreeToggle<CR>
 " }}}
 
-" Ultisnips {{{
-let g:UltiSnipsExpandTrigger='<A-s>'
-let g:UltiSnipsJumpForwardTrigger='<C-j>'
-let g:UltiSnipsJumpBackwardTrigger='<C-k>'
-" }}}
-
-" Tagbar {{{
-nnoremap <leader>t :TagbarToggle<CR>
-" }}}
-
 " Far {{{
 nnoremap <leader>se :F <c-r>=expand("<cword>")<CR>
 vnoremap <leader>se "gy <bar> :F <c-r>g
@@ -109,12 +94,6 @@ vnoremap <leader>re "gy <bar> :Far <c-r>g
 nnoremap <leader>rh :Far <c-r>=expand("<cword>")<CR>  %<Left><Left>
 vnoremap <leader>rh "gy <bar> :Far <c-r>g  %<Left><Left>
 nnoremap <leader>rr :Refar
-" }}}
-
-" Quickfix list {{{
-nnoremap <leader>cw :cw<CR>
-nnoremap <leader>cp :cp<CR>
-nnoremap <leader>ccl :ccl<CR>
 " }}}
 
 " Neomake {{{
@@ -134,7 +113,7 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 " Remap for format selected region
 xmap <leader>f <Plug>(coc-format-selected)
 
-nmap <leader>f :Prettier<CR>
+nmap <leader>f <Plug>(coc-format)
 
 " Remap for rename current word
 nnoremap <leader>r <Plug>(coc-rename)
@@ -158,5 +137,6 @@ nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document
 nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+
 " }}}
 

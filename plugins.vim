@@ -1,6 +1,3 @@
-" File: plugins.vim
-" Description: List of plugins (manage by vim-plug) with their configurations
-
 " Autoinstall vim-plug if it is needed
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
@@ -31,14 +28,13 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
 
-  " Name: NERDTree, NERDTree-git-plugin
-  " Description: File tree manager
-  Plug 'scrooloose/nerdtree'
-  Plug 'Xuyuanp/nerdtree-git-plugin'
+  " Name: vim-vinegar
+  " Description: Make netrw more usefull
+  Plug 'tpope/vim-vinegar'
 
-  " Name: Far
-  " Description: Find and replace tool
-  Plug 'brooth/far.vim'
+  " Name: ranger.vim
+  " Description: Use ranger as file explorer
+  Plug 'francoiscabrol/ranger.vim'
   " }}}
 
   " Editing {{{
@@ -110,7 +106,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Description: Better javascript syntax highlighting
   Plug 'pangloss/vim-javascript'
 
-  " Name: vim-javascript
+  " Name: vim-jsx
   " Description: Better jsx syntax highlighting
   Plug 'mxw/vim-jsx'
 
@@ -137,13 +133,6 @@ augroup fzf
 augroup end
 " }}}
 
-" NERDTree {{{
-let g:NERDTreeWinSize=60
-let g:NERDTreeShowHidden=0
-let g:NERDTreeShowLineNumbers=1
-let g:NERDTreeWinPos='right'
-" }}}
-
 " Gruvbox {{{
 let g:gruvbox_contrast_dark='hard'
 set background=dark
@@ -160,13 +149,6 @@ endif
 " Neomake {{{
 call neomake#configure#automake('nrwi', 500)
 let g:neomake_tempfile_dir = '.vim/'
-" }}}
-
-" Far {{{
-let g:far#source = 'ag'
-let g:far#window_layout = 'tab'
-let g:far#default_file_mask = './*'
-let g:far#cwd = lib#ProjectRoot()
 " }}}
 
 " vim-airline {{{
@@ -220,5 +202,10 @@ autocmd CursorHold,CursorMoved,CursorHoldI,CursorMovedI * silent! call CocAction
 
 " Rainbow {{{
 let g:rainbow_active = 1
+" }}}
+
+" Ranger {{{
+let g:ranger_map_keys = 0
+autocmd TermClose term://.//*:ranger* bprevious | bwipeout! #
 " }}}
 " }}}

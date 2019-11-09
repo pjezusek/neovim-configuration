@@ -1,7 +1,5 @@
 " General {{{
-set foldmethod=syntax
-set foldnestmax=2
-set foldlevel=1
+set nofoldenable
 " }}}
 
 " Docker {{{

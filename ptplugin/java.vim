@@ -8,3 +8,4 @@ cnoreabbrev <expr> mvi getcmdtype() == ":" && getcmdline() == 'mvi' ? '!mvn inst
 " maven compile
 cnoreabbrev <expr> mvc getcmdtype() == ":" && getcmdline() == 'mvc' ? '!mvn compile' : 'mvc'
 " }}}
+

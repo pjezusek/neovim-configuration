@@ -69,15 +69,6 @@ function! lib#TabLabel(n) abort
   return name
 endfunction
 
-" Toggles NERDTree
-function! lib#NERDTreeToggle() abort
-  if g:NERDTree.IsOpen()
-    :NERDTreeToggle
-  else
-    :NERDTreeFind
-  endif
-endfunction
-
 " Starts fzf in the given dir
 " It supports font icons
 function! lib#FzfInDir(dir, ...) abort
@@ -101,7 +92,7 @@ function! lib#AgInDir(dir, args) abort
   \               )
 endfunction
 
-" Returns project type names. They are received from the file defined by g:project_type_file (default project_types).
+" Returns project type names. They are received from the file defined by g:project_type_file (default project_type).
 " The file with list of types is searched in g:workspace_config_dir (default .vim_workspace)
 "
 " Return: List<String>
@@ -137,4 +128,27 @@ function! lib#LoadWorkspaceConfig() abort
       exec 'source ' . config_file
     endif
   endfor
+endfunction
+
+" Find and replace all occurence of given word. It uses safe mode so you have
+" accept each change.
+function! lib#GlobalReplace(...) abort
+  execute 'silent grep! ' .  a:1 . ' | copen | cfdo %s/' . a:1 . '/' . a:2 . '/cg'
+endfunction
+
+function! lib#RunInTerminal(cmd) abort
+  execute 'tabnew | terminal !' . a:cmd
+  startinsert
+endfunction
+
+function! lib#RunInDockerImage(cmd, image_name) abort
+  call lib#RunInTerminal('docker run --rm -it ' . a:image_name . ' ' . a:cmd)
+endfunction
+
+function! lib#RunInDockerContainer(cmd, container_name) abort
+  call lib#RunInTerminal('docker exec ' . a:container_name . ' ' . a:cmd)
+endfunction
+
+function! lib#RunInDockerCompose(cmd, service_name) abort
+  call lib#RunInTerminal('docker-compose run --rm -it ' . a:service_name . ' ' . a:cmd)
 endfunction

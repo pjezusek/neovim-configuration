@@ -28,5 +28,6 @@
   "solargraph.references": true,
   "solargraph.rename": true,
   "solargraph.symbols": true,
-  "solargraph.folding": true
+  "solargraph.folding": true,
+  "python.jediEnabled": false
 }

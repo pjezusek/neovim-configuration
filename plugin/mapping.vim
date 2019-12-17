@@ -26,6 +26,15 @@ nnoremap q: <Nop>
 nnoremap <leader>f :find 
 nnoremap <leader>sf :sfind 
 nnoremap <leader>vf :vert sfind 
+
+nnoremap <leader>rw :%s/<c-r>=expand("<cword>")<CR>//g<Left><Left>
+nnoremap <leader>re :%s/\<<c-r>=expand("<cword>")<CR>\>//g<Left><Left>
+nnoremap <leader>rs :%s/<c-r>=expand("<cword>")<CR>//c<Left><Left>
+nnoremap <leader>rr :%s/<c-r>=expand("<cword>")<CR>//c<Left><Left>
+nnoremap <leader>rg :GlobalReplace <c-r>=expand("<cword>")<CR> 
+
+nnoremap <leader>ss :Search <c-r>=expand("<cword>")<CR><CR>
+nnoremap <silent> <F12> :let @"=expand("%")<CR>
 " }}}
 
 " Tabs {{{
@@ -37,23 +46,24 @@ nnoremap <A-4> 4gt
 nnoremap <A-5> 5gt
 
 " Create new tab
-nnoremap <leader>tn :tabnew<CR>
+nnoremap <A-n> :tabnew<CR>
 
 " Move tabs in tabsbar
 nnoremap <leader>tmr :tabmove +1<CR>
 nnoremap <leader>tml :tabmove -1<CR>
 " }}}
 
-" Preview {{{
-nnoremap <leader>pt <C-W>}
-vnoremap <leader>pt <C-W>}
-nnoremap <leader>pc :pc<CR>
-vnoremap <leader>pc :pc<CR>
+" Quickfix list {{{
+nnoremap <leader>qq :copen<CR>
+nnoremap <leader>qc :cclose<CR>
+nnoremap gn :cnext<CR>
+nnoremap gp :cprevious<CR>
 " }}}
 
-" Quickfix list {{{
+" Location list {{{
 nnoremap <leader>cw :cw<CR>
 nnoremap <leader>cp :cp<CR>
+nnoremap <leader>cn :cn<CR>
 nnoremap <leader>ccl :ccl<CR>
 " }}}
 
@@ -69,8 +79,9 @@ nnoremap <leader>se :Ag <c-r>=expand("<cword>")<CR><CR>
 " }}}
 
 " vim-multiple-cursor {{{
+let g:multi_cursor_use_default_mapping = 0
 let g:multi_cursor_start_word_key      = '<C-n>'
-let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_select_all_word_key = ''
 let g:multi_cursor_start_key           = 'g<C-n>'
 let g:multi_cursor_select_all_key      = 'g<A-n>'
 let g:multi_cursor_next_key            = '<C-n>'
@@ -99,11 +110,7 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Remap for format selected region
 xmap <leader>pr <Plug>(coc-format-selected)
-
 nmap <leader>pr <Plug>(coc-format)
-
-" Remap for rename current word
-nnoremap <leader>r <Plug>(coc-rename)
 
 " Diagnostic messages
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
@@ -113,7 +120,7 @@ nmap <silent> ]c <Plug>(coc-diagnostic-next)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gu <Plug>(coc-references)
 
 " Using CocList
 " Show all diagnostics
@@ -121,7 +128,10 @@ nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 " }}}
 
 " Ranger {{{
-nnoremap <C-\> :RangerWorkingDirectory<CR>
-nnoremap <leader>\ :Ranger<CR>
+nnoremap <leader>\ :RangerWorkingDirectory<CR>
+nnoremap <C-\> :Ranger<CR>
 " }}}
 
+" Terminal {{{
+tnoremap <Esc> <C-\><C-n>
+" }}}

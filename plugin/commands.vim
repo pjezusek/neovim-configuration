@@ -10,8 +10,14 @@ command! -nargs=* Ag call lib#AgInDir('', <q-args>)
 " Searches files in whole project
 command! -nargs=* ProjectFiles call lib#FzfInDir('')
 
-" Opens NERDTree
-command! NERDTreeLibToggle  call lib#NERDTreeToggle()
+" Rename
+command! -nargs=0 Rename :CocCommand document.renameCurrentWord
 
-" Format buffer
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
+" Close all buffers
+command! Bonly %bd
+
+" Use ag to search in project
+command! -nargs=1 Search :silent grep! <args> | :copen
+
+" Replace in whole project
+command! -nargs=* GlobalReplace call lib#GlobalReplace(<f-args>)

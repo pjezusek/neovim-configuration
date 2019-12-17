@@ -53,7 +53,6 @@ endif
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
-command! -nargs=1 Search :silent grep! <args> | :copen
 
 " Preview window height
 set previewheight=30
@@ -118,3 +117,29 @@ set wildmenu
 
 " Load project type configuration
 call lib#LoadProjectTypeConfig()
+
+" Folding style
+highlight Folded cterm=bold " no underline
+function! MyFoldText()
+    let line = getline(v:foldstart)
+    let nucolwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - nucolwidth - 5 " Change this number into flair character length
+    let foldedlinecount = v:foldend - v:foldstart
+    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+        let fillcharcount = windowwidth - strdisplaywidth(line) - len(foldedlinecount)
+    return line . ' ...' . repeat(" ",fillcharcount) . foldedlinecount . '' . ' '
+endfunction
+set foldtext=MyFoldText()
+
+" Ignorecase
+set ignorecase
+
+set smartcase
+set ignorecase
+set inccommand=split
+
+" Allow to hide unsaved buffers
+set hidden
+
+" Add cfilter package
+packadd cfilter

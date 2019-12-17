@@ -1,3 +1,6 @@
+" File: plugins.vim
+" Description: List of plugins (manage by vim-plug) with their configurations
+
 " Autoinstall vim-plug if it is needed
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
@@ -28,13 +31,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
 
-  " Name: vim-vinegar
-  " Description: Make netrw more usefull
-  Plug 'tpope/vim-vinegar'
-
-  " Name: ranger.vim
-  " Description: Use ranger as file explorer
-  Plug 'francoiscabrol/ranger.vim'
   " }}}
 
   " Editing {{{
@@ -80,6 +76,15 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'whatyouhide/vim-textobj-erb'
   Plug 'kana/vim-textobj-function'
   Plug 'kana/vim-textobj-line'
+
+  " Name: vim-vinegar
+  " Description: makes netrw more usefull
+  Plug 'tpope/vim-vinegar'
+
+  " Name: ranger.vim
+  " Description: use ranger in vim
+  Plug 'francoiscabrol/ranger.vim'
+  Plug 'rbgrouleff/bclose.vim'
   " }}}
 
   " Background workers {{{
@@ -93,7 +98,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   " }}}
 
-  " Specific languages/frameworks/environments {{{
+  " Languages support {{{
   " Name: vim-rails
   " Description: Support tool for rails projects
   Plug 'tpope/vim-rails'
@@ -155,9 +160,7 @@ let g:neomake_tempfile_dir = '.vim/'
 let g:airline_powerline_fonts = 1
 let g:airline_theme='badwolf'
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#exclude_preview = 1
-let g:airline#extensions#tabline#show_splits = 0
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#coc#enabled = 1
 let g:airline_section_b = lib#GitBranchName()
@@ -186,7 +189,6 @@ function! s:check_back_space() abort
 endfunction
 
 " Use <C-J> and <C-K> to navigate the completion list:
-
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
@@ -197,7 +199,7 @@ inoremap <silent><expr> <c-space> coc#refresh()
 
 autocmd FileType * let b:coc_root_patterns = ['.git', '.env']
 autocmd CursorHold * silent call CocActionAsync('highlight')
-autocmd CursorHold,CursorMoved,CursorHoldI,CursorMovedI * silent! call CocActionAsync('showSignatureHelp')
+"autocmd CursorHold,CursorMoved,CursorHoldI,CursorMovedI * silent! call CocActionAsync('showSignatureHelp')
 " }}}
 
 " Rainbow {{{
@@ -206,6 +208,6 @@ let g:rainbow_active = 1
 
 " Ranger {{{
 let g:ranger_map_keys = 0
-autocmd TermClose term://.//*:ranger* bprevious | bwipeout! #
 " }}}
+
 " }}}

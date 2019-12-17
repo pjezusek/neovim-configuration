@@ -85,9 +85,17 @@ function! lib#FzfInDirWithExtensions(dir, extensions) abort
 endfunction
 
 " Starts ag in the given dir
-function! lib#AgInDir(dir, args) abort
+function! lib#AgInDir(args) abort
+  call fzf#vim#ag(a:args[1:-1],
+  \               extend({'dir': lib#ProjectRoot() . a:args[0]},
+  \               fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:40%'))
+  \               )
+endfunction
+
+" Starts ag in the whole project
+function! lib#AgInProject(args) abort
   call fzf#vim#ag(a:args,
-  \               extend({'dir': lib#ProjectRoot() . a:dir},
+  \               extend({'dir': lib#ProjectRoot()},
   \               fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:40%'))
   \               )
 endfunction
@@ -136,19 +144,30 @@ function! lib#GlobalReplace(...) abort
   execute 'silent grep! ' .  a:1 . ' | copen | cfdo %s/' . a:1 . '/' . a:2 . '/cg'
 endfunction
 
-function! lib#RunInTerminal(cmd) abort
-  execute 'tabnew | terminal !' . a:cmd
+function! lib#RunInTerminal(cmd, ...) abort
+  let sudo = get(a:, 1, 0)
+  if sudo
+    let terminal = 'terminal sudo'
+  else
+    let terminal = 'terminal'
+  end
+  execute 'tabnew | ' . terminal . ' ' . a:cmd
   startinsert
+  echo a:cmd
 endfunction
 
-function! lib#RunInDockerImage(cmd, image_name) abort
-  call lib#RunInTerminal('docker run --rm -it ' . a:image_name . ' ' . a:cmd)
+function! lib#RunInDockerImageCommand(cmd, image_name, ...) abort
+  let environment = get(a:, 1, '')
+    let environment = '-e ' . environment
+  return 'docker run --rm -it -e ' . environment . ' ' . a:image_name . ' "' . a:cmd
 endfunction
 
-function! lib#RunInDockerContainer(cmd, container_name) abort
-  call lib#RunInTerminal('docker exec ' . a:container_name . ' ' . a:cmd)
+function! lib#RunInDockerContainerCommand(cmd, container_name, ...) abort
+  let environment = get(a:, 1, '')
+  return 'docker exec -e ' . environment . ' ' . a:container_name . ' ' . a:cmd
 endfunction
 
-function! lib#RunInDockerCompose(cmd, service_name) abort
-  call lib#RunInTerminal('docker-compose run --rm -it ' . a:service_name . ' ' . a:cmd)
+function! lib#RunInDockerComposeCommand(cmd, service_name, ...) abort
+  let environment = get(a:, 1, '')
+  return 'docker-compose run -e ' . environment . ' --rm ' . a:service_name . ' ' . a:cmd
 endfunction

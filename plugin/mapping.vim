@@ -30,8 +30,12 @@ nnoremap <leader>vf :vert sfind
 nnoremap <leader>rw :%s/<c-r>=expand("<cword>")<CR>//g<Left><Left>
 nnoremap <leader>re :%s/\<<c-r>=expand("<cword>")<CR>\>//g<Left><Left>
 nnoremap <leader>rs :%s/<c-r>=expand("<cword>")<CR>//c<Left><Left>
-nnoremap <leader>rr :%s/<c-r>=expand("<cword>")<CR>//c<Left><Left>
 nnoremap <leader>rg :GlobalReplace <c-r>=expand("<cword>")<CR> 
+
+vnoremap <leader>rw y:%s/<C-R>"//g<Left><Left>
+vnoremap <leader>re y:%s/\<<C-R>"\>//g<Left><Left>
+vnoremap <leader>rs y:%s/<C-R>"//c<Left><Left>
+vnoremap <leader>rg y:GlobalReplace <C-R><CR> 
 
 nnoremap <leader>ss :Search <c-r>=expand("<cword>")<CR><CR>
 nnoremap <silent> <F12> :let @"=expand("%")<CR>
@@ -76,6 +80,7 @@ nnoremap <C-l> :BLines<CR>
 nnoremap <C-F><C-t> :BTags<CR>
 nnoremap <C-F><C-h> :History:<CR>
 nnoremap <leader>se :Ag <c-r>=expand("<cword>")<CR><CR>
+vnoremap <leader>se y:Ag <C-R><CR>
 " }}}
 
 " vim-multiple-cursor {{{

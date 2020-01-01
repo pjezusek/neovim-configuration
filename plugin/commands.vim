@@ -24,3 +24,6 @@ command! -nargs=1 Search :silent grep! <args> | :copen
 
 " Replace in whole project
 command! -nargs=* GlobalReplace call lib#GlobalReplace(<f-args>)
+
+" Create new scratch file
+command! -nargs=* NewScratch call lib#NewScratchFile(<f-args>)

@@ -138,12 +138,15 @@ function! lib#LoadWorkspaceConfig() abort
   endfor
 endfunction
 
-" Find and replace all occurence of given word. It uses safe mode so you have
-" accept each change.
+" Finds and replaces all occurence of the given word. It uses the safe mode
+" so you have accept each change.
 function! lib#GlobalReplace(...) abort
   execute 'silent grep! ' .  a:1 . ' | copen | cfdo %s/' . a:1 . '/' . a:2 . '/cg'
 endfunction
 
+" Runs the given command in a terminal in a new tab
+"
+" Return: String
 function! lib#RunInTerminal(cmd, ...) abort
   let sudo = get(a:, 1, 0)
   if sudo
@@ -156,18 +159,61 @@ function! lib#RunInTerminal(cmd, ...) abort
   echo a:cmd
 endfunction
 
+" Returns a string that allows to call the given command in a docker container
+" which is created from the given image_name
 function! lib#RunInDockerImageCommand(cmd, image_name, ...) abort
   let environment = get(a:, 1, '')
-    let environment = '-e ' . environment
   return 'docker run --rm -it -e ' . environment . ' ' . a:image_name . ' "' . a:cmd
 endfunction
 
+" Returns a string that allows to call the given command in the give docker container
+"
+" Return: String
 function! lib#RunInDockerContainerCommand(cmd, container_name, ...) abort
   let environment = get(a:, 1, '')
   return 'docker exec -e ' . environment . ' ' . a:container_name . ' ' . a:cmd
 endfunction
 
+" Returns a string that allows to call the given command in a docker container
+" which is created from the given service used by docker compose
+"
+" Return: String
 function! lib#RunInDockerComposeCommand(cmd, service_name, ...) abort
   let environment = get(a:, 1, '')
   return 'docker-compose run -e ' . environment . ' --rm ' . a:service_name . ' ' . a:cmd
+endfunction
+
+" Runs the given command in a new terminal. It calls method in docker or
+" simple in a terminal. The calling method depends on the given configuration.
+function! lib#Run(cmd, ...) abort
+  let opts = get(a:, 1, {})
+  let docker = get(opts, 'docker', 0)
+  let docker_image = get(opts, 'docker_image', '')
+  let docker_compose = get(opts, 'docker_compose', 0)
+  let docker_service = get(opts, 'docker_service', '')
+  let sudo = get(opts, 'sudo', 0)
+  let environment = get(opts, 'environment', '')
+
+  if docker
+    call lib#RunInTerminal(
+    \ lib#RunInDockerImageCommand(a:cmd, docker_image, environment), sudo
+    \)
+  elseif docker_compose
+    call lib#RunInTerminal(
+    \ lib#RunInDockerComposeCommand(a:cmd, docker_service, environment), sudo
+    \)
+  else
+    call lib#RunInTerminal(environment . ' ' . a:cmd, sudo)
+  endif
+endfunction
+
+function! lib#NewScratchFile(...) abort
+  let config_dir = get(g:, 'workspace_config_dir', '.vim_workspace')
+  let extension = get(a:, 1, expand('%:e'))
+  let scratch_files_dir = lib#ProjectRoot() . '/' . config_dir . '/scratch_files'
+  call system('mkdir -p ' . scratch_files_dir)
+  let date = system("date '+%Y%m%d_%H%M%S." . extension . "'")
+  let file_name = 'scratch_' . date
+  call system('touch ' . scratch_files_dir . '/' . file_name)
+  execute 'tabnew ' . scratch_files_dir . '/' . file_name
 endfunction

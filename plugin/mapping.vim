@@ -29,13 +29,13 @@ nnoremap <leader>vf :vert sfind
 
 nnoremap <leader>rw :%s/<c-r>=expand("<cword>")<CR>//g<Left><Left>
 nnoremap <leader>re :%s/\<<c-r>=expand("<cword>")<CR>\>//g<Left><Left>
-nnoremap <leader>rs :%s/<c-r>=expand("<cword>")<CR>//c<Left><Left>
+nnoremap <leader>rs :%s/<c-r>=expand("<cword>")<CR>//gc<Left><Left>
 nnoremap <leader>rg :GlobalReplace <c-r>=expand("<cword>")<CR> 
 
 vnoremap <leader>rw y:%s/<C-R>"//g<Left><Left>
 vnoremap <leader>re y:%s/\<<C-R>"\>//g<Left><Left>
-vnoremap <leader>rs y:%s/<C-R>"//c<Left><Left>
-vnoremap <leader>rg y:GlobalReplace <C-R><CR> 
+vnoremap <leader>rs y:%s/<C-R>"//gc<Left><Left>
+vnoremap <leader>rg y:GlobalReplace <C-R>" 
 
 nnoremap <leader>ss :Search <c-r>=expand("<cword>")<CR><CR>
 nnoremap <silent> <F12> :let @"=expand("%")<CR>

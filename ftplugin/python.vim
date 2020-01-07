@@ -4,7 +4,7 @@ let g:neomake_python_enabled_makers = []
 
 " Functions {{{
 function! PythonRunFileCommand() abort
-  return 'python ' . expand('%')
+  return 'PYTHONPATH="' . $PYTHONPATH . ':' . lib#GitRoot()  . '" python ' . expand('%')
 endfunction
 " }}}
 

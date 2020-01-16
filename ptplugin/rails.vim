@@ -1,18 +1,20 @@
 " Functions {{{
 function! RailsRunFileCommand() abort
-  return 'rails r  ' . expand('%')
+  return 'rails r ' . expand('%')
 endfunction
-" }}}
 
-" Opts {{{
-let opts = {
-      \ 'docker': get(g:, 'rails_docker', 0),
-      \ 'docker_image': get(g:, 'rails_docker_image', ''),
-      \ 'docker_compose': get(g:, 'rails_docker_compose', 0),
-      \ 'docker_service': get(g:, 'rails_docker_service', ''),
-      \ 'sudo': get(g:, 'rails_sudo', 0),
-      \ 'environment': 'RAILS_ENV=development',
-\ }
+function! RailsOpts() abort
+  let opts = {
+        \ 'docker': get(g:, 'rails_docker', 0),
+        \ 'docker_image': get(g:, 'rails_docker_image', ''),
+        \ 'docker_compose': get(g:, 'rails_docker_compose', 0),
+        \ 'docker_compose_service': get(g:, 'rails_docker_compose_service', ''),
+        \ 'docker_compose_files': get(g:, 'rails_docker_compose_files', []),
+        \ 'sudo': get(g:, 'rails_sudo', 0),
+        \ 'environment': 'RAILS_ENV=development',
+  \ }
+  return opts
+endfunction
 " }}}
 
 " Commands {{{
@@ -30,5 +32,5 @@ command! -nargs=* RailsViewFiles call lib#FzfInDir('/app/views')
 nnoremap <C-F><C-m> :RailsModelFiles<CR>
 nnoremap <C-F><C-c> :RailsControllerFiles<CR>
 nnoremap <C-F><C-v> :RailsViewFiles<CR>
-nnoremap <F6> :call lib#Run(RailsRunFileCommand(), opts)<CR>
+nnoremap <F6> :call lib#Run(RailsRunFileCommand(), RailsOpts())<CR>
 " }}}

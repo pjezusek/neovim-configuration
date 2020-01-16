@@ -6,20 +6,21 @@ let g:neomake_python_enabled_makers = []
 function! PythonRunFileCommand() abort
   return 'PYTHONPATH="' . $PYTHONPATH . ':' . lib#GitRoot()  . '" python ' . expand('%')
 endfunction
-" }}}
 
-" Opts {{{
-let opts = {
-      \ 'docker': get(g:, 'python_docker', 0),
-      \ 'docker_image': get(g:, 'python_docker_image', ''),
-      \ 'docker_compose': get(g:, 'python_docker_compose', 0),
-      \ 'docker_service': get(g:, 'python_docker_service', ''),
-      \ 'sudo': get(g:, 'python_sudo', 0),
-\ }
+function! PythonOpts() abort
+  let opts = {
+        \ 'docker': get(g:, 'python_docker', 0),
+        \ 'docker_image': get(g:, 'python_docker_image', ''),
+        \ 'docker_compose': get(g:, 'python_docker_compose', 0),
+        \ 'docker_compose_service': get(g:, 'python_docker_compose_service', ''),
+        \ 'docker_compose_files': get(g:, 'python_docker_compose_files', ''),
+        \ 'sudo': get(g:, 'python_sudo', 0),
+  \ }
+endfunction
 " }}}
 
 " Mapping {{{
-nnoremap <F8> :call lib#Run(PythonRunFileCommand(), opts)<CR>
+nnoremap <F8> :call lib#Run(PythonRunFileCommand(), PythonOpts())<CR>
 nnoremap <F9> koimport pdb; pdb.set_trace()<esc>
 nnoremap <F10> koimport pudb; pu.db<esc>
 nnoremap <leader>ap oprint(f"{}")<left><left><left>

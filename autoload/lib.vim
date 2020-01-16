@@ -162,16 +162,24 @@ endfunction
 " Returns a string that allows to call the given command in a docker container
 " which is created from the given image_name
 function! lib#RunInDockerImageCommand(cmd, image_name, ...) abort
-  let environment = get(a:, 1, '')
-  return 'docker run --rm -it -e ' . environment . ' ' . a:image_name . ' "' . a:cmd
+  let opts = get(a:, 1, {})
+  let environment = get(opts, 'environment', '')
+  if environment != ''
+    let environment = ' -e ' . environment
+  endif
+  return 'docker run --rm -it' . environment . ' ' . a:image_name . ' "' . a:cmd
 endfunction
 
 " Returns a string that allows to call the given command in the give docker container
 "
 " Return: String
 function! lib#RunInDockerContainerCommand(cmd, container_name, ...) abort
-  let environment = get(a:, 1, '')
-  return 'docker exec -e ' . environment . ' ' . a:container_name . ' ' . a:cmd
+  let opts = get(a:, 1, {})
+  let environment = get(opts, 'environment', '')
+  if environment != ''
+    let environment = ' -e ' . environment
+  endif
+  return 'docker exec' . environment . ' ' . a:container_name . ' ' . a:cmd
 endfunction
 
 " Returns a string that allows to call the given command in a docker container
@@ -179,8 +187,18 @@ endfunction
 "
 " Return: String
 function! lib#RunInDockerComposeCommand(cmd, service_name, ...) abort
-  let environment = get(a:, 1, '')
-  return 'docker-compose run -e ' . environment . ' --rm ' . a:service_name . ' ' . a:cmd
+  let opts = get(a:, 1, {})
+  let environment = get(opts, 'environment', '')
+  if environment != ''
+    let environment = ' -e ' . environment
+  endif
+  let docker_compose_files = get(opts, 'docker_compose_files', [])
+  if docker_compose_files != []
+    let docker_compose_files = ' -f ' . join(docker_compose_files, ' -f ')
+  else
+    let docker_compose_files = ''
+  endif
+  return 'docker-compose run' . docker_compose_files . environment . ' --rm ' . a:service_name . ' ' . a:cmd
 endfunction
 
 " Runs the given command in a new terminal. It calls method in docker or
@@ -190,17 +208,33 @@ function! lib#Run(cmd, ...) abort
   let docker = get(opts, 'docker', 0)
   let docker_image = get(opts, 'docker_image', '')
   let docker_compose = get(opts, 'docker_compose', 0)
-  let docker_service = get(opts, 'docker_service', '')
+  let docker_compose_service = get(opts, 'docker_compose_service', '')
+  let docker_compose_files = get(opts, 'docker_compose_files', [])
   let sudo = get(opts, 'sudo', 0)
   let environment = get(opts, 'environment', '')
 
   if docker
     call lib#RunInTerminal(
-    \ lib#RunInDockerImageCommand(a:cmd, docker_image, environment), sudo
+    \ lib#RunInDockerImageCommand(
+    \   a:cmd,
+    \   docker_image,
+    \   {
+    \     'environment': environment,
+    \   }
+    \ ),
+    \ sudo
     \)
   elseif docker_compose
     call lib#RunInTerminal(
-    \ lib#RunInDockerComposeCommand(a:cmd, docker_service, environment), sudo
+    \ lib#RunInDockerComposeCommand(
+    \   a:cmd,
+    \   docker_compose_service,
+    \   {
+    \     'environment': environment,
+    \     'docker_compose_files': docker_compose_files
+    \   }
+    \ ),
+    \ sudo
     \)
   else
     call lib#RunInTerminal(environment . ' ' . a:cmd, sudo)

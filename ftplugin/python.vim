@@ -22,4 +22,6 @@ let opts = {
 nnoremap <F8> :call lib#Run(PythonRunFileCommand(), opts)<CR>
 nnoremap <F9> koimport pdb; pdb.set_trace()<esc>
 nnoremap <F10> koimport pudb; pu.db<esc>
+nnoremap <leader>ap oprint(f"{}")<left><left><left>
+nnoremap <leader>awp ywoprint(f"{<ESC>pa}")<left><left>
 " }}}

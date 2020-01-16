@@ -140,3 +140,7 @@ nnoremap <C-\> :Ranger<CR>
 " Terminal {{{
 tnoremap <Esc> <C-\><C-n>
 " }}}
+
+" Tagbar {{{
+nnoremap <leader>t :TagbarToggle<CR>
+" }}}

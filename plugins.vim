@@ -122,6 +122,10 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Name: vim-snippets
   " Description: Snippets for vim
   Plug 'honza/vim-snippets'
+
+  " Name: tagbar
+  " Description: Shows file structure based on tags
+  Plug 'majutsushi/tagbar'
   " }}}
 call plug#end()
 

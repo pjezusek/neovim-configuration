@@ -30,20 +30,20 @@ List of programs/fonts/languages which should be installed to use all features o
   - More info: [Repository](https://github.com/Kuniwak/vint)
   - Install: `pip install vim-vint`
 - Coc extensions
-  - [coc-json](https://github.com/neoclide/coc-json) `CocInstall coc-json`
-  - [coc-solagraph](https://github.com/neoclide/coc-solagraph) `CocInstall coc-solargraph`
-  - [coc-lists](https://github.com/neoclide/coc-lists) `CocInstall coc-lists`
-  - [coc-snippets](https://github.com/neoclide/coc-snippets) `CocInstall coc-snippets`
-  - [coc-highlight](https://github.com/neoclide/coc-highlight) `CocInstall coc-highlight`
-  - [coc-marketplace](https://github.com/fannheyward/coc-marketplace) `CocInstall coc-marketplace`
-  - [coc-vimlsp](https://github.com/iamcco/coc-vimlsp) `CocInstall coc-vimlsp`
-  - [coc-tsserver](https://github.com/neoclide/coc-tsserver) `CocInstall coc-tsserver`
-  - [coc-sql](https://github.com/fannheyward/coc-sql) `CocInstall coc-sql`
-  - [coc-prettier](https://github.com/neoclide/coc-prettier) `CocInstall coc-prettier`
   - [coc-eslint](https://github.com/neoclide/coc-eslint) `CocInstall coc-eslint`
-- VSCode snippets
-  - [react](https://github.com/dsznajder/vscode-es7-javascript-react-snippets) `CocInstall https://github.com/dsznajder/vscode-es7-javascript-react-snippets`
-  - [javascript](https://github.com/xabikos/vscode-javascript) `CocInstall https://github.com/xabikos/vscode-javascript`
+  - [coc-highlight](https://github.com/neoclide/coc-highlight) `CocInstall coc-highlight`
+  - [coc-json](https://github.com/neoclide/coc-json) `CocInstall coc-json`
+  - [coc-lists](https://github.com/neoclide/coc-lists) `CocInstall coc-lists`
+  - [coc-marketplace](https://github.com/fannheyward/coc-marketplace) `CocInstall coc-marketplace`
+  - [coc-prettier](https://github.com/neoclide/coc-prettier) `CocInstall coc-prettier`
+  - [coc-python](https://github.com/neoclide/coc-python) `CocInstall coc-python`
+  - [coc-snippets](https://github.com/neoclide/coc-snippets) `CocInstall coc-snippets`
+  - [coc-solagraph](https://github.com/neoclide/coc-solagraph) `CocInstall coc-solargraph`
+  - [coc-sql](https://github.com/fannheyward/coc-sql) `CocInstall coc-sql`
+  - [coc-tag](https://github.com/neoclide/coc-sources) `CocInstall coc-tag`
+  - [coc-tsserver](https://github.com/neoclide/coc-tsserver) `CocInstall coc-tsserver`
+  - [coc-yaml](https://github.com/neoclide/coc-yaml) `CocInstall coc-yaml`
+  - [coc-vimlsp](https://github.com/iamcco/coc-vimlsp) `CocInstall coc-vimlsp`
 
 
 ### Fonts

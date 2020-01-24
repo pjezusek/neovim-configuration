@@ -16,6 +16,7 @@ function! PythonOpts() abort
         \ 'docker_compose_files': get(g:, 'python_docker_compose_files', ''),
         \ 'sudo': get(g:, 'python_sudo', 0),
   \ }
+  return opts
 endfunction
 " }}}
 

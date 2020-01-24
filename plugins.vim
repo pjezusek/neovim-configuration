@@ -214,4 +214,8 @@ let g:rainbow_active = 1
 let g:ranger_map_keys = 0
 " }}}
 
+" Tagbar {{{
+let g:tagbar_show_linenumbers = -1
+" }}}
+
 " }}}

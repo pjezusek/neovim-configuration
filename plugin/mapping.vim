@@ -37,8 +37,13 @@ vnoremap <leader>re y:%s/\<<C-R>"\>//g<Left><Left>
 vnoremap <leader>rs y:%s/<C-R>"//gc<Left><Left>
 vnoremap <leader>rg y:GlobalReplace <C-R>" 
 
-nnoremap <leader>ss :Search <c-r>=expand("<cword>")<CR><CR>
+nnoremap <leader>sg :Search <c-r>=expand("<cword>")<CR>
+vnoremap <leader>sg :Search <C-R>"
 nnoremap <silent> <F12> :let @"=expand("%")<CR>
+
+" Increase number
+nnoremap <A-a> <C-a>
+nnoremap <A-x> <C-x>
 " }}}
 
 " Tabs {{{
@@ -78,7 +83,6 @@ nnoremap <C-T> :Tags<CR>
 nnoremap <C-S> :Ag<CR>
 nnoremap <C-l> :BLines<CR>
 nnoremap <C-F><C-t> :BTags<CR>
-nnoremap <C-F><C-h> :History:<CR>
 nnoremap <leader>se :Ag <c-r>=expand("<cword>")<CR><CR>
 vnoremap <leader>se y:Ag <C-R><CR>
 " }}}
@@ -130,6 +134,20 @@ nmap <silent> gu <Plug>(coc-references)
 " Using CocList
 " Show all diagnostics
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+
+" Remap for rename current word
+nnoremap <leader>rn <Plug>(coc-rename)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 " }}}
 
 " Ranger {{{

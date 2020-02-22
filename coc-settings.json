@@ -13,13 +13,25 @@
       "args": ["start"],
       "filetypes": ["sh"],
       "ignoredRootPaths": ["~"]
-    }
+    },
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "objc", "objcpp"],
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
+        }
+      }
+    },
   },
-  "eslint.filetypes": [
-      "javascriptreact",
-      "javascript.jsx",
-      "javascript"
-  ],
+  "eslint.filetypes": ["javascriptreact", "javascript.jsx", "javascript"],
   "solargraph.diagnostics": true,
   "solargraph.formatting": true,
   "solargraph.hover": true,

@@ -67,7 +67,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'vim-scripts/ReplaceWithRegister'
 
   " Name: vim-textobj-user
-  " Description: adds possibility to easly create text objects
+  " Description: Adds possibility to easly create text objects
   Plug 'kana/vim-textobj-user'
   Plug 'tek/vim-textobj-ruby'
   Plug 'bps/vim-textobj-python'
@@ -78,11 +78,11 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'kana/vim-textobj-line'
 
   " Name: vim-vinegar
-  " Description: makes netrw more usefull
+  " Description: Makes netrw more usefull
   Plug 'tpope/vim-vinegar'
 
   " Name: ranger.vim
-  " Description: use ranger in vim
+  " Description: Use ranger in vim
   Plug 'francoiscabrol/ranger.vim'
   Plug 'rbgrouleff/bclose.vim'
   " }}}
@@ -201,9 +201,14 @@ let g:coc_snippet_next = '<tab>'
 " use ctrl+space to trigger autocopletion
 inoremap <silent><expr> <c-space> coc#refresh()
 
-autocmd FileType * let b:coc_root_patterns = ['.git', '.env']
-autocmd CursorHold * silent call CocActionAsync('highlight')
-"autocmd CursorHold,CursorMoved,CursorHoldI,CursorMovedI * silent! call CocActionAsync('showSignatureHelp')
+augroup coc_auto_commands
+  autocmd!
+  autocmd FileType * let b:coc_root_patterns = ['.git', '.env']
+  autocmd CursorHold * silent call CocActionAsync('highlight')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
 " }}}
 
 " Rainbow {{{

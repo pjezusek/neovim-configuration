@@ -70,7 +70,6 @@ function! lib#TabLabel(n) abort
 endfunction
 
 " Starts fzf in the given dir
-" It supports font icons
 function! lib#FzfInDir(dir, ...) abort
   let s:options = get(a:, 1, {})
   call fzf#vim#files(lib#ProjectRoot() . a:dir, extend(s:options, fzf#vim#with_preview('right:55%')))
@@ -80,7 +79,10 @@ endfunction
 function! lib#FzfInDirWithExtensions(dir, extensions) abort
   let joined_extensions = join(a:extensions, '|')
   let extensions_pattern = '.(' . joined_extensions . ')$'
+  let safe_project_root = substitute(lib#ProjectRoot(), '/', '\\/', 'g')
   let source = "ag -g \'" . extensions_pattern . "\' " . lib#ProjectRoot() . a:dir
+  let source = source . " | sed 's/" . safe_project_root . "//g'"
+  let source = source . " | sed 's/^\\///g'"
   call lib#FzfInDir(a:dir, { 'source': source })
 endfunction
 

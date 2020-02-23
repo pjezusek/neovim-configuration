@@ -28,7 +28,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Searching and movement {{{
   " Name: fzf.vim
   " Description: Fuzzy finder
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug '~/.fzf'
   Plug 'junegunn/fzf.vim'
 
   " }}}
@@ -131,7 +131,21 @@ call plug#end()
 
 " Configuration {{{
 
-" FZF.vim {{{
+" FZF {{{
+let g:fzf_colors =                                                                                                                                                                   
+        \ { 'fg':      ['fg', 'Normal'],                                                                                                                                                     
+          \ 'bg':      ['bg', 'Normal'],                                                                                                                                                     
+          \ 'hl':      ['fg', 'Comment'],                                                                                                                                                    
+          \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],                                                                                                                       
+          \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],                                                                                                                                 
+          \ 'hl+':     ['fg', 'Statement'],                                                                                                                                                  
+          \ 'info':    ['fg', 'PreProc'],                                                                                                                                                    
+          \ 'border':  ['fg', 'Ignore'],                                                                                                                                                     
+          \ 'prompt':  ['fg', 'Conditional'],                                                                                                                                                
+          \ 'pointer': ['fg', 'Exception'],                                                                                                                                                  
+          \ 'marker':  ['fg', 'Keyword'],                                                                                                                                                    
+          \ 'spinner': ['fg', 'Label'],                                                                                                                                                      
+          \ 'header':  ['fg', 'Comment'] }
 let g:fzf_layout = { 'down': '~50%' }
 
 " Hide status line if fzf is on

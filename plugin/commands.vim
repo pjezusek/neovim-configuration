@@ -4,11 +4,11 @@ command! Oconf :execute 'tabnew $MYVIMRC'
 " Reloads configuration
 command! Rconf :execute 'source $MYVIMRC'
 
-" Searches in whole project specific string
+" Searches the given string in the whole project
 command! -nargs=* Ag call lib#AgInProject(<q-args>)
 
-" Searches in dir specific string
-command! -nargs=* AgInDir call lib#AgInDir('', <q-args>)
+" Searches the given string in the given dir
+command! -nargs=* AgInDir call lib#AgInDir(<f-args>)
 
 " Searches files in whole project
 command! -nargs=* ProjectFiles call lib#FzfInDir('')

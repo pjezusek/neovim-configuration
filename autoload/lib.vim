@@ -1,19 +1,19 @@
-" Returns the git root path if exists
+" Returns the git root path if it exists.
 "
 " Return: String
 function! lib#GitRoot() abort
   return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
 endfunction
 
-" Returns the git branch name
+" Returns the git branch name.
 "
 " Return: String
 function! lib#GitBranchName() abort
   return system("git branch | grep '*' | cut -f2 -d' ' 2> /dev/null")[:-2]
 endfunction
 
-" Returns the git root path if exists or an actual dir path
-" It does not include the '/' symbol at the end of the path
+" Returns the git root path if exists or an actual dir path.
+" It does not include the '/' symbol at the end of the path.
 "
 " Return: String
 function! lib#ProjectRoot() abort
@@ -25,7 +25,7 @@ function! lib#ProjectRoot() abort
   endif
 endfunction
 
-" Returns the configuration for the tab line design
+" Returns the configuration for the tab line design.
 "
 " Return: String
 function! lib#TabLineConfiguration() abort
@@ -56,7 +56,7 @@ function! lib#TabLineConfiguration() abort
   return s
 endfunction
 
-" Returns a tab label
+" Returns a tab label.
 "
 " Return: String
 function! lib#TabLabel(n) abort
@@ -69,13 +69,13 @@ function! lib#TabLabel(n) abort
   return name
 endfunction
 
-" Starts fzf in the given dir
+" Starts fzf in the given dir.
 function! lib#FzfInDir(dir, ...) abort
   let s:options = get(a:, 1, {})
-  call fzf#vim#files(lib#ProjectRoot() . a:dir, extend(s:options, fzf#vim#with_preview('right:55%')))
+  call fzf#vim#files(lib#ProjectRoot() . '/' . a:dir, extend(s:options, fzf#vim#with_preview('right:55%')))
 endfunction
 
-" Starts fzf in the given dir (searches files with the given extension)
+" Starts fzf in the given dir (searches files with the given extension).
 function! lib#FzfInDirWithExtensions(dir, extensions) abort
   let joined_extensions = join(a:extensions, '|')
   let extensions_pattern = '.(' . joined_extensions . ')$'
@@ -86,15 +86,17 @@ function! lib#FzfInDirWithExtensions(dir, extensions) abort
   call lib#FzfInDir(a:dir, { 'source': source })
 endfunction
 
-" Starts ag in the given dir
-function! lib#AgInDir(args) abort
-  call fzf#vim#ag(a:args[1:-1],
-  \               extend({'dir': lib#ProjectRoot() . a:args[0]},
+" Starts ag in the given dir.
+function! lib#AgInDir(...) abort
+  let dir = get(a:, 1, '')
+  let search_string = get(a:, 2, '')
+  call fzf#vim#ag(search_string,
+  \               extend({'dir': lib#ProjectRoot() . '/' . dir},
   \               fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:40%'))
   \               )
 endfunction
 
-" Starts ag in the whole project
+" Starts ag in the project root.
 function! lib#AgInProject(args) abort
   call fzf#vim#ag(a:args,
   \               extend({'dir': lib#ProjectRoot()},
@@ -102,8 +104,10 @@ function! lib#AgInProject(args) abort
   \               )
 endfunction
 
-" Returns project type names. They are received from the file defined by g:project_type_file (default project_type).
-" The file with list of types is searched in g:workspace_config_dir (default .vim_workspace)
+" Returns project type names. They are received from the
+" file defined by g:project_type_file (default project_type).
+" The file with list of types is searched in g:workspace_config_dir
+" (default .vim_workspace).
 "
 " Return: List<String>
 function! lib#GetProjectTypes() abort
@@ -117,7 +121,8 @@ function! lib#GetProjectTypes() abort
   endif
 endfunction
 
-" Loads files from ptplugin dir. The list of files to load is received from lib#GetProjectTypes
+" Loads files from ptplugin dir. The list of files to load
+" is received from lib#GetProjectTypes.
 function! lib#LoadProjectTypeConfig() abort
   let config_files = lib#GetProjectTypes()
   for config_file in config_files
@@ -146,7 +151,7 @@ function! lib#GlobalReplace(...) abort
   execute 'silent grep! ' .  a:1 . ' | copen | cfdo %s/' . a:1 . '/' . a:2 . '/cg'
 endfunction
 
-" Runs the given command in a terminal in a new tab
+" Runs the given command in a terminal in a new tab.
 "
 " Return: String
 function! lib#RunInTerminal(cmd, ...) abort
@@ -162,7 +167,7 @@ function! lib#RunInTerminal(cmd, ...) abort
 endfunction
 
 " Returns a string that allows to call the given command in a docker container
-" which is created from the given image_name
+" which is created from the given image_name.
 function! lib#RunInDockerImageCommand(cmd, image_name, ...) abort
   let opts = get(a:, 1, {})
   let environment = get(opts, 'environment', '')
@@ -172,7 +177,7 @@ function! lib#RunInDockerImageCommand(cmd, image_name, ...) abort
   return 'docker run --rm -it' . environment . ' ' . a:image_name . ' "' . a:cmd
 endfunction
 
-" Returns a string that allows to call the given command in the give docker container
+" Returns a string that allows to call the given command in the give docker container.
 "
 " Return: String
 function! lib#RunInDockerContainerCommand(cmd, container_name, ...) abort
@@ -185,7 +190,7 @@ function! lib#RunInDockerContainerCommand(cmd, container_name, ...) abort
 endfunction
 
 " Returns a string that allows to call the given command in a docker container
-" which is created from the given service used by docker compose
+" which is created from the given service used by docker compose.
 "
 " Return: String
 function! lib#RunInDockerComposeCommand(cmd, service_name, ...) abort
@@ -243,6 +248,8 @@ function! lib#Run(cmd, ...) abort
   endif
 endfunction
 
+" Creates a scratch file in <project_root>/.vim_workspace/scratch_files with
+" the given extension.
 function! lib#NewScratchFile(...) abort
   let config_dir = get(g:, 'workspace_config_dir', '.vim_workspace')
   let extension = get(a:, 1, expand('%:e'))

@@ -127,26 +127,32 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Description: Shows file structure based on tags
   Plug 'majutsushi/tagbar'
   " }}}
+
+  " Tools {{{
+  " Name: vim-fugitive
+  " Description: Wrapper for Git
+  Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " Configuration {{{
 
 " FZF {{{
-let g:fzf_colors =                                                                                                                                                                   
-        \ { 'fg':      ['fg', 'Normal'],                                                                                                                                                     
-          \ 'bg':      ['bg', 'Normal'],                                                                                                                                                     
-          \ 'hl':      ['fg', 'Comment'],                                                                                                                                                    
-          \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],                                                                                                                       
-          \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],                                                                                                                                 
-          \ 'hl+':     ['fg', 'Statement'],                                                                                                                                                  
-          \ 'info':    ['fg', 'PreProc'],                                                                                                                                                    
-          \ 'border':  ['fg', 'Ignore'],                                                                                                                                                     
-          \ 'prompt':  ['fg', 'Conditional'],                                                                                                                                                
-          \ 'pointer': ['fg', 'Exception'],                                                                                                                                                  
-          \ 'marker':  ['fg', 'Keyword'],                                                                                                                                                    
-          \ 'spinner': ['fg', 'Label'],                                                                                                                                                      
+let g:fzf_colors =
+        \ { 'fg':      ['fg', 'Normal'],
+          \ 'bg':      ['bg', 'Normal'],
+          \ 'hl':      ['fg', 'Comment'],
+          \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+          \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+          \ 'hl+':     ['fg', 'Statement'],
+          \ 'info':    ['fg', 'PreProc'],
+          \ 'border':  ['fg', 'Ignore'],
+          \ 'prompt':  ['fg', 'Conditional'],
+          \ 'pointer': ['fg', 'Exception'],
+          \ 'marker':  ['fg', 'Keyword'],
+          \ 'spinner': ['fg', 'Label'],
           \ 'header':  ['fg', 'Comment'] }
 let g:fzf_layout = { 'down': '~50%' }
+let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 
 " Hide status line if fzf is on
 augroup fzf

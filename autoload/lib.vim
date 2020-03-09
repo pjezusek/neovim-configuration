@@ -156,12 +156,16 @@ endfunction
 " Return: String
 function! lib#RunInTerminal(cmd, ...) abort
   let sudo = get(a:, 1, 0)
+  let sudo_password = get(g:, 'sudo_password', '')
   if sudo
     let terminal = 'terminal sudo'
+    execute 'tabnew | ' . terminal . ' ' . a:cmd
+    sleep 100m
+    call chansend(b:terminal_job_id, sudo_password . "\n")
   else
     let terminal = 'terminal'
+    execute 'tabnew | ' . terminal . ' ' . a:cmd
   end
-  execute 'tabnew | ' . terminal . ' ' . a:cmd
   startinsert
   echo a:cmd
 endfunction
@@ -205,7 +209,7 @@ function! lib#RunInDockerComposeCommand(cmd, service_name, ...) abort
   else
     let docker_compose_files = ''
   endif
-  return 'docker-compose run' . docker_compose_files . environment . ' --rm ' . a:service_name . ' ' . a:cmd
+  return 'docker-compose' . docker_compose_files . environment . ' run --rm ' . a:service_name . ' ' . a:cmd
 endfunction
 
 " Runs the given command in a new terminal. It calls method in docker or
@@ -218,7 +222,15 @@ function! lib#Run(cmd, ...) abort
   let docker_compose_service = get(opts, 'docker_compose_service', '')
   let docker_compose_files = get(opts, 'docker_compose_files', [])
   let sudo = get(opts, 'sudo', 0)
+  let sudo_password = get(g:, 'sudo_password', '')
   let environment = get(opts, 'environment', '')
+
+  if sudo == 1 && sudo_password ==? ''
+    call inputsave()
+    let g:sudo_password = input('Enter sudo password: ')
+    call inputrestore()
+  endif
+
 
   if docker
     call lib#RunInTerminal(

@@ -17,9 +17,6 @@ command! Wq wq
 command! W w
 command! Q q
 
-" Remap <C-W>Q behaviour
-nnoremap <C-W>q :bd<CR>
-
 " Disable some default behaviour
 nnoremap q: <Nop>
 
@@ -39,11 +36,12 @@ vnoremap <leader>rg y:GlobalReplace <C-R>"
 
 nnoremap <leader>sg :Search <c-r>=expand("<cword>")<CR>
 vnoremap <leader>sg :Search <C-R>"
-nnoremap <silent> <F12> :let @"=expand("%")<CR>
 
-" Increase number
-nnoremap <A-a> <C-a>
-nnoremap <A-x> <C-x>
+" Resize widow
+nnoremap <C-i> :vertical resize +2<CR>
+nnoremap <C-x> :vertical resize -2<CR>
+nnoremap <A-i> :resize +2<CR>
+nnoremap <A-x> :resize -2<CR>
 " }}}
 
 " Tabs {{{
@@ -70,10 +68,10 @@ nnoremap gp :cprevious<CR>
 " }}}
 
 " Location list {{{
-nnoremap <leader>cw :cw<CR>
-nnoremap <leader>cp :cp<CR>
-nnoremap <leader>cn :cn<CR>
-nnoremap <leader>ccl :ccl<CR>
+nnoremap <leader>ll :lopen<CR>
+nnoremap <leader>lc :lclose<CR>
+nnoremap <leader>gp :lprevious<CR>
+nnoremap <leader>gn :lnext<CR>
 " }}}
 
 " FZF {{{

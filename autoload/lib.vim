@@ -209,7 +209,7 @@ function! lib#RunInDockerComposeCommand(cmd, service_name, ...) abort
   else
     let docker_compose_files = ''
   endif
-  return 'docker-compose' . docker_compose_files . environment . ' run --rm ' . a:service_name . ' ' . a:cmd
+  return 'docker-compose' . docker_compose_files . ' run --rm' . environment . ' ' . a:service_name . ' ' . a:cmd
 endfunction
 
 " Runs the given command in a new terminal. It calls method in docker or

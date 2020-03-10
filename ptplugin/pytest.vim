@@ -1,10 +1,10 @@
 " Functions {{{
 function! PytestCommand() abort
-  return 'pytest ' . expand('%')
+  return 'pytest -s ' . expand('%')
 endfunction
 
 function! PytestWithDebuggerCommand() abort
-  return 'pytest -x --pdb ' . expand('%')
+  return 'pytest -s -x --pdb ' . expand('%')
 endfunction
 
 function! PytestOpts() abort
@@ -14,6 +14,7 @@ function! PytestOpts() abort
         \ 'docker_compose': get(g:, 'pytest_docker_compose', 0),
         \ 'docker_compose_service': get(g:, 'pytest_docker_compose_service', ''),
         \ 'docker_compose_files': get(g:, 'pytest_docker_compose_files', []),
+        \ 'environment': get(g:, 'pytest_environment', 'PYTHONPATH=.'),
         \ 'sudo': get(g:, 'pytest_sudo', 0)
   \ }
   return opts

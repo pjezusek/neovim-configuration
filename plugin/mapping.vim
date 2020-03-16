@@ -38,10 +38,10 @@ nnoremap <leader>sg :Search <c-r>=expand("<cword>")<CR>
 vnoremap <leader>sg :Search <C-R>"
 
 " Resize widow
-nnoremap <C-i> :vertical resize +2<CR>
-nnoremap <C-x> :vertical resize -2<CR>
-nnoremap <A-i> :resize +2<CR>
-nnoremap <A-x> :resize -2<CR>
+nnoremap <A-i> :vertical resize +2<CR>
+nnoremap <A-x> :vertical resize -2<CR>
+nnoremap <leader><A-i> :resize +2<CR>
+nnoremap <leader><A-x> :resize -2<CR>
 " }}}
 
 " Tabs {{{

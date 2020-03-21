@@ -77,10 +77,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'kana/vim-textobj-function'
   Plug 'kana/vim-textobj-line'
 
-  " Name: vim-vinegar
-  " Description: Makes netrw more usefull
-  Plug 'tpope/vim-vinegar'
-
   " Name: ranger.vim
   " Description: Use ranger in vim
   Plug 'francoiscabrol/ranger.vim'
@@ -132,6 +128,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Name: vim-fugitive
   " Description: Wrapper for Git
   Plug 'tpope/vim-fugitive'
+  " }}}
 call plug#end()
 
 " Configuration {{{

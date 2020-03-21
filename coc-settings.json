@@ -1,7 +1,9 @@
 {
   "suggest.maxPreviewWidth": 120,
+  "list.insertMappings": {
+    "<C-c>": "do:exit"
+  },
   "diagnostic.checkCurrentLine": true,
-  "prettier.singleQuote": true,
   "languageserver": {
     "dockerfile": {
       "command": "docker-langserver",
@@ -29,9 +31,15 @@
           "directory": "/tmp/ccls"
         }
       }
-    },
+    }
   },
-  "eslint.filetypes": ["javascriptreact", "javascript.jsx", "javascript"],
+  "eslint.filetypes": [
+    "javascriptreact",
+    "javascript.jsx",
+    "javascript",
+    "vue"
+  ],
+  "prettier.singleQuote": true,
   "solargraph.diagnostics": true,
   "solargraph.formatting": true,
   "solargraph.hover": true,
@@ -42,5 +50,12 @@
   "solargraph.symbols": true,
   "solargraph.folding": true,
   "python.linting.enabled": true,
-  "python.linting.flake8Enabled": true
+  "python.linting.flake8Enabled": true,
+  "prettier.disableLanguages": [],
+  "prettier.eslintIntegration": true,
+  "emmet.includeLanguages": {
+    "vue-html": "html",
+    "vue": "html"
+  },
+  "list.source.grep.command": "ag"
 }

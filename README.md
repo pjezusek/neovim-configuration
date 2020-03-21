@@ -30,8 +30,12 @@ List of programs/fonts/languages which should be installed to use all features o
   - More info: [Repository](https://github.com/Kuniwak/vint)
   - Install: `pip install vim-vint`
 - Coc extensions
+  - [coc-actions](https://github.com/iamcco/coc-actions) `CocInstall coc-actions`
+  - [coc-css](https://github.com/neoclide/coc-css) `CocInstall coc-css`
+  - [coc-emmet](https://github.com/neoclide/coc-emmet) `CocInstall coc-emmet`
   - [coc-eslint](https://github.com/neoclide/coc-eslint) `CocInstall coc-eslint`
   - [coc-highlight](https://github.com/neoclide/coc-highlight) `CocInstall coc-highlight`
+  - [coc-html](https://github.com/neoclide/coc-html) `CocInstall coc-html`
   - [coc-json](https://github.com/neoclide/coc-json) `CocInstall coc-json`
   - [coc-lists](https://github.com/neoclide/coc-lists) `CocInstall coc-lists`
   - [coc-marketplace](https://github.com/fannheyward/coc-marketplace) `CocInstall coc-marketplace`
@@ -43,7 +47,9 @@ List of programs/fonts/languages which should be installed to use all features o
   - [coc-tag](https://github.com/neoclide/coc-sources) `CocInstall coc-tag`
   - [coc-tsserver](https://github.com/neoclide/coc-tsserver) `CocInstall coc-tsserver`
   - [coc-yaml](https://github.com/neoclide/coc-yaml) `CocInstall coc-yaml`
+  - [coc-vetur](https://github.com/neoclide/coc-vetur) `CocInstall coc-vetur`
   - [coc-vimlsp](https://github.com/iamcco/coc-vimlsp) `CocInstall coc-vimlsp`
+  - [coc-vimtex](https://github.com/neoclide/coc-vimtex) `CocInstall coc-vimtex`
 
 
 ### Fonts
@@ -66,7 +72,7 @@ font_size 12
 - [Ruby](https://www.ruby-lang.org/en/)
 - [Node](https://nodejs.org/en/)
 
-To see configuration for bash, terminal or i3 which I use, visit [Click](https://github.com/pjezusek/dotfiles-archlinux).
+To see configuration for bash, fish, terminal or i3 which I use, visit [Click](https://github.com/pjezusek/dotfiles-archlinux).
 
 # Screenshots
 Screenshots made with [Deepin Screenshot](https://www.deepin.org/en/original/deepin-screenshot/)

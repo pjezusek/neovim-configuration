@@ -10,6 +10,7 @@ xnoremap <C-c> <ESC>
 snoremap <C-c> <ESC>
 cnoremap <C-c> <ESC>
 onoremap <C-c> <ESC>
+lnoremap <C-c> <ESC>
 
 " Remap save and quit commands
 command! WQ wq
@@ -39,9 +40,9 @@ vnoremap <leader>sg :Search <C-R>"
 
 " Resize widow
 nnoremap <A-i> :vertical resize +2<CR>
-nnoremap <A-x> :vertical resize -2<CR>
-nnoremap <leader><A-i> :resize +2<CR>
-nnoremap <leader><A-x> :resize -2<CR>
+nnoremap <A-d> :vertical resize -2<CR>
+nnoremap <A-I> :resize +2<CR>
+nnoremap <A-D> :resize -2<CR>
 " }}}
 
 " Tabs {{{
@@ -77,7 +78,7 @@ nnoremap <leader>gn :lnext<CR>
 " FZF {{{
 nnoremap <C-P> :ProjectFiles<CR>
 nnoremap <C-E> :Buffers<CR>
-nnoremap <C-T> :Tags<CR>
+nnoremap <C-T> :CocList tags<CR>
 nnoremap <C-S> :Ag<CR>
 nnoremap <C-l> :BLines<CR>
 nnoremap <C-F><C-t> :BTags<CR>
@@ -106,9 +107,12 @@ nnoremap <leader>nm :Neomake<CR>
 " }}}
 
 " Coc {{{
-"" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+" Remap for do codeAction of selected region
+function! s:cocActionsOpenFromSelected(type) abort
+  execute 'CocCommand actions.open ' . a:type
+endfunction
+xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g
 
 " Remap for do codeAction of current line
 nmap <leader>ac  <Plug>(coc-codeaction)

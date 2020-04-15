@@ -81,6 +81,7 @@ set noshowmode
 " Set python environment
 let g:python_host_prog = $HOME . '/.pyenv/versions/neovim-python2/bin/python'
 let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim-python3/bin/python'
+let g:ruby_host_prog = $HOME . '/.rvm/rubies/ruby-2.7.0/bin/ruby'
 
 " Some servers have issues with backup files, see #649
 set nobackup
@@ -143,3 +144,6 @@ set hidden
 
 " Add cfilter package
 packadd cfilter
+
+" Fix sql dynamic completion
+let g:omni_sql_no_default_maps = 1

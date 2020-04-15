@@ -28,9 +28,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Searching and movement {{{
   " Name: fzf.vim
   " Description: Fuzzy finder
-  Plug '~/.fzf'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
-
   " }}}
 
   " Editing {{{
@@ -99,10 +98,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Description: Support tool for rails projects
   Plug 'tpope/vim-rails'
 
-  " Name: CSV.vim
-  " Description: Better editing csv files
-  Plug 'chrisbra/csv.vim'
-
   " Name: vim-javascript
   " Description: Better javascript syntax highlighting
   Plug 'pangloss/vim-javascript'
@@ -122,12 +117,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Name: tagbar
   " Description: Shows file structure based on tags
   Plug 'majutsushi/tagbar'
-  " }}}
-
-  " Tools {{{
-  " Name: vim-fugitive
-  " Description: Wrapper for Git
-  Plug 'tpope/vim-fugitive'
   " }}}
 call plug#end()
 

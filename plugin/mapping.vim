@@ -43,6 +43,10 @@ nnoremap <A-i> :vertical resize +2<CR>
 nnoremap <A-d> :vertical resize -2<CR>
 nnoremap <A-I> :resize +2<CR>
 nnoremap <A-D> :resize -2<CR>
+
+" Copy filename to clipboard
+nnoremap <leader>fp :let @+=expand("%")<CR>
+nnoremap <leader>fd :let @+=expand("%:h")<CR>
 " }}}
 
 " Tabs {{{

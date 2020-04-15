@@ -6,3 +6,6 @@ cnoreabbrev <expr> ct getcmdtype() == ":" && getcmdline() == 'ct' ? 'silent Neom
 
 " Messages
 cnoreabbrev <expr> msg getcmdtype() == ":" && getcmdline() == 'msg' ? 'messages' : 'msg'
+
+" AgInDir
+cnoreabbrev <expr> agd getcmdtype() == ":" && getcmdline() == 'agd' ? 'AgInDir ' : 'agd'

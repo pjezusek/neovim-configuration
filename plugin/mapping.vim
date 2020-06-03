@@ -47,6 +47,9 @@ nnoremap <A-D> :resize -2<CR>
 " Copy filename to clipboard
 nnoremap <leader>fp :let @+=expand("%")<CR>
 nnoremap <leader>fd :let @+=expand("%:h")<CR>
+
+" Open lazygit
+nnoremap <A-g> :OpenLazyGit<CR>
 " }}}
 
 " Tabs {{{

@@ -106,10 +106,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Description: Better jsx syntax highlighting
   Plug 'mxw/vim-jsx'
 
-  " Name: markdown-preview.nvim
-  " Description: Markdown preview
-  Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-
   " Name: vim-snippets
   " Description: Snippets for vim
   Plug 'honza/vim-snippets'
@@ -117,7 +113,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Name: tagbar
   " Description: Shows file structure based on tags
   Plug 'majutsushi/tagbar'
-  " }}}
 call plug#end()
 
 " Configuration {{{
@@ -229,4 +224,17 @@ let g:ranger_map_keys = 0
 let g:tagbar_show_linenumbers = -1
 " }}}
 
+" Commentary {{{
+augroup commentary
+  autocmd!
+  autocmd FileType vue setlocal commentstring=<!--\ %s\ -->
+augroup end
+" }}}
+
+" Open browser {{{
+let g:openbrowser_browser_commands = [
+\   {'name': 'google-chrome-stable',
+ \   'args': ['{browser}', '{uri}']},
+\]
+" }}}
 " }}}

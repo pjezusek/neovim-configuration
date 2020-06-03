@@ -11,7 +11,7 @@ command! -nargs=* Ag call lib#AgInProject(<q-args>)
 command! -nargs=* AgInDir call lib#AgInDir(<f-args>)
 
 " Searches files in whole project
-command! -nargs=* ProjectFiles call lib#FzfInDir('')
+command! -nargs=0 ProjectFiles call lib#FzfInDir('')
 
 " Rename
 command! -nargs=0 Rename :CocCommand document.renameCurrentWord
@@ -27,3 +27,9 @@ command! -nargs=* GlobalReplace call lib#GlobalReplace(<f-args>)
 
 " Create new scratch file
 command! -nargs=* NewScratch call lib#NewScratchFile(<f-args>)
+
+" Open actual file in browser
+command! -nargs=0 OpenFileInBrowser execute ':OpenBrowser file:///' . expand('%:p')
+
+" Open lazygit in terminal
+command! -nargs=0 OpenLazyGit call lib#RunInTerminal('lazygit', 0)

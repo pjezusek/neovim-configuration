@@ -28,4 +28,6 @@ endfunction
 nnoremap <F8> :call lib#Run(RubyRunFileCommand(), RubyOpts())<CR>
 nnoremap <F9> korequire 'byebug'; byebug<esc>
 nnoremap <F10> korequire 'pry'; binding.pry<esc>
+nnoremap <leader>ap oraise .inspect<left><left><left><left><left><left><left><left>
+nnoremap <leader>awp oraise <ESC>pa.inspect<left><left><left><left><left><left><left><left>
 " }}}

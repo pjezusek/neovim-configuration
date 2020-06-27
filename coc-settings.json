@@ -39,7 +39,14 @@
     "javascript",
     "vue"
   ],
+  "snippets.extends": {
+    "vue": ["javascript"],
+    "javascript.jsx": ["javascript"]
+  },
   "prettier.singleQuote": true,
+  "prettier.disableLanguages": [],
+  "prettier.eslintIntegration": true,
+  "solargraph.useBundler": true,
   "solargraph.diagnostics": true,
   "solargraph.formatting": true,
   "solargraph.hover": true,
@@ -51,11 +58,5 @@
   "solargraph.folding": true,
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
-  "prettier.disableLanguages": [],
-  "prettier.eslintIntegration": true,
-  "emmet.includeLanguages": {
-    "vue-html": "html",
-    "vue": "html"
-  },
   "list.source.grep.command": "ag"
 }

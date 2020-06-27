@@ -33,3 +33,6 @@ command! -nargs=0 OpenFileInBrowser execute ':OpenBrowser file:///' . expand('%:
 
 " Open lazygit in terminal
 command! -nargs=0 OpenLazyGit call lib#RunInTerminal('lazygit', 0)
+
+" Prettier
+command! -nargs=0 Prettier :CocCommand prettier.formatFile

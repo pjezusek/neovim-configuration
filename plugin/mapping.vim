@@ -85,7 +85,7 @@ nnoremap <leader>gn :lnext<CR>
 " FZF {{{
 nnoremap <C-P> :ProjectFiles<CR>
 nnoremap <C-E> :Buffers<CR>
-nnoremap <C-T> :CocList tags<CR>
+nnoremap <C-T> :Tags<CR>
 nnoremap <C-S> :Ag<CR>
 nnoremap <C-l> :BLines<CR>
 nnoremap <C-F><C-t> :BTags<CR>
@@ -170,4 +170,8 @@ tnoremap <Esc> <C-\><C-n>
 
 " Tagbar {{{
 nnoremap <leader>t :TagbarToggle<CR>
+" }}}
+
+" Snippets {{{
+imap <C-l> <Plug>(coc-snippets-expand)
 " }}}

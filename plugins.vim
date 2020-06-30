@@ -225,11 +225,4 @@ augroup commentary
   autocmd FileType vue setlocal commentstring=<!--\ %s\ -->
 augroup end
 " }}}
-
-" Open browser {{{
-let g:openbrowser_browser_commands = [
-\   {'name': 'google-chrome-stable',
- \   'args': ['{browser}', '{uri}']},
-\]
-" }}}
 " }}}

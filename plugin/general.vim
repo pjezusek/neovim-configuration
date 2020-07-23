@@ -79,8 +79,8 @@ set tabline=%!lib#TabLineConfiguration()
 set noshowmode
 
 " Set python environment
-let g:python_host_prog = $HOME . '/.pyenv/versions/neovim-python2/bin/python'
-let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim-python3/bin/python'
+let g:python_host_prog = $HOME . '/.pyenv/versions/python2-neovim/bin/python'
+let g:python3_host_prog = $HOME . '/.pyenv/versions/python3-neovim/bin/python'
 let g:ruby_host_prog = $HOME . '/.rvm/rubies/ruby-2.7.0/bin/ruby'
 
 " Some servers have issues with backup files, see #649

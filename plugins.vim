@@ -45,9 +45,10 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Description: Permanent undo tree
   Plug 'mbbill/undotree'
 
-  " Name: vim-commentary
+  " Name: tcomment_vim
   " Description: Easy comments
-  Plug 'tpope/vim-commentary'
+  Plug 'tomtom/tcomment_vim'
+  Plug 'tyru/caw.vim'
 
   " Name: Rainbow
   " Description: Colorize brackets and parentheses
@@ -98,12 +99,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'tpope/vim-rails'
 
   " Name: vim-javascript
-  " Description: Better javascript syntax highlighting
-  Plug 'pangloss/vim-javascript'
-
-  " Name: vim-jsx
-  " Description: Better jsx syntax highlighting
-  Plug 'mxw/vim-jsx'
+  " Description: Syntax for javascript
+  Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html', 'vue'] }
 
   " Name: vim-snippets
   " Description: Snippets for vim
@@ -167,7 +164,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#exclude_preview = 1
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#coc#enabled = 1
-let g:airline_section_b = lib#GitBranchName()
+" let g:airline_section_b = lib#GitBranchName()
 " }}}
 
 " vim-javascript {{{
@@ -217,12 +214,5 @@ let g:ranger_map_keys = 0
 
 " Tagbar {{{
 let g:tagbar_show_linenumbers = -1
-" }}}
-
-" Commentary {{{
-augroup commentary
-  autocmd!
-  autocmd FileType vue setlocal commentstring=<!--\ %s\ -->
-augroup end
 " }}}
 " }}}

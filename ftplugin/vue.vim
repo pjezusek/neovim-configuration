@@ -1,5 +1,7 @@
 " General {{{
 set nofoldenable
+set formatoptions+=r
+set formatoptions+=o
 " }}}
 
 " Makers {{{

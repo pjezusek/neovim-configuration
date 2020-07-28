@@ -209,7 +209,13 @@ function! lib#RunInDockerComposeCommand(cmd, service_name, ...) abort
   else
     let docker_compose_files = ''
   endif
-  return 'docker-compose' . docker_compose_files . ' run --rm' . environment . ' ' . a:service_name . ' ' . a:cmd
+  let docker_compose_options = get(opts, 'docker_compose_options', [])
+  if docker_compose_options != []
+    let docker_compose_options = ' ' . join(docker_compose_options, ' ') . ' '
+  else
+    let docker_compose_options = ''
+  endif
+  return 'docker-compose' . docker_compose_files . docker_compose_options . ' run --rm' . environment . ' ' . a:service_name . ' ' . a:cmd
 endfunction
 
 " Runs the given command in a new terminal. It calls method in docker or
@@ -221,6 +227,7 @@ function! lib#Run(cmd, ...) abort
   let docker_compose = get(opts, 'docker_compose', 0)
   let docker_compose_service = get(opts, 'docker_compose_service', '')
   let docker_compose_files = get(opts, 'docker_compose_files', [])
+  let docker_compose_options = get(opts, 'docker_compose_options', [])
   let sudo = get(opts, 'sudo', 0)
   let sudo_password = get(g:, 'sudo_password', '')
   let environment = get(opts, 'environment', '')
@@ -250,7 +257,8 @@ function! lib#Run(cmd, ...) abort
     \   docker_compose_service,
     \   {
     \     'environment': environment,
-    \     'docker_compose_files': docker_compose_files
+    \     'docker_compose_files': docker_compose_files,
+    \     'docker_compose_options': docker_compose_options
     \   }
     \ ),
     \ sudo

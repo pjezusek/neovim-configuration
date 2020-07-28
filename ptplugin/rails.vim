@@ -10,6 +10,7 @@ function! RailsOpts() abort
         \ 'docker_compose': get(g:, 'rails_docker_compose', 0),
         \ 'docker_compose_service': get(g:, 'rails_docker_compose_service', ''),
         \ 'docker_compose_files': get(g:, 'rails_docker_compose_files', []),
+        \ 'docker_compose_options': get(g:, 'rails_docker_compose_options', []),
         \ 'sudo': get(g:, 'rails_sudo', 0),
         \ 'environment': 'RAILS_ENV=development',
   \ }

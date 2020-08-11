@@ -1,6 +1,6 @@
 " Functions {{{
 function! RailsRunFileCommand() abort
-  return 'rails r ' . expand('%')
+  return 'rails r ' . fnamemodify(expand('%'), ':~:.')
 endfunction
 
 function! RailsOpts() abort
@@ -20,13 +20,13 @@ endfunction
 
 " Commands {{{
 " Search model files in rails project
-command! -nargs=* RailsModelFiles call lib#FzfInDir('/app/models')
+command! -nargs=* RailsModelFiles call lib#FzfInDir('app/models')
 
 " Search controller files in rails project
-command! -nargs=* RailsControllerFiles call lib#FzfInDir('/app/controllers')
+command! -nargs=* RailsControllerFiles call lib#FzfInDir('app/controllers')
 
 " Search view files in rails project
-command! -nargs=* RailsViewFiles call lib#FzfInDir('/app/views')
+command! -nargs=* RailsViewFiles call lib#FzfInDir('app/views')
 " }}}
 
 " Mapping {{{

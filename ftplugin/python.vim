@@ -4,7 +4,7 @@ let g:neomake_python_enabled_makers = []
 
 " Functions {{{
 function! PythonRunFileCommand() abort
-  return 'python ' . expand('%')
+  return 'python ' . fnamemodify(expand('%'), ':~:.')
 endfunction
 
 function! PythonOpts() abort
@@ -14,6 +14,7 @@ function! PythonOpts() abort
         \ 'docker_compose': get(g:, 'python_docker_compose', 0),
         \ 'docker_compose_service': get(g:, 'python_docker_compose_service', ''),
         \ 'docker_compose_files': get(g:, 'python_docker_compose_files', ''),
+        \ 'docker_compose_options': get(g:, 'python_docker_compose_options', []),
         \ 'environment': get(g:, 'python_environment', 'PYTHONPATH=.'),
         \ 'sudo': get(g:, 'python_sudo', 0),
   \ }

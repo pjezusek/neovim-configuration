@@ -8,7 +8,7 @@ let g:neomake_ruby_enabled_makers = []
 
 " Functions {{{
 function! RubyRunFileCommand() abort
-  return 'ruby "' . expand('%') . '"'
+  return 'ruby "' . fnamemodify(expand('%'), ':~:.') . '"'
 endfunction
 
 function! RubyOpts() abort
@@ -18,6 +18,7 @@ function! RubyOpts() abort
         \ 'docker_compose': get(g:, 'ruby_docker_compose', 0),
         \ 'docker_compose_service': get(g:, 'ruby_docker_compose_service', ''),
         \ 'docker_compose_files': get(g:, 'ruby_docker_compose_files', []),
+        \ 'docker_compose_options': get(g:, 'ruby_docker_compose_options', []),
         \ 'sudo': get(g:, 'ruby_sudo', 0),
   \ }
   return opts

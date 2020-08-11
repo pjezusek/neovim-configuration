@@ -23,7 +23,7 @@ endfunction
 " }}}
 
 " Commands {{{
-command! -nargs=* PytestFiles call lib#FzfInDir('/tests')
+command! -nargs=* PytestFiles call lib#FzfInDir('tests')
 " }}}
 
 " Mapping {{{

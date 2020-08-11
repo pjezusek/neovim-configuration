@@ -1,10 +1,10 @@
 " Functions {{{
 function! RspecWholeCommand() abort
-  return 'rspec ' . expand('%')
+  return 'rspec ' . fnamemodify(expand('%'), ':~:.')
 endfunction
 
 function! RspecLineCommand() abort
-  return 'rspec ' . expand('%') . ':' . getcurpos()[1]
+  return 'rspec ' . fnamemodify(expand('%'), ':~:.') . ':' . getcurpos()[1]
 endfunction
 
 function! RspecOpts() abort
@@ -23,7 +23,7 @@ endfunction
 " }}}
 
 " Commands {{{
-command! -nargs=* RspecFiles call lib#FzfInDir('/spec')
+command! -nargs=* RspecFiles call lib#FzfInDir('spec')
 " }}}
 
 " Mapping {{{

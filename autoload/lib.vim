@@ -211,7 +211,7 @@ function! lib#RunInDockerComposeCommand(cmd, service_name, ...) abort
   endif
   let docker_compose_options = get(opts, 'docker_compose_options', [])
   if docker_compose_options != []
-    let docker_compose_options = ' ' . join(docker_compose_options, ' ') . ' '
+    let docker_compose_options = ' ' . join(docker_compose_options, ' ')
   else
     let docker_compose_options = ''
   endif

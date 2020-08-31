@@ -109,6 +109,11 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Name: tagbar
   " Description: Shows file structure based on tags
   Plug 'majutsushi/tagbar'
+
+  " Name: vim-lua-format
+  " Description: Lua  formatter
+  Plug 'andrejlevkovitch/vim-lua-format'
+  "}}}
 call plug#end()
 
 " Configuration {{{

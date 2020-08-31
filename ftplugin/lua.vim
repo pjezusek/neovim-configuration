@@ -1,3 +1,7 @@
+" makers {{{
+let g:neomake_lua_enabled_makers = []
+" }}}
+
 " General {{{
 set nofoldenable
 " }}}
@@ -9,4 +13,5 @@ endfunction
 
 " Mapping {{{
 nnoremap <F8> :call lib#Run(LuaRunFileCommand())<CR>
+nnoremap <leader>pr :call LuaFormat()<CR>
 " }}}

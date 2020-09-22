@@ -87,7 +87,7 @@ nnoremap <C-P> :ProjectFiles<CR>
 nnoremap <C-E> :Buffers<CR>
 nnoremap <C-T> :Tags<CR>
 nnoremap <C-S> :Ag<CR>
-nnoremap <C-l> :BLines<CR>
+nnoremap <C-F><C-l> :BLines<CR>
 nnoremap <C-F><C-t> :BTags<CR>
 nnoremap <leader>se :Ag <c-r>=expand("<cword>")<CR><CR>
 vnoremap <leader>se y:Ag <C-R><CR>

@@ -114,6 +114,12 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Description: Lua  formatter
   Plug 'andrejlevkovitch/vim-lua-format'
   "}}}
+
+  " Others {{{
+  " Name: vim-tmux-navigator
+  " Description: Seamlessly navigate vim and tmux
+  Plug 'christoomey/vim-tmux-navigator'
+  " }}}
 call plug#end()
 
 " Configuration {{{
@@ -169,6 +175,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#exclude_preview = 1
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#coc#enabled = 1
+let g:airline#extensions#tagbar#enabled = 0
 " let g:airline_section_b = lib#GitBranchName()
 " }}}
 
@@ -219,5 +226,14 @@ let g:ranger_map_keys = 0
 
 " Tagbar {{{
 let g:tagbar_show_linenumbers = -1
+" }}}
+
+" vim-tmux-navigator {{{
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 " }}}
 " }}}

@@ -26,9 +26,6 @@ List of programs/fonts/languages which should be installed to use all features o
 - Docker language server
   - More info: [Repository](https://github.com/rcjsuen/dockerfile-language-server-nodejs)
   - Install: `npm install -g dockerfile-language-server-nodejs`
-- Viml linter
-  - More info: [Repository](https://github.com/Kuniwak/vint)
-  - Install: `pip install vim-vint`
 - Coc extensions
   - [coc-eslint](https://github.com/neoclide/coc-eslint) `CocInstall coc-eslint`
   - [coc-json](https://github.com/neoclide/coc-json) `CocInstall coc-json`
@@ -36,11 +33,9 @@ List of programs/fonts/languages which should be installed to use all features o
   - [coc-python](https://github.com/neoclide/coc-python) `CocInstall coc-python`
   - [coc-snippets](https://github.com/neoclide/coc-snippets) `CocInstall coc-snippets`
   - [coc-solagraph](https://github.com/neoclide/coc-solagraph) `CocInstall coc-solargraph`
-  - [coc-tag](https://github.com/neoclide/coc-sources) `CocInstall coc-tag`
   - [coc-tsserver](https://github.com/neoclide/coc-tsserver) `CocInstall coc-tsserver`
   - [coc-yaml](https://github.com/neoclide/coc-yaml) `CocInstall coc-yaml`
   - [coc-vetur](https://github.com/neoclide/coc-vetur) `CocInstall coc-vetur`
-  - [coc-vimlsp](https://github.com/iamcco/coc-vimlsp) `CocInstall coc-vimlsp`
 
 
 ### Fonts

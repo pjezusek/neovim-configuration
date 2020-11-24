@@ -1,50 +1,39 @@
 {
-  "suggest.maxPreviewWidth": 120,
   "list.insertMappings": {
     "<C-c>": "do:exit"
   },
   "diagnostic.checkCurrentLine": true,
+  "suggest.maxPreviewWidth": 120,
   "languageserver": {
     "dockerfile": {
       "command": "docker-langserver",
-      "filetypes": ["dockerfile"],
-      "args": ["--stdio"]
+      "filetypes": [
+        "dockerfile"
+      ],
+      "args": [
+        "--stdio"
+      ]
     },
     "bash": {
       "command": "bash-language-server",
-      "args": ["start"],
-      "filetypes": ["sh"],
-      "ignoredRootPaths": ["~"]
-    },
-    "ccls": {
-      "command": "ccls",
-      "filetypes": ["c", "cpp", "objc", "objcpp"],
-      "rootPatterns": [
-        ".ccls",
-        "compile_commands.json",
-        ".vim/",
-        ".git/",
-        ".hg/"
+      "args": [
+        "start"
       ],
-      "initializationOptions": {
-        "cache": {
-          "directory": "/tmp/ccls"
-        }
-      }
+      "filetypes": [
+        "sh",
+        "bash"
+      ],
+      "ignoredRootPaths": [
+        "~"
+      ]
     },
     "lua": {
-      "command": "/home/pjezusek/programs/lua-language-server/bin/Linux/lua-language-server",
-      "args": [
-        "-E",
-        "-e",
-        "LANG=en",
-        "/home/pjezusek/programs/lua-language-server/main.lua"
-      ],
-      "filetypes": ["lua"],
-      "rootPatterns": [".git/"]
+      "command": "lua-lsp",
+      "filetypes": [
+        "lua"
+      ]
     }
   },
-  "Lua.diagnostics.disable": ["lowercase-global", "undefined-global"],
   "eslint.filetypes": [
     "javascriptreact",
     "javascript.jsx",
@@ -52,21 +41,18 @@
     "vue"
   ],
   "snippets.extends": {
-    "vue": ["javascript"],
-    "javascript.jsx": ["javascript"]
+    "vue": [
+      "javascript"
+    ],
+    "javascript.jsx": [
+      "javascript"
+    ]
   },
   "prettier.singleQuote": true,
   "prettier.disableLanguages": [],
   "prettier.eslintIntegration": true,
   "solargraph.diagnostics": true,
   "solargraph.formatting": true,
-  "solargraph.hover": true,
-  "solargraph.completion": true,
-  "solargraph.definitions": true,
-  "solargraph.references": true,
-  "solargraph.rename": true,
-  "solargraph.symbols": true,
-  "solargraph.folding": true,
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
   "python.formatting.provider": "black"

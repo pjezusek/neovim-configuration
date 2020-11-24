@@ -24,18 +24,10 @@ set splitbelow
 " Set no wraping
 set nowrap
 
-" Set settings for <Tab>
-
 " Default
 set tabstop=2
 set shiftwidth=2
 set expandtab
-
-" Java
-augroup tab_settings
-  autocmd!
-  autocmd FileType java setlocal shiftwidth=4 tabstop=4
-augroup END
 
 " Copy indentation from previous file
 set autoindent
@@ -63,17 +55,8 @@ set tags=.tags
 " Signcolumns
 set signcolumn=yes
 
-" Cmd height
-set cmdheight=1
-
 " Set autoread
 set autoread
-
-" Always show tab line
-set showtabline=2
-
-" Set tabline
-set tabline=%!lib#TabLineConfiguration()
 
 " No mode line
 set noshowmode
@@ -81,14 +64,12 @@ set noshowmode
 " Set python environment
 let g:python_host_prog = $HOME . '/.pyenv/versions/python2-neovim/bin/python'
 let g:python3_host_prog = $HOME . '/.pyenv/versions/python3-neovim/bin/python'
-let g:ruby_host_prog = $HOME . '/.rvm/rubies/ruby-2.7.0/bin/ruby'
 
 " Some servers have issues with backup files, see #649
 set nobackup
 set nowritebackup
 
-" Better display for messages
-set cmdheight=2
+set cmdheight=1
 
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
@@ -115,9 +96,6 @@ set path+=**
 
 " Display all matching files when we tab complete
 set wildmenu
-
-" Load project type configuration
-call lib#LoadProjectTypeConfig()
 
 " Folding style
 highlight Folded cterm=bold " no underline

@@ -28,7 +28,7 @@ nnoremap <leader>vf :vert sfind
 nnoremap <leader>rw :%s/<c-r>=expand("<cword>")<CR>//g<Left><Left>
 nnoremap <leader>re :%s/\<<c-r>=expand("<cword>")<CR>\>//g<Left><Left>
 nnoremap <leader>rs :%s/<c-r>=expand("<cword>")<CR>//gc<Left><Left>
-nnoremap <leader>rg :GlobalReplace <c-r>=expand("<cword>")<CR> 
+nnoremap <leader>rg :GlobalReplace <c-r>=expand("<cword>")<CR>
 
 vnoremap <leader>rw y:%s/<C-R>"//g<Left><Left>
 vnoremap <leader>re y:%s/\<<C-R>"\>//g<Left><Left>
@@ -81,7 +81,7 @@ nnoremap <leader>lc :lclose<CR>
 nnoremap <leader>gp :lprevious<CR>
 nnoremap <leader>gn :lnext<CR>
 " }}}
-
+"
 " FZF {{{
 nnoremap <C-P> :ProjectFiles<CR>
 nnoremap <C-E> :Buffers<CR>
@@ -93,72 +93,6 @@ nnoremap <leader>se :Ag <c-r>=expand("<cword>")<CR><CR>
 vnoremap <leader>se y:Ag <C-R><CR>
 " }}}
 
-" vim-multiple-cursor {{{
-let g:multi_cursor_use_default_mapping = 0
-let g:multi_cursor_start_word_key      = '<C-n>'
-let g:multi_cursor_select_all_word_key = ''
-let g:multi_cursor_start_key           = 'g<C-n>'
-let g:multi_cursor_select_all_key      = 'g<A-n>'
-let g:multi_cursor_next_key            = '<C-n>'
-let g:multi_cursor_prev_key            = '<C-p>'
-let g:multi_cursor_skip_key            = '<C-x>'
-let g:multi_cursor_quit_key            = '<C-c>'
-" }}}
-
-" UndoTree {{{
-nnoremap <leader>u :UndotreeToggle<CR>
-" }}}
-
-" Neomake {{{
-nnoremap <leader>nm :Neomake<CR>
-" }}}
-
-" Coc {{{
-" Remap for do codeAction of selected region
-function! s:cocActionsOpenFromSelected(type) abort
-  execute 'CocCommand actions.open ' . a:type
-endfunction
-xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g
-
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Remap for format selected region
-xmap <leader>pr <Plug>(coc-format-selected)
-nmap <leader>pr <Plug>(coc-format)
-
-" Diagnostic messages
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
-
-" Go to
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gu <Plug>(coc-references)
-
-" Using CocList
-" Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-
-" Remap for rename current word
-nnoremap <leader>rn <Plug>(coc-rename)
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-" }}}
-
 " Ranger {{{
 nnoremap <leader>\ :RangerWorkingDirectory<CR>
 nnoremap <C-\> :Ranger<CR>
@@ -168,10 +102,22 @@ nnoremap <C-\> :Ranger<CR>
 tnoremap <Esc> <C-\><C-n>
 " }}}
 
-" Tagbar {{{
-nnoremap <leader>t :TagbarToggle<CR>
+" Snippets {{{
+imap <C-l> <Plug>(coc-snippets-expand)
 " }}}
 
-" Snippets {{{
+" Coc {{{
+" Use <C-J> and <C-K> to navigate the completion list:
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
+
+nnoremap <leader>d :CocDiagnostics<CR>
+nnoremap <leader>pr :Format<CR>
+
+" Use <C-l> for trigger snippet expand.
 imap <C-l> <Plug>(coc-snippets-expand)
 " }}}

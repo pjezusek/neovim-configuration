@@ -1,6 +1,3 @@
-" File: plugins.vim
-" Description: List of plugins (manage by vim-plug) with their configurations
-
 " Autoinstall vim-plug if it is needed
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
@@ -19,11 +16,10 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Description: Theme
   Plug 'morhetz/gruvbox'
 
-  " Name: vim-airline
-  " Description: Status bar and more
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
-  " }}}
+  " Name: lightline
+  " Description: Status bar
+  Plug 'itchyny/lightline.vim'
+  "}}}
 
   " Searching and movement {{{
   " Name: fzf.vim
@@ -33,17 +29,9 @@ call plug#begin('~/.local/share/nvim/plugged')
   " }}}
 
   " Editing {{{
-  " Name: vim-multiple-cursors
-  " Description: Editing multiple places in the same time
-  Plug 'terryma/vim-multiple-cursors'
-
   " Name: vim-surround
   " Description: Fast editing surrounding characters
   Plug 'tpope/vim-surround'
-
-  " Name: UndoTree
-  " Description: Permanent undo tree
-  Plug 'mbbill/undotree'
 
   " Name: tcomment_vim
   " Description: Easy comments
@@ -71,26 +59,15 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'kana/vim-textobj-user'
   Plug 'tek/vim-textobj-ruby'
   Plug 'bps/vim-textobj-python'
-  Plug 'kana/vim-textobj-datetime'
-  Plug 'whatyouhide/vim-textobj-erb'
-  Plug 'kana/vim-textobj-function'
-  Plug 'kana/vim-textobj-line'
 
   " Name: ranger.vim
   " Description: Use ranger in vim
   Plug 'francoiscabrol/ranger.vim'
   Plug 'rbgrouleff/bclose.vim'
-  " }}}
-
-  " Background workers {{{
-  " Name: Neomake
-  " Description: Asynchronous linting and make framework
-  Plug 'neomake/neomake'
 
   " Name: Coc.nvim
   " Description: Client for language servers
-  " Use release branch
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'neoclide/coc.nvim'
   " }}}
 
   " Languages support {{{
@@ -103,16 +80,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html', 'vue'] }
 
   " Name: vim-snippets
-  " Description: Snippets for vim
+  " Description: Snippets
   Plug 'honza/vim-snippets'
-
-  " Name: tagbar
-  " Description: Shows file structure based on tags
-  Plug 'majutsushi/tagbar'
-
-  " Name: vim-lua-format
-  " Description: Lua  formatter
-  Plug 'andrejlevkovitch/vim-lua-format'
   "}}}
 
   " Others {{{
@@ -146,7 +115,7 @@ let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 augroup fzf
   autocmd! FileType fzf
   autocmd  FileType fzf set laststatus=0 noshowmode noruler showtabline=0
-    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler showtabline=2
+    \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler showtabline=1
 augroup end
 " }}}
 
@@ -154,66 +123,6 @@ augroup end
 let g:gruvbox_contrast_dark='hard'
 set background=dark
 colorscheme gruvbox
-" }}}
-
-" UndoTree {{{
-if has('persistent_undo')
-    set undodir=~/.undodir/
-    set undofile
-endif
-" }}}
-
-" Neomake {{{
-call neomake#configure#automake('nrwi', 500)
-let g:neomake_tempfile_dir = '.vim/'
-" }}}
-
-" vim-airline {{{
-let g:airline_powerline_fonts = 1
-let g:airline_theme='badwolf'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#exclude_preview = 1
-let g:airline#extensions#tabline#show_close_button = 0
-let g:airline#extensions#coc#enabled = 1
-let g:airline#extensions#tagbar#enabled = 0
-" let g:airline_section_b = lib#GitBranchName()
-" }}}
-
-" vim-javascript {{{
-let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_flow = 1
-" }}}
-
-" Coc.vim {{{
-" Map <tab> for trigger completion, completion confirm, snippet expand and jump like VSCode.c
-inoremap <silent><expr> <TAB>
-  \ pumvisible() ? coc#_select_confirm() :
-  \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <C-J> and <C-K> to navigate the completion list:
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
-
-let g:coc_snippet_next = '<tab>'
-
-" use ctrl+space to trigger autocopletion
-inoremap <silent><expr> <c-space> coc#refresh()
-
-augroup coc_auto_commands
-  autocmd!
-  autocmd FileType * let b:coc_root_patterns = ['.git', '.env']
-  autocmd CursorHold * silent call CocActionAsync('highlight')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
 " }}}
 
 " Rainbow {{{
@@ -224,10 +133,6 @@ let g:rainbow_active = 1
 let g:ranger_map_keys = 0
 " }}}
 
-" Tagbar {{{
-let g:tagbar_show_linenumbers = -1
-" }}}
-
 " vim-tmux-navigator {{{
 let g:tmux_navigator_no_mappings = 1
 
@@ -235,5 +140,23 @@ nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+" }}}
+
+" lightline {{{
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'relativepath', 'modified' ] ],
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'fileencoding', 'filetype' ] ]
+      \ }
+      \ }
+" }}}
+
+" Coc.nvim {{{
+set updatetime=300
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
 " }}}
 " }}}

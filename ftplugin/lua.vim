@@ -1,7 +1,3 @@
-" makers {{{
-let g:neomake_lua_enabled_makers = []
-" }}}
-
 " General {{{
 set nofoldenable
 " }}}

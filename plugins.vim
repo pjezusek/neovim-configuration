@@ -88,6 +88,10 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Name: vim-tmux-navigator
   " Description: Seamlessly navigate vim and tmux
   Plug 'christoomey/vim-tmux-navigator'
+
+  " Name: ALE
+  " Description: Asynchronous Lint Engine
+  Plug 'dense-analysis/ale'
   " }}}
 call plug#end()
 
@@ -158,5 +162,17 @@ let g:lightline = {
 set updatetime=300
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
+" }}}
+
+" ALE {{{
+let g:ale_disable_lsp = 1
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = 'E'
+let g:ale_sign_warning = 'W'
+let g:ale_virtualtext_cursor = 1
+let g:ale_echo_cursor = 0
+let g:ale_fixers = {
+\   'javascript': ['prettier', 'eslint'],
+\}
 " }}}
 " }}}

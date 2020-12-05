@@ -4,6 +4,7 @@
   },
   "diagnostic.checkCurrentLine": true,
   "suggest.maxPreviewWidth": 120,
+  "diagnostic.displayByAle": true,
   "languageserver": {
     "dockerfile": {
       "command": "docker-langserver",
@@ -34,12 +35,6 @@
       ]
     }
   },
-  "eslint.filetypes": [
-    "javascriptreact",
-    "javascript.jsx",
-    "javascript",
-    "vue"
-  ],
   "snippets.extends": {
     "vue": [
       "javascript"
@@ -48,12 +43,8 @@
       "javascript"
     ]
   },
-  "prettier.singleQuote": true,
-  "prettier.disableLanguages": [],
-  "prettier.eslintIntegration": true,
-  "solargraph.diagnostics": true,
-  "solargraph.formatting": true,
+  "solargraph.diagnostics": false,
+  "solargraph.formatting": false,
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
-  "python.formatting.provider": "black"
 }

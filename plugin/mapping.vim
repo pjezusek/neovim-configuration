@@ -116,7 +116,7 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 
 nnoremap <leader>d :CocDiagnostics<CR>
-nnoremap <leader>pr :Format<CR>
+nnoremap <leader>pr <Plug>(ale_fix)
 
 " Use <C-l> for trigger snippet expand.
 imap <C-l> <Plug>(coc-snippets-expand)

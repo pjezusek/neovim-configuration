@@ -36,7 +36,7 @@ vnoremap <leader>rs y:%s/<C-R>"//gc<Left><Left>
 vnoremap <leader>rg y:GlobalReplace <C-R>" 
 
 nnoremap <leader>sg :Search <c-r>=expand("<cword>")<CR>
-vnoremap <leader>sg :Search <C-R>"
+vnoremap <leader>sg y:Search <C-R>=escape(@",'/\')<CR>
 
 " Resize widow
 nnoremap <A-i> :vertical resize +2<CR>
@@ -50,6 +50,9 @@ nnoremap <leader>fd :let @+=expand("%:h")<CR>
 
 " Open lazygit
 nnoremap <A-g> :OpenLazyGit<CR>
+
+" Search selected
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 " }}}
 
 " Tabs {{{

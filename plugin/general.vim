@@ -69,7 +69,7 @@ let g:python3_host_prog = $HOME . '/.pyenv/versions/python3-neovim/bin/python'
 set nobackup
 set nowritebackup
 
-set cmdheight=1
+set cmdheight=2
 
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300

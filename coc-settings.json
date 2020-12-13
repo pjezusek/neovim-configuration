@@ -47,4 +47,6 @@
   "solargraph.formatting": false,
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
+  "prettier.eslintIntegration": true,
+  "prettier.disableLanguages": []
 }

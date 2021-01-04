@@ -3,9 +3,9 @@ set nofoldenable
 " }}}
 
 " Commands {{{
-command! -nargs=0 Format :CocCommand prettier.formatFile
+command! -nargs=0 JavascriptFormat :CocCommand prettier.formatFile
 " }}}
 
 " Mapping {{{
-nnoremap <leader>pr :Format<CR>
+nnoremap <leader>pr :JavascriptFormat<CR>
 " }}}

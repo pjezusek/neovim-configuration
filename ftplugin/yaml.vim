@@ -1,7 +1,7 @@
 " Commands {{{
-command! -nargs=0 Format :call CocAction('format')
+command! -nargs=0 YamlFormat :call CocAction('format')
 " }}}
 
 " Mapping {{{
-nnoremap <leader>pr :Format<CR>
+nnoremap <leader>pr :YamlFormat<CR>
 " }}}

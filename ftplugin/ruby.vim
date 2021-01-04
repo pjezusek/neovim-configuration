@@ -10,11 +10,11 @@ endfunction
 " }}}
 
 " Commands {{{
-command! -nargs=0 Format call RubocopAutofix() | :e!
+command! -nargs=0 RubyFormat call RubocopAutofix() | :e!
 " }}}
 
 " Mapping {{{
 nnoremap <F9> korequire 'byebug'; byebug<esc>
 nnoremap <F10> korequire 'pry'; binding.pry<esc>
-nnoremap <leader>pr :Format<CR>
+nnoremap <leader>pr :RubyFormat<CR>
 " }}}

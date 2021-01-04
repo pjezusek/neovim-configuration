@@ -3,11 +3,15 @@ set nofoldenable
 " }}}
 
 " Functions {{{
-function! LuaRunFileCommand() abort
-  return 'lua "' . expand('%') . '"'
+function! LuaFormatter() abort
+  :silent execute '!lua-format -i' . expand('%')
 endfunction
+" }}}
+
+" Commands {{{
+command! -nargs=0 LuaFormat call LuaFormatter() | :e!
+" }}}
 
 " Mapping {{{
-nnoremap <F8> :call lib#Run(LuaRunFileCommand())<CR>
-nnoremap <leader>pr :call LuaFormat()<CR>
+nnoremap <leader>pr :LuaFormat<CR>
 " }}}

@@ -4,7 +4,7 @@ set nofoldenable
 
 " Functions {{{
 function! LuaFormatter() abort
-  :silent execute '!lua-format -i' . expand('%')
+  :silent execute '!lua-format -i ' . expand('%')
 endfunction
 " }}}
 

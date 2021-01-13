@@ -8,45 +8,31 @@
   "languageserver": {
     "dockerfile": {
       "command": "docker-langserver",
-      "filetypes": [
-        "dockerfile"
-      ],
-      "args": [
-        "--stdio"
-      ]
+      "filetypes": ["dockerfile"],
+      "args": ["--stdio"]
     },
     "bash": {
       "command": "bash-language-server",
-      "args": [
-        "start"
-      ],
-      "filetypes": [
-        "sh",
-        "bash"
-      ],
-      "ignoredRootPaths": [
-        "~"
-      ]
+      "args": ["start"],
+      "filetypes": ["sh", "bash"],
+      "ignoredRootPaths": ["~"]
     },
     "lua": {
       "command": "lua-lsp",
-      "filetypes": [
-        "lua"
-      ]
+      "filetypes": ["lua"]
     }
   },
   "snippets.extends": {
-    "vue": [
-      "javascript"
-    ],
-    "javascript.jsx": [
-      "javascript"
-    ]
+    "vue": ["javascript"],
+    "javascript.jsx": ["javascript"]
   },
   "solargraph.diagnostics": false,
   "solargraph.formatting": false,
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
   "prettier.eslintIntegration": true,
-  "prettier.disableLanguages": []
+  "prettier.disableLanguages": [],
+  "lua.commandPath": "$HOME/.luarocks/bin/lua-lsp",
+  "lua.useSumnekoLs": false,
+  "lua.version": "5.3"
 }

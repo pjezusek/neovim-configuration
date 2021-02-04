@@ -68,6 +68,10 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Name: Coc.nvim
   " Description: Client for language servers
   Plug 'neoclide/coc.nvim'
+
+  " Name: vim-abolish
+  " Descriptions: Working with variants of a word
+  Plug 'tpope/vim-abolish'
   " }}}
 
   " Languages support {{{

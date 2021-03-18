@@ -21,3 +21,10 @@ command! -nargs=0 OpenLazyGit call lib#RunInTerminal('lazygit', 0)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
+
+command! -nargs=0 FZFComponents call lib#FzfInDir('components')
+command! -nargs=0 FZFPages call lib#FzfInDir('pages')
+command! -nargs=0 FZFApp call lib#FzfInDir('app')
+command! -nargs=0 FZFModels call lib#FzfInDir('app/models')
+command! -nargs=0 FZFControllers call lib#FzfInDir('app/controllers')
+command! -nargs=0 FZFSpec call lib#FzfInDir('spec')

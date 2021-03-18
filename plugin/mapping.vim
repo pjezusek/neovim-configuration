@@ -94,6 +94,12 @@ nnoremap <C-F><C-l> :BLines<CR>
 nnoremap <C-F><C-t> :BTags<CR>
 nnoremap <leader>se :Ag <c-r>=expand("<cword>")<CR><CR>
 vnoremap <leader>se y:Ag <C-R><CR>
+nnoremap <C-f><C-c> :FZFComponents<CR>
+nnoremap <C-f><C-p> :FZFPages<CR>
+nnoremap <C-f><C-a> :FZFApp<CR>
+nnoremap <C-f><C-m> :FZFModels<CR>
+nnoremap <C-f><C-r> :FZFControllers<CR>
+nnoremap <C-f><C-s> :FZFSpec<CR>
 " }}}
 
 " Ranger {{{

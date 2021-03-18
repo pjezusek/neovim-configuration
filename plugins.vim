@@ -96,6 +96,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Name: ALE
   " Description: Asynchronous Lint Engine
   Plug 'dense-analysis/ale'
+  Plug 'mattn/emmet-vim'
   " }}}
 call plug#end()
 

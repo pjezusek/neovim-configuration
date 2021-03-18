@@ -4,7 +4,6 @@ set nofoldenable
 
 " Functions {{{
 function! RubocopAutofix() abort
-  :silent execute '!rubocop -a ' . expand('%')
   :silent execute '!rubocop -A ' . expand('%')
 endfunction
 " }}}

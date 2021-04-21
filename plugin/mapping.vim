@@ -100,6 +100,7 @@ nnoremap <C-f><C-a> :FZFApp<CR>
 nnoremap <C-f><C-m> :FZFModels<CR>
 nnoremap <C-f><C-r> :FZFControllers<CR>
 nnoremap <C-f><C-s> :FZFSpec<CR>
+nnoremap <C-f><C-v> :FZFViews<CR>
 " }}}
 
 " Ranger {{{
@@ -122,11 +123,16 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gl <Plug>(coc-references)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
 
 nnoremap <leader>d :CocDiagnostics<CR>
 nnoremap <leader>pr <Plug>(ale_fix)
 
 " Use <C-l> for trigger snippet expand.
 imap <C-l> <Plug>(coc-snippets-expand)
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
 " }}}

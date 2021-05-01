@@ -101,6 +101,7 @@ nnoremap <C-f><C-m> :FZFModels<CR>
 nnoremap <C-f><C-r> :FZFControllers<CR>
 nnoremap <C-f><C-s> :FZFSpec<CR>
 nnoremap <C-f><C-v> :FZFViews<CR>
+nnoremap <C-f><C-f> :FZFFactories<CR>
 " }}}
 
 " Ranger {{{

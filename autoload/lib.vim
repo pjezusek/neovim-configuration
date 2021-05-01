@@ -61,7 +61,7 @@ function! lib#AgInProject(args) abort
 endfunction
 
 " Finds and replaces all occurence of the given word. It uses the safe mode
-" so you have accept each change.
+" so you have to accept each change.
 function! lib#GlobalReplace(...) abort
   execute 'silent grep! ' .  a:1 . ' | copen | cfdo %s/' . a:1 . '/' . a:2 . '/cg'
 endfunction

@@ -8,7 +8,7 @@ command! -nargs=* AgInDir call lib#AgInDir(<f-args>)
 command! -nargs=0 ProjectFiles call lib#FzfInDir('')
 
 " Use ag to search in project
-command! -nargs=1 Search :silent grep! <args> | :copen
+command! -nargs=1 Search :silent grep! <q-args> | :copen
 
 " Replace in whole project
 command! -nargs=* GlobalReplace call lib#GlobalReplace(<f-args>)
@@ -29,3 +29,4 @@ command! -nargs=0 FZFModels call lib#FzfInDir('app/models')
 command! -nargs=0 FZFControllers call lib#FzfInDir('app/controllers')
 command! -nargs=0 FZFSpec call lib#FzfInDir('spec')
 command! -nargs=0 FZFViews call lib#FzfInDir('app/views')
+command! -nargs=0 FZFFactories call lib#FzfInDir('spec/factories')

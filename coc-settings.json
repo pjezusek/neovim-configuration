@@ -32,6 +32,7 @@
   "python.linting.flake8Enabled": true,
   "prettier.eslintIntegration": true,
   "prettier.disableLanguages": [],
+  "vetur.validation.template": false,
   "lua.commandPath": "$HOME/.luarocks/bin/lua-lsp",
   "lua.useSumnekoLs": false,
   "lua.version": "5.3"

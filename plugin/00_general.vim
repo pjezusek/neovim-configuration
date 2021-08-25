@@ -61,10 +61,6 @@ set autoread
 " No mode line
 set noshowmode
 
-" Set python environment
-let g:python_host_prog = $HOME . '/.pyenv/versions/python2-neovim/bin/python'
-let g:python3_host_prog = $HOME . '/.pyenv/versions/python3-neovim/bin/python'
-
 " Some servers have issues with backup files, see #649
 set nobackup
 set nowritebackup
@@ -96,19 +92,6 @@ set path+=**
 
 " Display all matching files when we tab complete
 set wildmenu
-
-" Folding style
-highlight Folded cterm=bold " no underline
-function! MyFoldText()
-    let line = getline(v:foldstart)
-    let nucolwidth = &fdc + &number * &numberwidth
-    let windowwidth = winwidth(0) - nucolwidth - 5 " Change this number into flair character length
-    let foldedlinecount = v:foldend - v:foldstart
-    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
-        let fillcharcount = windowwidth - strdisplaywidth(line) - len(foldedlinecount)
-    return line . ' ...' . repeat(" ",fillcharcount) . foldedlinecount . '' . ' '
-endfunction
-set foldtext=MyFoldText()
 
 " Ignorecase
 set ignorecase

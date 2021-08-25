@@ -28,7 +28,10 @@ endfunction
 " Starts fzf in the given dir.
 function! lib#FzfInDir(dir, ...) abort
   let s:options = get(a:, 1, {})
-  call fzf#vim#files(lib#ProjectRoot() . '/' . a:dir, extend(s:options, fzf#vim#with_preview('right:55%')))
+  call fzf#vim#files(
+        \ lib#ProjectRoot() . '/' . a:dir,
+        \ extend(s:options, fzf#vim#with_preview('right:55%'))
+        \ )
 endfunction
 
 " Starts fzf in the given dir (searches files with the given extension).

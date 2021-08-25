@@ -7,7 +7,6 @@ let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
 let g:Lf_ShowDevIcons = 1
 " For GUI vim, the icon font can be specify like this, for example
 let g:Lf_DevIconsFont = "DroidSansMono Nerd Font Mono"
-set ambiwidth=double
 
 noremap <C-P> :<C-U><C-R>=printf("Leaderf file")<CR><CR>
 noremap <C-E> :<C-U><C-R>=printf("Leaderf buffer")<CR><CR>

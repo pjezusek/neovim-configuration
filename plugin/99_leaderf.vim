@@ -1,6 +1,9 @@
 " don't show the help in normal mode
 let g:Lf_HideHelp = 1
 let g:Lf_IgnoreCurrentBufferName = 1
+let g:Lf_UseCache = 0
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
 " popup mode
 let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
 " Show icons, icons are shown by default
@@ -14,6 +17,7 @@ noremap <C-T> :<C-U><C-R>=printf("Leaderf tag")<CR><CR>
 noremap <C-S> :<C-U><C-R>=printf("Leaderf rg")<CR><CR>
 noremap <C-F><C-l> :<C-U><C-R>=printf("Leaderf line")<CR><CR>
 noremap <C-F><C-t> :<C-U><C-R>=printf("Leaderf bufTag")<CR><CR>
+noremap <C-F><C-f> :<C-U><C-R>=printf("Leaderf function")<CR><CR>
 
 noremap <leader>sg :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR><CR>
 xnoremap <leader>sg :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR><CR>

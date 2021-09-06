@@ -2,14 +2,8 @@
 set nofoldenable
 " }}}
 
-" Functions {{{
-function! RubocopAutofix() abort
-  :silent execute '!rubocop -A ' . expand('%')
-endfunction
-" }}}
-
 " Commands {{{
-command! -nargs=0 RubyFormat call RubocopAutofix() | :e!
+command! -nargs=0 RubyFormat call CocAction('format')
 " }}}
 
 " Mapping {{{

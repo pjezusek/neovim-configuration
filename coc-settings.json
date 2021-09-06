@@ -16,10 +16,6 @@
       "args": ["start"],
       "filetypes": ["sh", "bash"],
       "ignoredRootPaths": ["~"]
-    },
-    "lua": {
-      "command": "lua-lsp",
-      "filetypes": ["lua"]
     }
   },
   "snippets.extends": {
@@ -27,13 +23,10 @@
     "javascript.jsx": ["javascript"]
   },
   "solargraph.diagnostics": false,
-  "solargraph.formatting": false,
+  "solargraph.formatting": true,
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
   "prettier.eslintIntegration": true,
   "prettier.disableLanguages": [],
-  "vetur.validation.template": false,
-  "lua.commandPath": "$HOME/.luarocks/bin/lua-lsp",
-  "lua.useSumnekoLs": false,
-  "lua.version": "5.3"
+  "vetur.validation.template": false
 }

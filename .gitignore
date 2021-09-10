@@ -4,3 +4,7 @@ sessions
 GTAGS
 GRTAGS
 GPATH
+node_modules
+/luarocks
+/lua_modules
+/.luarocks

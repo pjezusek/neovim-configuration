@@ -18,7 +18,7 @@ command! -nargs=0 Format :call CocAction('format')
 nnoremap <leader>d :CocDiagnostics<CR>
 
 " Format code
-nnoremap <leader>pr :Format
+nnoremap <leader>pr :Format<CR>
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)

@@ -26,6 +26,7 @@
   "solargraph.formatting": true,
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
+  "python.formatting.provider": "black",
   "prettier.eslintIntegration": true,
   "prettier.disableLanguages": [],
   "vetur.validation.template": false,

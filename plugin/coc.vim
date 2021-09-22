@@ -6,6 +6,9 @@ set shortmess+=c
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
+" Refresh
+inoremap <silent><expr> <c-space> coc#refresh()
+
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gl <Plug>(coc-references)

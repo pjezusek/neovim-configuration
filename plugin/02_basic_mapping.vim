@@ -58,21 +58,17 @@ nnoremap <A-5> 5gt
 " Create new tab
 nnoremap <A-n> :tabnew<CR>
 
-" Move tabs in tabsbar
-nnoremap <leader>tmr :tabmove +1<CR>
-nnoremap <leader>tml :tabmove -1<CR>
-
-" Quickfix list
-nnoremap <leader>qq :copen<CR>
-nnoremap <leader>qc :cclose<CR>
-nnoremap gn :cnext<CR>
-nnoremap gp :cprevious<CR>
-
-" Location list
-nnoremap <leader>ll :lopen<CR>
-nnoremap <leader>lc :lclose<CR>
-nnoremap <leader>gp :lprevious<CR>
-nnoremap <leader>gn :lnext<CR>
+" " Move tabs in tabsbar
+" nnoremap <leader>tmr :tabmove +1<CR>
+" nnoremap <leader>tml :tabmove -1<CR>
+"
+" " Quickfix list
+" nnoremap <leader>qq :copen<CR>
+" nnoremap <leader>qc :cclose<CR>
+"
+" " Location list
+" nnoremap <leader>ll :lopen<CR>
+" nnoremap <leader>lc :lclose<CR>
 
 " Terminal
 tnoremap <Esc> <C-\><C-n>

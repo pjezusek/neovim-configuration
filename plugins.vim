@@ -42,7 +42,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'neoclide/coc.nvim'
   " Working with variants of a word
   Plug 'tpope/vim-abolish'
-  " }}}
   " Support tool for rails projects
   Plug 'tpope/vim-rails'
   " Syntax for javascript
@@ -57,4 +56,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'dense-analysis/ale'
   " Smart search
   Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+  " Focus/Maximize/Minimize panels
+  Plug 'Pocco81/TrueZen.nvim'
 call plug#end()

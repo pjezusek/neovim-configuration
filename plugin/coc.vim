@@ -13,7 +13,6 @@ inoremap <silent><expr> <c-space> coc#refresh()
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gl <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
 
 command! -nargs=0 Format :call CocAction('format')
 

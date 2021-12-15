@@ -3,7 +3,6 @@
     "<C-c>": "do:exit"
   },
   "diagnostic.checkCurrentLine": true,
-  "suggest.maxPreviewWidth": 120,
   "diagnostic.displayByAle": true,
   "languageserver": {
     "dockerfile": {
@@ -24,6 +23,7 @@
   },
   "solargraph.diagnostics": false,
   "solargraph.formatting": true,
+  "solargraph.transport": "stdio",
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
   "python.formatting.provider": "black",

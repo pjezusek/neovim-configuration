@@ -45,8 +45,9 @@ nnoremap <A-D> :resize -2<CR>
 nnoremap <leader>fp :let @+=expand("%")<CR>
 nnoremap <leader>fd :let @+=expand("%:h")<CR>
 
-" Search selected
+" Search
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+vnoremap g// y:silent grep <C-R>=escape(@",'/\')<CR><CR>:copen<CR>
 
 " Jumping between tabs
 nnoremap <A-1> 1gt
@@ -57,6 +58,10 @@ nnoremap <A-5> 5gt
 
 " Create new tab
 nnoremap <A-n> :tabnew<CR>
+
+" Moving in quicklist
+nnoremap ]q :cnext<CR>
+nnoremap [q :cprevious<CR>
 
 " Terminal
 tnoremap <Esc> <C-\><C-n>

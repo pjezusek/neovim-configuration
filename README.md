@@ -30,7 +30,7 @@ List of programs/fonts/languages which should be installed to use all features o
   - [coc-eslint](https://github.com/neoclide/coc-eslint) `CocInstall coc-eslint`
   - [coc-json](https://github.com/neoclide/coc-json) `CocInstall coc-json`
   - [coc-prettier](https://github.com/neoclide/coc-prettier) `CocInstall coc-prettier`
-  - [coc-python](https://github.com/neoclide/coc-python) `CocInstall coc-python`
+  - [coc-pyright](https://github.com/fannheyward/coc-pyright) `CocInstall coc-right`
   - [coc-snippets](https://github.com/neoclide/coc-snippets) `CocInstall coc-snippets`
   - [coc-solagraph](https://github.com/neoclide/coc-solagraph) `CocInstall coc-solargraph`
   - [coc-tsserver](https://github.com/neoclide/coc-tsserver) `CocInstall coc-tsserver`

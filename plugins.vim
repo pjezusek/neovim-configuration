@@ -58,4 +58,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
   " Focus/Maximize/Minimize panels
   Plug 'Pocco81/TrueZen.nvim'
+  " Syntax plugin for LaTeX files
+  Plug 'lervag/vimtex'
 call plug#end()

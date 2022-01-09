@@ -9,3 +9,7 @@ let g:ale_linters = {
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
 highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 let g:ale_echo_msg_format = '[%linter%] [%severity%] [%code%] %s'
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'tex': ['latexindent'],
+\}

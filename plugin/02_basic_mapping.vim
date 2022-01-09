@@ -20,10 +20,6 @@ command! Q q
 " Disable some default behaviour
 nnoremap q: <Nop>
 
-nnoremap <leader>f :find 
-nnoremap <leader>sf :sfind 
-nnoremap <leader>vf :vert sfind 
-
 nnoremap <leader>rw :%s/<c-r>=expand("<cword>")<CR>//g<Left><Left>
 nnoremap <leader>re :%s/\<<c-r>=expand("<cword>")<CR>\>//g<Left><Left>
 nnoremap <leader>rs :%s/<c-r>=expand("<cword>")<CR>//gc<Left><Left><Left>
@@ -42,10 +38,11 @@ nnoremap <A-I> :resize +2<CR>
 nnoremap <A-D> :resize -2<CR>
 
 " Copy filename to clipboard
-nnoremap <leader>fp :let @+=expand("%")<CR>
-nnoremap <leader>fd :let @+=expand("%:h")<CR>
+nnoremap <leader>cfp :let @+=expand("%")<CR>
+nnoremap <leader>cfd :let @+=expand("%:h")<CR>
 
 " Search
+nnoremap <leader>gf :silent grep <c-r>=expand("<cword>")<CR><CR>:copen<CR>
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 vnoremap g// y:silent grep <C-R>=escape(@",'/\')<CR><CR>:copen<CR>
 

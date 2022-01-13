@@ -56,8 +56,12 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'dense-analysis/ale'
   " Smart search
   Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+  Plug 'skywind3000/Leaderf-snippet'
   " Focus/Maximize/Minimize panels
   Plug 'Pocco81/TrueZen.nvim'
   " Syntax plugin for LaTeX files
   Plug 'lervag/vimtex'
+  " Ultisnips
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
 call plug#end()

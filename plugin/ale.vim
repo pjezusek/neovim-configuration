@@ -5,6 +5,7 @@ let g:ale_sign_warning = '⚠'
 let g:ale_virtualtext_cursor = 1
 let g:ale_linters = {
 \   'json': ['jq', 'jsonlint'],
+\   'markdown': ['markdownlint'],
 \}
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
 highlight ALEWarningSign ctermbg=NONE ctermfg=yellow

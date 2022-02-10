@@ -28,7 +28,3 @@ xnoremap <leader>sg :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visua
 
 let g:Lf_PreviewResult = {'Rg': 1, 'tag': 1, 'gtags': 1, 'function': 1, 'file': 1 }
 let g:Lf_CommandMap = {'<C-Up>': ['<C-p>'], '<C-Down>': ['<C-n>']}
-
-let g:Lf_PreviewResult = get(g:, 'Lf_PreviewResult', {})
-let g:Lf_PreviewResult.snippet = 1
-

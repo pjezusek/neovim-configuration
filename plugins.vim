@@ -48,6 +48,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html', 'vue'] }
   " Snippets
   Plug 'honza/vim-snippets'
+  " Track the engine.
+  Plug 'SirVer/ultisnips'
   " Preview markdown files
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
   " Seamlessly navigate vim and tmux
@@ -61,7 +63,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'Pocco81/TrueZen.nvim'
   " Syntax plugin for LaTeX files
   Plug 'lervag/vimtex'
-  " Ultisnips
-  Plug 'SirVer/ultisnips'
-  Plug 'honza/vim-snippets'
+  " Vim easymotion
+  Plug 'easymotion/vim-easymotion'
 call plug#end()

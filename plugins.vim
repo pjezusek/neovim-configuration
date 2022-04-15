@@ -65,4 +65,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'lervag/vimtex'
   " Vim easymotion
   Plug 'easymotion/vim-easymotion'
+  " Gutentags
+  Plug 'ludovicchabant/vim-gutentags'
 call plug#end()

@@ -5,6 +5,7 @@ let g:Lf_DefaultExternalTool = 'rg'
 let g:Lf_IgnoreCurrentBufferName = 1
 let g:Lf_UseCache = 0
 let g:Lf_UseMemoryCache = 0
+let g:Lf_JumpToExistingWindow = 0
 " popup mode
 let g:Lf_WindowPosition = 'popup'
 let g:Lf_PreviewCode = 1

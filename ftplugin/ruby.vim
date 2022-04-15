@@ -1,5 +1,6 @@
 " General {{{
-set nofoldenable
+let g:gutentags_ctags_executable_ruby = 'ripper-tags'
+let g:gutentags_ctags_extra_args = ['--ignore-unsupported-options', '--recursive']
 " }}}
 
 " Commands {{{

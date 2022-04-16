@@ -60,5 +60,9 @@ nnoremap <A-n> :tabnew<CR>
 nnoremap ]q :cnext<CR>
 nnoremap [q :cprevious<CR>
 
+" Moving in locationlist
+nnoremap ]l :lnext<CR>
+nnoremap [l :lprevious<CR>
+
 " Terminal
 tnoremap <Esc> <C-\><C-n>

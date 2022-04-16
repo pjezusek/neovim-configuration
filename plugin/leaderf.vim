@@ -16,7 +16,10 @@ let g:Lf_ShowDevIcons = 1
 let g:Lf_DevIconsFont = "DroidSansMono Nerd Font Mono"
 
 noremap <C-P> :<C-U><C-R>=printf("Leaderf file")<CR><CR>
+vnoremap <C-P> y:Leaderf file --input <C-R>"<CR>
+noremap <C-E> :<C-U><C-R>=printf("Leaderf jumps")<CR><CR>
 noremap <C-S> :<C-U><C-R>=printf("Leaderf rg")<CR><CR>
+vnoremap <C-S> y:Leaderf rg --input <C-R>"<CR>
 noremap <C-T> :<C-U><C-R>=printf("Leaderf tag")<CR><CR>
 noremap <C-E> :<C-U><C-R>=printf("LeaderfMruCwd")<CR><CR>
 noremap <leader><C-S> :<C-U><C-R>=printf("Leaderf rg --recall")<CR><CR>

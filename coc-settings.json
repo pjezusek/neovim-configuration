@@ -27,9 +27,8 @@
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
   "python.formatting.provider": "black",
-  "prettier.eslintIntegration": true,
-  "prettier.disableLanguages": [],
-  "vetur.validation.template": false,
   "Lua.hint.enable": true,
-  "Lua.diagnostics.globals": ["it", "describe"]
+  "Lua.diagnostics.globals": ["it", "describe"],
+  "prettier.disableLanguages": [],
+  "vetur.validation.template": false
 }

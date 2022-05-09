@@ -31,9 +31,9 @@ noremap <C-F><C-f> :<C-U><C-R>=printf("Leaderf function")<CR><CR>
 noremap <C-F><C-s> :<C-U><C-R>=printf("Leaderf snippet")<CR><CR>
 noremap <C-F><C-q> :<C-U><C-R>=printf("Leaderf quickfix")<CR><CR>
 noremap <C-F><C-b> :<C-U><C-R>=printf("Leaderf buffer")<CR><CR>
-
-noremap <leader>sg :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR><CR>
-xnoremap <leader>sg :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR><CR>
+noremap <C-F><C-g> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR><CR>
+xnoremap <C-F><C-g> :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR><CR>
+noremap <C-F><C-r> :<C-U><C-R>=printf("Leaderf file --input %s", expand("%:t:r"))<CR><CR>
 
 let g:Lf_PreviewResult = {
 \ 'File': 1,

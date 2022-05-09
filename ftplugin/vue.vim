@@ -3,7 +3,7 @@ set nofoldenable
 " }}}
 
 " Commands {{{
-command! -nargs=0 VueFormat :CocCommand prettier.formatFile
+command! -nargs=0 VueFormat :CocCommand eslint.executeAutofix
 " }}}
 
 " Mapping {{{

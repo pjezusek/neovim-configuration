@@ -13,6 +13,7 @@ inoremap <silent><expr> <c-space> coc#refresh()
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gl <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
 
 command! -nargs=0 Format :call CocAction('format')
 
@@ -24,6 +25,13 @@ nnoremap <leader>pr :Format<CR>
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
+
+" Applying codeAction to the selected region.
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction)
 
 " Use <C-l> for trigger snippet expand.
 imap <C-l> <Plug>(coc-snippets-expand)
@@ -43,3 +51,6 @@ endfunction
 
 let g:coc_snippet_next = '<tab>'
 let g:coc_snippet_prev = '<s-tab>'
+
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR :call CocActionAsync('runCommand', 'editor.action.organizeImport')

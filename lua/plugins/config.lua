@@ -3,8 +3,7 @@ return require('packer').startup(function()
   -- Manage packer itself
   use 'wbthomason/packer.nvim'
 
-  -- Theme
-  use 'morhetz/gruvbox'
+  use 'navarasu/onedark.nvim'
 
   -- Syntax parser
   use {
@@ -72,4 +71,16 @@ return require('packer').startup(function()
     'tomtom/tcomment_vim',
     requires = { { 'tyru/caw.vim' } }
   }
+
+  -- Highlight same elements
+  use { 'RRethy/vim-illuminate' }
+
+  -- Status bar
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
+
+  -- Indent guidelines
+  use "lukas-reineke/indent-blankline.nvim"
 end)

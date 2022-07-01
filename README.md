@@ -25,18 +25,42 @@ List of programs/fonts/languages which should be installed to use all the featur
 - ag
   - More info: [Repository](https://github.com/ggreer/the_silver_searcher)
   - Install [Archlinux]: `pacman -S the_silver_searcher`
+- yarn
+  - More info: [Website](https://classic.yarnpkg.com/en/)
+  - Install [Archlinux]: `pacman -S yarn`
+- typescript
+  - More info: [Website](https://www.typescriptlang.org/)
+  - Install: `yarn global add typescript`
 
 ### Linters and language servers
 
-- lua-language-server
+- lua-language-server - lua language server
   - More info: [Repository](https://github.com/sumneko/lua-language-server)
   - Install [Archlinux]: `pacman -S lua-language-server`
-- Ruby language server
+- Solargraph - ruby language server
   - More info: [Repository](https://github.com/castwide/solargraph)
   - Install: `gem install solargraph`
+- Volar - vue language server
+  - More info: [Repository](https://github.com/johnsoncodehk/volar/tree/master/packages/vue-language-server)
+  - Install: `yarn global add @volar/vue-language-server`
+- yaml-language-server - yaml language server
+  - More info: [Repository](https://github.com/redhat-developer/yaml-language-server)
+  - Install: `yarn global add yaml-language-server`
+- vscode-eslint-language-server - eslint
+  - More info: [Repository](https://github.com/hrsh7th/vscode-langservers-extracted)
+  - Install: `yarn global add vscode-langservers-extracted`
+  
 - Treesitter
-  - `:TSInstall lua`
-  - `:TSInstall ruby`
+  - bash: `:TSInstall bash`
+  - dockerfile: `:TSInstall dockerfile`
+  - fish: `:TSInstall fish`
+  - javascript: `:TSInstall javascript`
+  - json: `:TSInstall json`
+  - lua: `:TSInstall lua`
+  - ruby: `:TSInstall ruby`
+  - typescript: `:TSInstall typescript`
+  - vue: `:TSInstall vue`
+  - yaml: `:TSInstall yaml`
 
 ### Fonts
 The font which I use is [FiraCode](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode).
@@ -56,7 +80,7 @@ font_size 12
 
 ### Usage
 
-Open neovim and type `PackerSync`.
+1. Run `PackerSync`.
 
 # Screenshots
 Soon...

@@ -35,7 +35,9 @@ vim.opt.undofile = true -- Save history into the file
 vim.opt.wrap = false -- Do not wrap text
 
 -- Theme
-vim.cmd "colorscheme gruvbox"
+vim.opt.background = 'dark'
+vim.opt.termguicolors = true
+vim.cmd "colorscheme onedark"
 
 -- Map C-c to ESC
 lib.nmap('<C-c>', '<ESC>')

@@ -1,4 +1,4 @@
-lib = require('lib')
+local lib = require('lib')
 
 -- Disable numbers and sign column when using ranger
 vim.api.nvim_command([[

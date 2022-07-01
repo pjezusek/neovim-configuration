@@ -1,6 +1,10 @@
 return require('packer').startup(function()
+
   -- Manage packer itself
   use 'wbthomason/packer.nvim'
+
+  -- Theme
+  use 'morhetz/gruvbox'
 
   -- Syntax parser
   use {
@@ -14,8 +18,15 @@ return require('packer').startup(function()
     requires = { { 'rbgrouleff/bclose.vim' } }
   }
 
-  -- Leaderf - fuzzy search
-  use 'Yggdroot/LeaderF'
+  -- Telescope - fuzzy search
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = { { 'nvim-lua/plenary.nvim' } }
+  }
+  -- Plugin to telescope to search snippets
+  use {
+    "benfowler/telescope-luasnip.nvim",
+  }
 
   -- Configurations for Nvim LSP
   use 'neovim/nvim-lspconfig'
@@ -42,5 +53,23 @@ return require('packer').startup(function()
     config = function()
       require("trouble").setup {}
     end
+  }
+
+  -- Better work with tmux
+  use 'christoomey/vim-tmux-navigator'
+
+  -- Markdown preview
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+  })
+
+  -- Fast editing surrounding characters
+  use 'tpope/vim-surround'
+
+  -- Easy comments
+  use {
+    'tomtom/tcomment_vim',
+    requires = { { 'tyru/caw.vim' } }
   }
 end)

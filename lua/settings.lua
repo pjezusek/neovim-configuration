@@ -34,6 +34,9 @@ vim.opt.tags = '.tags' -- Name of the tags file
 vim.opt.undofile = true -- Save history into the file
 vim.opt.wrap = false -- Do not wrap text
 
+-- Theme
+vim.cmd "colorscheme gruvbox"
+
 -- Map C-c to ESC
 lib.nmap('<C-c>', '<ESC>')
 lib.imap('<C-c>', '<ESC>')

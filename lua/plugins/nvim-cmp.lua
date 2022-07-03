@@ -7,6 +7,10 @@ local cmp = require 'cmp'
 -- icons
 local lspkind = require('lspkind')
 
+if cmp == nil then
+  return
+end
+
 cmp.setup {
   formatting = {
     format = lspkind.cmp_format(),
@@ -54,10 +58,10 @@ cmp.setup {
 cmp.setup.cmdline('/', {
   mapping = cmp.mapping.preset.insert({
     ['<C-e>'] = cmp.mapping.abort(),
-    ['<C-J>'] = cmp.mapping(function(fallback)
+    ['<C-J>'] = cmp.mapping(function()
       cmp.select_next_item()
     end, { 'c' }),
-    ['<C-K>'] = cmp.mapping(function(fallback)
+    ['<C-K>'] = cmp.mapping(function()
       cmp.select_prev_item()
     end, { 'c' }),
   }),
@@ -69,10 +73,10 @@ cmp.setup.cmdline('/', {
 cmp.setup.cmdline(':', {
   mapping = cmp.mapping.preset.insert({
     ['<C-e>'] = cmp.mapping.abort(),
-    ['<C-J>'] = cmp.mapping(function(fallback)
+    ['<C-J>'] = cmp.mapping(function()
       cmp.select_next_item()
     end, { 'c' }),
-    ['<C-K>'] = cmp.mapping(function(fallback)
+    ['<C-K>'] = cmp.mapping(function()
       cmp.select_prev_item()
     end, { 'c' }),
   }),

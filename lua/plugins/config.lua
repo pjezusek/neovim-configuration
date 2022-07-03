@@ -83,4 +83,16 @@ return require('packer').startup(function()
 
   -- Indent guidelines
   use "lukas-reineke/indent-blankline.nvim"
+
+  -- Easy motion
+  use "easymotion/vim-easymotion"
+
+  -- Python formatter
+  use "psf/black"
+
+  -- Mark TODO in the project
+  use {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+  }
 end)

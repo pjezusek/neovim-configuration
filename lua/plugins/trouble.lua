@@ -1,6 +1,7 @@
 local lib = require('lib')
 
 lib.nmap('<leader>xx', ':TroubleToggle<CR>')
+lib.nmap('<leader>tt', ':TodoTrouble<CR>')
 lib.nmap('<leader>q', ':TroubleToggle quickfix<CR>')
 
 -- Jump in trouble list

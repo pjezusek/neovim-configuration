@@ -5,6 +5,7 @@ lib.nmap('<C-S>', "<cmd>lua require('telescope.builtin').live_grep()<cr>")
 lib.nmap('<leader>s', "<cmd>lua require'telescope'.extensions.luasnip.luasnip{}<cr>")
 lib.nmap('<C-T>', "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>")
 lib.nmap('gR', "<cmd>lua require('telescope.builtin').lsp_references()<cr>")
+lib.nmap('<leader>m', "<cmd>lua require('telescope.builtin').marks()<cr>")
 
 local actions = require("telescope.actions")
 local trouble = require("trouble.providers.telescope")

@@ -128,9 +128,42 @@ require 'lspconfig'.volar.setup {
 -- Eslint
 require 'lspconfig'.eslint.setup {
   on_attach = function(client, bufnr)
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     -- Mappings.
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
     vim.keymap.set('n', '<space>f', ':EslintFixAll<CR>', bufopts)
+    require 'illuminate'.on_attach(client)
+  end,
+  flags = lsp_flags,
+  capabilities = capabilities,
+}
+
+-- cssls
+require 'lspconfig'.cssls.setup {
+  on_attach = function(client, bufnr)
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    require 'illuminate'.on_attach(client)
+  end,
+  flags = lsp_flags,
+  capabilities = capabilities,
+}
+
+-- Pyright
+require 'lspconfig'.pyright.setup {
+  on_attach = function(client, bufnr)
+    -- Enable completion triggered by <c-x><c-o>
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    -- Mappings.
+    local bufopts = { noremap = true, silent = true, buffer = bufnr }
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set('n', '<space>f', ':Black<CR>', bufopts)
     require 'illuminate'.on_attach(client)
   end,
   flags = lsp_flags,

@@ -31,6 +31,9 @@ List of programs/fonts/languages which should be installed to use all the featur
 - typescript
   - More info: [Website](https://www.typescriptlang.org/)
   - Install: `yarn global add typescript`
+- black
+  - More info: [Repository](https://github.com/psf/black/)
+  - Install: `pip install black`
 
 ### Linters and language servers
 
@@ -49,7 +52,12 @@ List of programs/fonts/languages which should be installed to use all the featur
 - vscode-eslint-language-server - eslint
   - More info: [Repository](https://github.com/hrsh7th/vscode-langservers-extracted)
   - Install: `yarn global add vscode-langservers-extracted`
-  
+- cssls - css/scss/sass language server
+  - More info: [Repository](https://github.com/hrsh7th/vscode-langservers-extracted)
+  - Install: `yarn global add vscode-langservers-extracted`
+- pyright - python language server
+  - More info: [Repository](https://github.com/microsoft/pyright)
+  - Install: `pip install pyright`
 - Treesitter
   - bash: `:TSInstall bash`
   - dockerfile: `:TSInstall dockerfile`
@@ -61,6 +69,9 @@ List of programs/fonts/languages which should be installed to use all the featur
   - typescript: `:TSInstall typescript`
   - vue: `:TSInstall vue`
   - yaml: `:TSInstall yaml`
+  - css: `:TSInstall css`
+  - scss: `:TSInstall scss`
+  - python: `:TSInstall python`
 
 ### Fonts
 The font which I use is [FiraCode](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode).
@@ -82,8 +93,11 @@ font_size 12
 
 1. Run `PackerSync`.
 
-# Screenshots
+# Features
 Soon...
+
+
+# Other tools settings
 
 To see configuration for bash, fish, terminal or i3 which I use, visit [Click](https://github.com/pjezusek/dotfiles-archlinux).
 

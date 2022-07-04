@@ -2,6 +2,7 @@ local lib = require('lib')
 
 lib.nmap('<C-P>', "<cmd>lua require('telescope.builtin').find_files()<cr>")
 lib.nmap('<C-S>', "<cmd>lua require('telescope.builtin').live_grep()<cr>")
+lib.nmap('<C-E>', "<cmd>lua require('telescope.builtin').buffers()<cr>")
 lib.nmap('<leader>s', "<cmd>lua require'telescope'.extensions.luasnip.luasnip{}<cr>")
 lib.nmap('<C-T>', "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>")
 lib.nmap('gR', "<cmd>lua require('telescope.builtin').lsp_references()<cr>")

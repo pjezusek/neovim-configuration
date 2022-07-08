@@ -60,11 +60,11 @@ vim.api.nvim_create_user_command('Q', 'q', {})
 lib.nmap('q:', '<Nop>')
 
 -- Tabs
--- lib.nmap('<A-1>', '1gt')
--- lib.nmap('<A-2>', '2gt')
--- lib.nmap('<A-3>', '3gt')
--- lib.nmap('<A-4>', '4gt')
--- lib.nmap('<A-5>', '5gt')
+lib.nmap('<A-1>', '1gt')
+lib.nmap('<A-2>', '2gt')
+lib.nmap('<A-3>', '3gt')
+lib.nmap('<A-4>', '4gt')
+lib.nmap('<A-5>', '5gt')
 lib.nmap('<A-n>', ':tabnew<CR>')
 
 -- Quickfix lists
@@ -83,6 +83,11 @@ lib.nmap('<A-D>', ':resize -2<CR>')
 -- Search
 lib.vmap('//', [[y/\V<C-R>=escape(@",'/\')<CR><CR>]])
 lib.vmap('g//', [[y:silent grep <C-R>=escape(@",'/\')<CR><CR>:TroubleToggle quickfix<CR>]])
+lib.nmap('*', [[:keepjumps normal! mi*`i<CR>]])
+
+-- Close all buffers except actual
+vim.api.nvim_create_user_command('BufOnly', 'silent! execute "%bd|e#|bd#"', {})
+lib.nmap('<A-q>', ':BufOnly<CR>')
 
 -- Abbrevations
 -- Open help in new tab

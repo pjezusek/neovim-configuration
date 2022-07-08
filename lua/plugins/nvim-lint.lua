@@ -7,4 +7,4 @@ require('lint').linters_by_ft = {
   python = { 'pyright', }
 }
 
-vim.api.nvim_command([[au TextChanged <buffer> lua require('lint').try_lint()]])
+vim.api.nvim_command([[au BufWritePost <buffer> lua require('lint').try_lint()]])

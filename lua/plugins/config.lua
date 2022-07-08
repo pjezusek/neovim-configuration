@@ -24,7 +24,7 @@ return require('packer').startup(function()
   }
   -- Plugin to telescope to search snippets
   use {
-    "benfowler/telescope-luasnip.nvim",
+    'benfowler/telescope-luasnip.nvim',
   }
 
   -- Configurations for Nvim LSP
@@ -47,10 +47,10 @@ return require('packer').startup(function()
 
   -- Pretty lists
   use {
-    "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
+    'folke/trouble.nvim',
+    requires = 'kyazdani42/nvim-web-devicons',
     config = function()
-      require("trouble").setup {}
+      require('trouble').setup {}
     end
   }
 
@@ -59,18 +59,19 @@ return require('packer').startup(function()
 
   -- Markdown preview
   use({
-    "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end,
+    'iamcco/markdown-preview.nvim',
+    run = function() vim.fn['mkdp#util#install']() end,
   })
 
   -- Fast editing surrounding characters
-  use 'tpope/vim-surround'
+  use 'kylechui/nvim-surround'
 
   -- Easy comments
   use {
     'tomtom/tcomment_vim',
     requires = { { 'tyru/caw.vim' } }
   }
+  use 'JoosepAlviste/nvim-ts-context-commentstring'
 
   -- Highlight same elements
   use { 'RRethy/vim-illuminate' }
@@ -82,32 +83,29 @@ return require('packer').startup(function()
   }
 
   -- Indent guidelines
-  use "lukas-reineke/indent-blankline.nvim"
+  use 'lukas-reineke/indent-blankline.nvim'
 
-  -- Easy motion
-  use "easymotion/vim-easymotion"
+  -- Easy jumping
+  use {
+    'phaazon/hop.nvim',
+    branch = 'v2'
+  }
 
   -- Python formatter
-  use "psf/black"
+  use 'psf/black'
 
   -- Mark TODO in the project
   use {
-    "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
+    'folke/todo-comments.nvim',
+    requires = 'nvim-lua/plenary.nvim',
   }
 
-  -- Tree view
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icons
-    },
-    tag = 'nightly' -- optional, updated every week. (see issue #1193)
-  }
+  -- Tabline
+  use { 'nanozuki/tabby.nvim' }
 
-  -- Tabs
-  use {
-    'romgrk/barbar.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons' }
-  }
+  -- Better substitute
+  use { 'tpope/vim-abolish' }
+
+  -- Search highlight
+  use { 'kevinhwang91/nvim-hlslens' }
 end)

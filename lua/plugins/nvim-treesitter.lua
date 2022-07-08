@@ -1,15 +1,17 @@
 require 'nvim-treesitter.configs'.setup {
+  context_commentstring = {
+    enable = true
+  },
   highlight = {
     enable = true,
-    additional_vim_regex_highlighting = false,
+    additional_vim_regex_highlighting = true,
   },
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
+      init_selection = ";",
+      node_incremental = ";",
+      node_decremental = "<leader>;",
     },
   },
   indent = {

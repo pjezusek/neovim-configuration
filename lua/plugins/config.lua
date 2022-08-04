@@ -1,8 +1,8 @@
 return require('packer').startup(function()
-
   -- Manage packer itself
   use 'wbthomason/packer.nvim'
 
+  -- Theme
   use 'navarasu/onedark.nvim'
 
   -- Syntax parser
@@ -108,4 +108,8 @@ return require('packer').startup(function()
 
   -- Search highlight
   use { 'kevinhwang91/nvim-hlslens' }
+
+  -- Plugin for jupyter
+  use { "untitled-ai/jupyter_ascending.vim" }
+  use { "barreiroleo/ltex-extra.nvim" }
 end)

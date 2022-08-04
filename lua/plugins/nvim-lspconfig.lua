@@ -168,3 +168,32 @@ require 'lspconfig'.pyright.setup {
   flags = lsp_flags,
   capabilities = capabilities,
 }
+
+-- ltex
+require 'lspconfig'.ltex.setup {
+  on_attach = function(client, bufnr)
+    -- Enable completion triggered by <c-x><c-o>
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    local home_dir = os.getenv('HOME')
+
+    -- Mappings.
+    local bufopts = { noremap = true, silent = true, buffer = bufnr }
+    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+    require 'illuminate'.on_attach(client)
+    require('ltex_extra').setup {
+      load_langs = { 'en-US', 'pl-PL' },
+      init_check = true,
+      path = home_dir .. '/.nvim/dictionaries',
+      log_level = "none",
+    }
+  end,
+  flags = lsp_flags,
+  capabilities = capabilities,
+  settings = {
+    ltex = {
+      language = 'en-US'
+    }
+  }
+}

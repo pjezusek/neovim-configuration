@@ -81,9 +81,11 @@ lib.nmap('<A-I>', ':resize +2<CR>')
 lib.nmap('<A-D>', ':resize -2<CR>')
 
 -- Search
-lib.vmap('//', [[y/\V<C-R>=escape(@",'/\')<CR><CR>]])
+lib.vmap('//', [[miy/\V<C-R>=escape(@",'/\')<CR><CR>`i]])
 lib.vmap('g//', [[y:silent grep <C-R>=escape(@",'/\')<CR><CR>:TroubleToggle quickfix<CR>]])
-lib.nmap('*', [[:keepjumps normal! mi*`i<CR>]])
+lib.vmap('<leader>rn', [[miy/\V<C-R>=escape(@",'/\')<CR><CR>`icgn]])
+-- Handled by hlslends
+-- lib.nmap('*', [[:keepjumps normal! mi*`i<CR>]])
 
 -- Close all buffers except actual
 vim.api.nvim_create_user_command('BufOnly', 'silent! execute "%bd|e#|bd#"', {})

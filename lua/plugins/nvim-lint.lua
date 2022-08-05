@@ -4,7 +4,7 @@ require('lint').linters_by_ft = {
   typescript = { 'eslint', },
   vue = { 'eslint', },
   markdown = { 'markdownlint', },
-  python = { 'pyright', }
+  python = { 'flake8', 'pylint' },
 }
 
 vim.api.nvim_command([[au BufWritePost <buffer> lua require('lint').try_lint()]])

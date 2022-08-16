@@ -112,4 +112,14 @@ return require('packer').startup(function()
   -- Plugin for jupyter
   use { "untitled-ai/jupyter_ascending.vim" }
   use { "barreiroleo/ltex-extra.nvim" }
+
+  -- Files tree
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons',
+    },
+    tag = 'nightly'
+  }
+
 end)

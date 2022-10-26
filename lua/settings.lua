@@ -33,6 +33,7 @@ vim.opt.tabstop = 2 -- Number of spaces that represents <Tab>
 vim.opt.tags = '.tags' -- Name of the tags file
 vim.opt.undofile = true -- Save history into the file
 vim.opt.wrap = false -- Do not wrap text
+vim.g.ftplugin_sql_omni_key = '<C-x>' -- fix omni key in sql files
 
 -- Theme
 vim.opt.background = 'dark'

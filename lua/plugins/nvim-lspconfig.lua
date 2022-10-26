@@ -3,6 +3,7 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<space>r', ':LspRestart<CR>', opts)
 
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
@@ -196,4 +197,10 @@ require 'lspconfig'.ltex.setup {
       language = 'en-US'
     }
   }
+}
+
+require'lspconfig'.phpactor.setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
+  capabilities = capabilities,
 }

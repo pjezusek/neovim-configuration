@@ -1,8 +1,9 @@
 local lib = require('lib')
 
 lib.nmap('<leader>xx', ':TroubleToggle<CR>')
-lib.nmap('<leader>tt', ':TodoTrouble<CR>')
+lib.nmap('<leader>xt', ':TodoTrouble<CR>')
 lib.nmap('<leader>q', ':TroubleToggle quickfix<CR>')
+lib.nmap("<leader>xd", ":TroubleToggle document_diagnostics<CR>")
 
 -- Jump in trouble list
 lib.nmap(']t', ':lua require("trouble").next({skip_groups = true, jump = true})<CR>')

@@ -38,7 +38,7 @@ vim.g.ftplugin_sql_omni_key = '<C-x>' -- fix omni key in sql files
 -- Theme
 vim.opt.background = 'dark'
 vim.opt.termguicolors = true
-vim.cmd "colorscheme onedark"
+vim.g.colorscheme="onedark"
 
 -- Map C-c to ESC
 lib.nmap('<C-c>', '<ESC>')

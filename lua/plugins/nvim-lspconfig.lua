@@ -11,13 +11,17 @@ local on_attach = function(client, bufnr)
 
   -- Mappings.
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
+  local function format()
+    vim.lsp.buf.format { async = true }
+  end
+
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set('n', '<space>f', format, bufopts)
   require 'illuminate'.on_attach(client)
 end
 

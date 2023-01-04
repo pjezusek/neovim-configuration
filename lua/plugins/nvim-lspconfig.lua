@@ -203,7 +203,22 @@ require 'lspconfig'.ltex.setup {
   }
 }
 
+-- phpactor
 require'lspconfig'.phpactor.setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
+  capabilities = capabilities,
+}
+
+-- bashls
+require'lspconfig'.bashls.setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
+  capabilities = capabilities,
+}
+
+-- dockerls
+require'lspconfig'.dockerls.setup{
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,

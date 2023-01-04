@@ -2,6 +2,12 @@ return require('packer').startup(function()
   -- Manage packer itself
   use 'wbthomason/packer.nvim'
 
+  -- Plugin manger
+  use {
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+  }
+
   -- Theme
   use 'navarasu/onedark.nvim'
 
@@ -124,5 +130,4 @@ return require('packer').startup(function()
 
   -- Markdown preview using glow
   use { "ellisonleao/glow.nvim" }
-
 end)

@@ -1,4 +1,5 @@
 require('plugins.config')
+require('plugins.mason')
 require('plugins.onedark')
 require('plugins.ranger')
 require('plugins.nvim-treesitter')

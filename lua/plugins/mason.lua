@@ -9,7 +9,6 @@ require("mason-lspconfig").setup({
     "cssls",
     "pyright",
     "ltex",
-    "phpactor",
     "bashls",
     "dockerls",
     "cmake",

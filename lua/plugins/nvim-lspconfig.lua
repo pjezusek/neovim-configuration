@@ -82,10 +82,10 @@ require 'lspconfig'.yamlls.setup {
 local util = require 'lspconfig.util'
 local function get_typescript_server_path(root_dir)
 
-  local global_ts = os.execute('yarn global dir') .. '/node_modules/typescript/lib/tsserverlibrary.js'
+  local global_ts = os.execute('yarn global dir') .. '/node_modules/typescript/lib'
   local found_ts = ''
   local function check_dir(path)
-    found_ts = util.path.join(path, 'node_modules', 'typescript', 'lib', 'tsserverlibrary.js')
+    found_ts = util.path.join(path, 'node_modules', 'typescript', 'lib')
     if util.path.exists(found_ts) then
       return path
     end
@@ -125,7 +125,7 @@ require 'lspconfig'.volar.setup {
   flags = lsp_flags,
   capabilities = capabilities,
   on_new_config = function(new_config, new_root_dir)
-    new_config.init_options.typescript.serverPath = get_typescript_server_path(new_root_dir)
+    new_config.init_options.typescript.tsdk = get_typescript_server_path(new_root_dir)
   end,
 }
 
@@ -201,13 +201,6 @@ require 'lspconfig'.ltex.setup {
       language = 'en-US'
     }
   }
-}
-
--- phpactor
-require'lspconfig'.phpactor.setup{
-  on_attach = on_attach,
-  flags = lsp_flags,
-  capabilities = capabilities,
 }
 
 -- bashls

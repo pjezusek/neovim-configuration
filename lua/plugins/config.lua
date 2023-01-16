@@ -130,4 +130,7 @@ return require('packer').startup(function()
 
   -- Markdown preview using glow
   use { "ellisonleao/glow.nvim" }
+
+  -- Tagbar
+  use { "stevearc/aerial.nvim" }
 end)

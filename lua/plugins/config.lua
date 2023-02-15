@@ -128,9 +128,6 @@ return require('packer').startup(function()
     tag = 'nightly'
   }
 
-  -- Markdown preview using glow
-  use { "ellisonleao/glow.nvim" }
-
   -- Tagbar
   use { "stevearc/aerial.nvim" }
 end)

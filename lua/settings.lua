@@ -61,12 +61,12 @@ vim.api.nvim_create_user_command('Q', 'q', {})
 lib.nmap('q:', '<Nop>')
 
 -- Tabs
-lib.nmap('<A-1>', '1gt')
-lib.nmap('<A-2>', '2gt')
-lib.nmap('<A-3>', '3gt')
-lib.nmap('<A-4>', '4gt')
-lib.nmap('<A-5>', '5gt')
-lib.nmap('<A-n>', ':tabnew<CR>')
+lib.nmap('<leader>1', '1gt')
+lib.nmap('<leader>2', '2gt')
+lib.nmap('<leader>3', '3gt')
+lib.nmap('<leader>4', '4gt')
+lib.nmap('<leader>5', '5gt')
+lib.nmap('<leader>n', ':tabnew<CR>')
 
 -- Quickfix lists
 lib.nmap(']q', ':cnext<CR>')

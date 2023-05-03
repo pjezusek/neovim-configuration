@@ -20,14 +20,14 @@ require("telescope").setup {
         ["<C-J>"] = actions.move_selection_next,
         ["<C-K>"] = actions.move_selection_previous,
         ["<C-T>"] = trouble.open_with_trouble,
+        ["<C-q>"] = trouble.open_selected_with_trouble,
         ["<C-n>"] = actions.cycle_history_next,
         ["<C-p>"] = actions.cycle_history_prev,
         ["<C-d>"] = actions.preview_scrolling_down,
         ["<C-f>"] = actions.preview_scrolling_up,
-
       },
       n = {
-        ["<C-T>"] = trouble.open_with_troublei
+        ["<C-T>"] = trouble.open_with_trouble
       },
     },
     path_display = {

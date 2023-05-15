@@ -2,7 +2,7 @@ local lib = require('lib')
 
 lib.nmap('<C-P>', "<cmd>lua require('telescope.builtin').find_files()<cr>")
 lib.nmap('<C-S>', "<cmd>lua require('telescope.builtin').live_grep()<cr>")
-lib.nmap('<C-E>', "<cmd>lua require('telescope.builtin').buffers()<cr>")
+lib.nmap('<C-E>', "<cmd>lua require('telescope.builtin').oldfiles()<cr>")
 lib.nmap('<leader><C-S>', "<cmd>lua require'telescope'.extensions.luasnip.luasnip{}<cr>")
 lib.nmap('<leader><C-T>', "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>")
 lib.nmap('gR', "<cmd>lua require('telescope.builtin').lsp_references()<cr>")
@@ -43,7 +43,14 @@ require("telescope").setup {
         width = 0.8
       },
     },
-    sorting_strategy = "ascending"
+    sorting_strategy = "ascending",
+    vimgrep_arguments = {
+      'rg',
+      '--vimgrep',
+      '--smart-case',
+      '--max-columns',
+      '1000'
+    },
   },
   pickers = {
     find_files = {

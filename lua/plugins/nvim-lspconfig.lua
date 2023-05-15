@@ -1,9 +1,11 @@
 local opts = { noremap = true, silent = true }
 
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+local telescope = require("telescope.builtin")
+
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>r', ':LspRestart<CR>', opts)
+vim.keymap.set('n', '<leader>r', ':LspRestart<CR>', opts)
 
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
@@ -22,12 +24,13 @@ local on_attach = function(client, bufnr)
   end
 
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', 'gd', telescope.lsp_definitions, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', 'gi', telescope.lsp_references, bufopts)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', '<space>f', format, bufopts)
+  vim.keymap.set('n', '<S-k>', vim.lsp.buf.signature_help, bufopts)
   require 'illuminate'.on_attach(client)
 end
 
@@ -118,21 +121,7 @@ require 'lspconfig'.volar.setup {
     'vue',
     'json'
   },
-  on_attach = function(client, bufnr)
-    -- Enable completion triggered by <c-x><c-o>
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-    -- Mappings.
-    local bufopts = { noremap = true, silent = true, buffer = bufnr }
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set('n', '<S-k>', vim.lsp.buf.signature_help, bufopts)
-    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-    require 'illuminate'.on_attach(client)
-  end,
+  on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,
   on_new_config = function(new_config, new_root_dir)
@@ -143,11 +132,10 @@ require 'lspconfig'.volar.setup {
 -- Eslint
 require 'lspconfig'.eslint.setup {
   on_attach = function(client, bufnr)
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-    -- Mappings.
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
+
+    on_attach(client, bufnr)
     vim.keymap.set('n', '<space>f', ':EslintFixAll<CR>', bufopts)
-    require 'illuminate'.on_attach(client)
   end,
   flags = lsp_flags,
   capabilities = capabilities,
@@ -155,10 +143,7 @@ require 'lspconfig'.eslint.setup {
 
 -- cssls
 require 'lspconfig'.cssls.setup {
-  on_attach = function(client, bufnr)
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-    require 'illuminate'.on_attach(client)
-  end,
+  on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,
 }
@@ -166,20 +151,10 @@ require 'lspconfig'.cssls.setup {
 -- Pyright
 require 'lspconfig'.pyright.setup {
   on_attach = function(client, bufnr)
-    -- Enable completion triggered by <c-x><c-o>
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-    -- Mappings.
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set('n', '<S-k>', vim.lsp.buf.signature_help, bufopts)
-    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+
+    on_attach(client, bufnr)
     vim.keymap.set('n', '<space>f', ':Black<CR>', bufopts)
-    require 'illuminate'.on_attach(client)
   end,
   flags = lsp_flags,
   capabilities = capabilities,
@@ -188,16 +163,10 @@ require 'lspconfig'.pyright.setup {
 -- ltex
 require 'lspconfig'.ltex.setup {
   on_attach = function(client, bufnr)
-    -- Enable completion triggered by <c-x><c-o>
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    on_attach(client, bufnr)
 
     local home_dir = os.getenv('HOME')
 
-    -- Mappings.
-    local bufopts = { noremap = true, silent = true, buffer = bufnr }
-    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-    vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
-    require 'illuminate'.on_attach(client)
     require('ltex_extra').setup {
       load_langs = { 'en-US', 'pl-PL' },
       init_check = true,
@@ -223,6 +192,13 @@ require'lspconfig'.bashls.setup{
 
 -- dockerls
 require'lspconfig'.dockerls.setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
+  capabilities = capabilities,
+}
+
+-- phpactor
+require'lspconfig'.phpactor.setup{
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,

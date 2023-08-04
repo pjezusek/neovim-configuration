@@ -1,6 +1,8 @@
 local lib = require('lib')
 
-lib.nmap('<leader>xx', ':TroubleToggle<CR>')
+require('trouble').setup {}
+
+lib.nmap('<leader>x', ':TroubleToggle<CR>')
 lib.nmap('<leader>xt', ':TodoTrouble<CR>')
 lib.nmap('<leader>q', ':TroubleToggle quickfix<CR>')
 lib.nmap("<leader>xd", ":TroubleToggle document_diagnostics<CR>")

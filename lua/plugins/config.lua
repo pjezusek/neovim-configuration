@@ -4,8 +4,8 @@ return require('packer').startup(function()
 
   -- Plugin manger
   use {
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
   }
 
   -- Theme
@@ -55,9 +55,6 @@ return require('packer').startup(function()
   use {
     'folke/trouble.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
-    config = function()
-      require('trouble').setup {}
-    end
   }
 
   -- Better work with tmux
@@ -130,4 +127,7 @@ return require('packer').startup(function()
 
   -- Tagbar
   use { "stevearc/aerial.nvim" }
+
+  -- Better ui for things
+  use { 'stevearc/dressing.nvim' }
 end)

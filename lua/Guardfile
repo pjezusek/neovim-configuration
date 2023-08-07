@@ -1,0 +1,4 @@
+guard :busted do
+  watch(%r{^spec/.*\.lua$})
+  watch(%r{^(.*)\.lua$}) { |m| "spec/#{m[1]}_spec.lua" }
+end

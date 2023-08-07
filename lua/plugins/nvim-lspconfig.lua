@@ -94,7 +94,6 @@ require 'lspconfig'.yamlls.setup {
 -- Volar
 local util = require 'lspconfig.util'
 local function get_typescript_server_path(root_dir)
-
   local global_ts = os.execute('yarn global dir') .. '/node_modules/typescript/lib'
   local found_ts = ''
   local function check_dir(path)
@@ -120,7 +119,12 @@ require 'lspconfig'.volar.setup {
     'vue',
     'json'
   },
-  on_attach = on_attach,
+  on_attach = function(client, bufnr)
+    local bufopts = { noremap = true, silent = true, buffer = bufnr }
+
+    on_attach(client, bufnr)
+    vim.keymap.set('n', '<space>f', ':EslintFixAll<CR>', bufopts)
+  end,
   flags = lsp_flags,
   capabilities = capabilities,
   on_new_config = function(new_config, new_root_dir)
@@ -183,21 +187,28 @@ require 'lspconfig'.ltex.setup {
 }
 
 -- bashls
-require'lspconfig'.bashls.setup{
+require 'lspconfig'.bashls.setup {
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,
 }
 
 -- dockerls
-require'lspconfig'.dockerls.setup{
+require 'lspconfig'.dockerls.setup {
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,
 }
 
 -- phpactor
-require'lspconfig'.phpactor.setup{
+require 'lspconfig'.phpactor.setup {
+  on_attach = on_attach,
+  flags = lsp_flags,
+  capabilities = capabilities,
+}
+
+-- phpactor
+require 'lspconfig'.rust_analyzer.setup {
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,

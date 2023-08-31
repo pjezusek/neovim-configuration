@@ -66,7 +66,7 @@ function M.toggle_focus()
 end
 
 function M.create_rails_rspec_file()
-  local path = vim.fn.expand('%')
+  local path = vim.fn.fnamemodify(vim.fn.expand("%"), ":~:.")
   local spec_file = 'spec/' .. rails_utils.remove_app_from_path(M.spec_file(path))
   if utils.file_exists(spec_file) then return end
 

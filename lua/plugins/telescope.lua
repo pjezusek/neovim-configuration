@@ -41,7 +41,7 @@ lib.nmap(
 lib.nmap('<leader><C-P>', "<cmd>lua require('telescope.builtin').find_files()<cr>")
 lib.nmap('<C-S>', "<cmd>lua require('telescope.builtin').live_grep({ glob_pattern = RIPGREP_LIVE_GREP_GLOB_PATTERN })<cr>")
 lib.nmap('<leader><C-S>', "<cmd>lua require('telescope.builtin').live_grep()<cr>")
-lib.nmap('<C-E>', "<cmd>lua require('telescope.builtin').oldfiles()<cr>")
+lib.nmap('<C-E>', "<cmd>lua require('telescope.builtin').buffers()<cr>")
 lib.nmap('<leader><C-T>', "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>")
 lib.nmap('gR', "<cmd>lua require('telescope.builtin').lsp_references()<cr>")
 lib.nmap('<leader>m', "<cmd>lua require('telescope.builtin').marks()<cr>")

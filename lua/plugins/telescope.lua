@@ -1,9 +1,47 @@
 local lib = require('lib')
 
-lib.nmap('<C-P>', "<cmd>lua require('telescope.builtin').find_files()<cr>")
-lib.nmap('<C-S>', "<cmd>lua require('telescope.builtin').live_grep()<cr>")
+
+local default_ripgrep_command_find_files = {
+  "rg",
+  "--color",
+  "never",
+  "--files",
+  "--hidden",
+  "--glob",
+  "!**/.git/*"
+}
+local default_ripgrep_command_live_grep = {
+  "rg",
+  "--vimgrep",
+  "--hidden",
+  "--smart-case",
+  "--max-columns",
+  "1000",
+  "--glob",
+  "!**/.git/*"
+}
+
+local filters = {
+  "!spec/**/*",
+  "!**/*_spec.rb"
+}
+
+RIPGREP_FIND_FILES_COMMAND = default_ripgrep_command_find_files
+for _, value in ipairs(filters) do
+  table.insert(RIPGREP_FIND_FILES_COMMAND, '--glob')
+  table.insert(RIPGREP_FIND_FILES_COMMAND, value)
+end
+
+RIPGREP_LIVE_GREP_GLOB_PATTERN = filters
+
+lib.nmap(
+  '<C-P>',
+  "<cmd>lua require('telescope.builtin').find_files({ find_command = RIPGREP_FIND_FILES_COMMAND })<cr>"
+)
+lib.nmap('<leader><C-P>', "<cmd>lua require('telescope.builtin').find_files()<cr>")
+lib.nmap('<C-S>', "<cmd>lua require('telescope.builtin').live_grep({ glob_pattern = RIPGREP_LIVE_GREP_GLOB_PATTERN })<cr>")
+lib.nmap('<leader><C-S>', "<cmd>lua require('telescope.builtin').live_grep()<cr>")
 lib.nmap('<C-E>', "<cmd>lua require('telescope.builtin').oldfiles()<cr>")
-lib.nmap('<leader><C-S>', "<cmd>lua require'telescope'.extensions.luasnip.luasnip{}<cr>")
 lib.nmap('<leader><C-T>', "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>")
 lib.nmap('gR', "<cmd>lua require('telescope.builtin').lsp_references()<cr>")
 lib.nmap('<leader>m', "<cmd>lua require('telescope.builtin').marks()<cr>")
@@ -44,19 +82,12 @@ require("telescope").setup {
       },
     },
     sorting_strategy = "ascending",
-    vimgrep_arguments = {
-      'rg',
-      '--vimgrep',
-      '--smart-case',
-      '--max-columns',
-      '1000'
-    },
+    vimgrep_arguments = default_ripgrep_command_live_grep,
   },
   pickers = {
     find_files = {
-      find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
+      find_command = default_ripgrep_command_find_files,
     },
   },
 }
 require('telescope').load_extension('luasnip')
-

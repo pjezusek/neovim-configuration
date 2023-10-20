@@ -68,4 +68,12 @@ function M.map(tbl, func)
   return new_tbl
 end
 
+function M.clone_table(source)
+  local clone = {}
+  for key, value in pairs(source) do
+    clone[key] = value
+  end
+  return clone
+end
+
 return M

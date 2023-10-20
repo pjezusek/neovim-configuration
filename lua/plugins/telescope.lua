@@ -1,4 +1,5 @@
 local lib = require('lib')
+local utils = require('utils')
 
 
 local default_ripgrep_command_find_files = {
@@ -26,13 +27,13 @@ local filters = {
   "!**/*_spec.rb"
 }
 
-RIPGREP_FIND_FILES_COMMAND = default_ripgrep_command_find_files
+RIPGREP_FIND_FILES_COMMAND = utils.clone_table(default_ripgrep_command_find_files)
 for _, value in ipairs(filters) do
   table.insert(RIPGREP_FIND_FILES_COMMAND, '--glob')
   table.insert(RIPGREP_FIND_FILES_COMMAND, value)
 end
 
-RIPGREP_LIVE_GREP_GLOB_PATTERN = filters
+RIPGREP_LIVE_GREP_GLOB_PATTERN = utils.clone_table(filters)
 
 lib.nmap(
   '<C-P>',

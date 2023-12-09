@@ -103,9 +103,6 @@ return require('packer').startup(function()
     requires = 'nvim-lua/plenary.nvim',
   }
 
-  -- Tabline
-  use { 'nanozuki/tabby.nvim' }
-
   -- Better substitute
   use { 'tpope/vim-abolish' }
 
@@ -130,4 +127,11 @@ return require('packer').startup(function()
 
   -- Better ui for things
   use { 'stevearc/dressing.nvim' }
+
+  -- Tabs
+  use 'nvim-tree/nvim-web-devicons' -- OPTIONAL: for file icons
+  use 'romgrk/barbar.nvim'
+
+  -- Autopairs
+  use "windwp/nvim-autopairs"
 end)

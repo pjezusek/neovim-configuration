@@ -60,6 +60,20 @@ vim.api.nvim_create_user_command('Q', 'q', {})
 -- Disable some default behaviour
 lib.nmap('q:', '<Nop>')
 
+-- Tabs
+lib.nmap('<leader>1', '1gt')
+lib.nmap('<leader>2', '2gt')
+lib.nmap('<leader>3', '3gt')
+lib.nmap('<leader>4', '4gt')
+lib.nmap('<leader>5', '5gt')
+lib.nmap('<leader>n', ':tabnew<CR>')
+lib.nmap('<A-.>', 'gt')
+lib.nmap('<A-,>', 'gT')
+
+-- Close all buffers except actual
+vim.api.nvim_create_user_command('BufOnly', 'silent! execute "%bd|e#|bd#"', {})
+lib.nmap('<A-q>', ':BufOnly<CR>')
+
 -- Quickfix lists
 lib.nmap(']q', ':cnext<CR>')
 lib.nmap('[q', ':cprevious<CR>')
@@ -79,7 +93,6 @@ lib.vmap('g//', [[y:silent grep <C-R>=escape(@",'/\')<CR><CR>:TroubleToggle quic
 lib.vmap('<leader>rn', [[miy/\V<C-R>=escape(@",'/\')<CR><CR>`icgn]])
 -- Handled by hlslends
 -- lib.nmap('*', [[:keepjumps normal! mi*`i<CR>]])
-
 
 -- Abbrevations
 -- Open help in new tab

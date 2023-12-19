@@ -129,8 +129,7 @@ return require('packer').startup(function()
   use { 'stevearc/dressing.nvim' }
 
   -- Tabs
-  use 'nvim-tree/nvim-web-devicons' -- OPTIONAL: for file icons
-  use 'romgrk/barbar.nvim'
+  use { 'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons' }
 
   -- Autopairs
   use "windwp/nvim-autopairs"

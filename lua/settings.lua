@@ -107,3 +107,18 @@ vim.api.nvim_command([[
 vim.api.nvim_command([[
   cnoreabbrev <expr> sr getcmdtype() == ":" && getcmdline() == 'sr' ? 'silent grep ' : 'sr'
 ]])
+
+-- When using `dd` in the quickfix list, remove the item from the quickfix list.
+function RemoveQFItem()
+  local curqfidx = vim.fn.line('.') - 1
+  local qfall = vim.fn.getqflist()
+  table.remove(qfall, curqfidx + 1)
+  vim.fn.setqflist(qfall, 'r')
+  vim.cmd(tostring(curqfidx + 1) .. 'cfirst')
+  vim.cmd('copen')
+end
+
+-- Use map <buffer> to only map dd in the quickfix window. Requires +localmap
+vim.api.nvim_exec([[
+  autocmd FileType qf nnoremap <buffer> dd :lua RemoveQFItem()<CR>
+]], false)

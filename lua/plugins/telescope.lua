@@ -48,7 +48,7 @@ lib.nmap('gR', "<cmd>lua require('telescope.builtin').lsp_references()<cr>")
 lib.nmap('<leader>m', "<cmd>lua require('telescope.builtin').marks()<cr>")
 
 local actions = require("telescope.actions")
-local trouble = require("trouble.providers.telescope")
+local trouble = require("trouble.sources.telescope")
 
 require("telescope").setup {
   defaults = {
@@ -58,8 +58,8 @@ require("telescope").setup {
         ["<C-u>"] = false,
         ["<C-J>"] = actions.move_selection_next,
         ["<C-K>"] = actions.move_selection_previous,
-        ["<C-T>"] = trouble.open_with_trouble,
-        ["<C-s>"] = trouble.open_selected_with_trouble,
+        ["<C-T>"] = trouble.open,
+        ["<C-s>"] = trouble.open,
         ["<C-q>"] = actions.send_to_qflist,
         ["<C-n>"] = actions.cycle_history_next,
         ["<C-p>"] = actions.cycle_history_prev,
@@ -67,7 +67,7 @@ require("telescope").setup {
         ["<C-f>"] = actions.preview_scrolling_up,
       },
       n = {
-        ["<C-T>"] = trouble.open_with_trouble
+        ["<C-T>"] = trouble.open
       },
     },
     path_display = {

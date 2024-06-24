@@ -9,7 +9,7 @@ return require('packer').startup(function()
   }
 
   -- Theme
-  use 'navarasu/onedark.nvim'
+  use "EdenEast/nightfox.nvim"
 
   -- Syntax parser
   use {
@@ -133,4 +133,7 @@ return require('packer').startup(function()
 
   -- Autopairs
   use "windwp/nvim-autopairs"
+
+  -- Fast jumping
+  use { "ggandor/leap.nvim" }
 end)

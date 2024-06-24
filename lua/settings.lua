@@ -36,9 +36,9 @@ vim.opt.wrap = false -- Do not wrap text
 vim.g.ftplugin_sql_omni_key = '<C-x>' -- fix omni key in sql files
 
 -- Theme
-vim.opt.background = 'dark'
-vim.opt.termguicolors = true
-vim.g.colorscheme="onedark"
+-- vim.opt.background = 'dark'
+-- vim.opt.termguicolors = true
+-- vim.g.colorscheme="onedark"
 
 -- Map C-c to ESC
 lib.nmap('<C-c>', '<ESC>')
@@ -108,17 +108,4 @@ vim.api.nvim_command([[
   cnoreabbrev <expr> sr getcmdtype() == ":" && getcmdline() == 'sr' ? 'silent grep ' : 'sr'
 ]])
 
--- When using `dd` in the quickfix list, remove the item from the quickfix list.
-function RemoveQFItem()
-  local curqfidx = vim.fn.line('.') - 1
-  local qfall = vim.fn.getqflist()
-  table.remove(qfall, curqfidx + 1)
-  vim.fn.setqflist(qfall, 'r')
-  vim.cmd(tostring(curqfidx + 1) .. 'cfirst')
-  vim.cmd('copen')
-end
 
--- Use map <buffer> to only map dd in the quickfix window. Requires +localmap
-vim.api.nvim_exec([[
-  autocmd FileType qf nnoremap <buffer> dd :lua RemoveQFItem()<CR>
-]], false)

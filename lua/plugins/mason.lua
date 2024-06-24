@@ -1,22 +1,2 @@
 require("mason").setup()
-require("mason-lspconfig").setup({
-  ensure_installed = {
-    "lua_ls",
-    "solargraph",
-    "yamlls",
-    "volar",
-    "eslint",
-    "cssls",
-    "pyright",
-    "ltex",
-    "bashls",
-    "dockerls",
-    "cmake",
-    "graphql",
-    "html",
-    "jsonls",
-    "sqlls",
-    "vimls",
-    "lemminx"
-  },
-})
+require("mason-lspconfig").setup({})

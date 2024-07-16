@@ -133,4 +133,7 @@ return require('packer').startup(function()
 
   -- Autopairs
   use "windwp/nvim-autopairs"
+
+  -- Show current context
+  use "nvim-treesitter/nvim-treesitter-context"
 end)

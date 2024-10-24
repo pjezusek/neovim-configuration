@@ -1,2 +1,5 @@
 require('settings')
 require('plugins')
+require('commands')
+require('abbreviations')
+require('mapping')

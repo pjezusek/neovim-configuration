@@ -58,20 +58,7 @@ List of programs/fonts/languages which should be installed to use all the featur
 - pyright - python language server
   - More info: [Repository](https://github.com/microsoft/pyright)
   - Install: `pip install pyright`
-- Treesitter
-  - bash: `:TSInstall bash`
-  - dockerfile: `:TSInstall dockerfile`
-  - fish: `:TSInstall fish`
-  - javascript: `:TSInstall javascript`
-  - json: `:TSInstall json`
-  - lua: `:TSInstall lua`
-  - ruby: `:TSInstall ruby`
-  - typescript: `:TSInstall typescript`
-  - vue: `:TSInstall vue`
-  - yaml: `:TSInstall yaml`
-  - css: `:TSInstall css`
-  - scss: `:TSInstall scss`
-  - python: `:TSInstall python`
+- Treesitter `:TSInstall all`
 
 ### Fonts
 The font which I use is [FiraCode](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode).

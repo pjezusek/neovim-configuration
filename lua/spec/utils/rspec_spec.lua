@@ -1,4 +1,4 @@
-local M = require 'rspec_utils'
+local M = require 'utils.rspec'
 
 describe("spec_file", function()
   it("removes _controller and adds _spec if it is controller", function()

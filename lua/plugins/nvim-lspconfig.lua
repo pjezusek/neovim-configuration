@@ -6,10 +6,22 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+-- Define diagnostic signs
+local signs = {
+  Error = " ",
+  Warn = " ",
+  Hint = " ",
+  Info = " "
+}
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+-- Start renaming in normal mode
+local function rename_in_normal_mode()
+  vim.lsp.buf.rename()
+  vim.api.nvim_input('<ESC> 0')
 end
 
 local on_attach = function(client, bufnr)
@@ -25,9 +37,8 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', telescope.lsp_definitions, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', 'gi', telescope.lsp_references, bufopts)
-  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', 'rn', rename_in_normal_mode, bufopts)
+  vim.keymap.set('n', '<A-a>', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', '<space>f', format, bufopts)
   vim.keymap.set('n', '<S-k>', vim.lsp.buf.signature_help, bufopts)
   require 'illuminate'.on_attach(client)
@@ -50,6 +61,7 @@ require 'lspconfig'.solargraph.setup {
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,
+  cmd = { "bundle", "exec", "bin/solargraph", "stdio" }
 }
 
 -- Lua ls
@@ -112,12 +124,23 @@ end
 
 require 'lspconfig'.volar.setup {
   filetypes = {
-    'typescript',
-    'javascript',
-    'javascriptreact',
-    'typescriptreact',
-    'vue',
-    'json'
+    -- 'typescript',
+    -- 'javascript',
+    -- 'javascriptreact',
+    -- 'typescriptreact',
+    'vue'
+  },
+  init_options = {
+    vue = {
+      hybridMode = false,
+    },
+  },
+  settings = {
+    typescript = {
+      preferences = {
+        importModuleSpecifier = "non-relative"
+      }
+    }
   },
   on_attach = function(client, bufnr)
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
@@ -130,6 +153,18 @@ require 'lspconfig'.volar.setup {
   on_new_config = function(new_config, new_root_dir)
     new_config.init_options.typescript.tsdk = get_typescript_server_path(new_root_dir)
   end,
+}
+
+-- ts_ls
+require 'lspconfig'.ts_ls.setup {
+  init_options = {
+    preferences = {
+      importModuleSpecifierPreference = "non-relative"
+    }
+  },
+  on_attach = on_attach,
+  flags = lsp_flags,
+  capabilities = capabilities,
 }
 
 -- Eslint
@@ -207,8 +242,29 @@ require 'lspconfig'.phpactor.setup {
   capabilities = capabilities,
 }
 
--- phpactor
+-- rust_analyzer
 require 'lspconfig'.rust_analyzer.setup {
+  on_attach = on_attach,
+  flags = lsp_flags,
+  capabilities = capabilities,
+}
+
+-- fish-lsp
+require 'lspconfig'.fish_lsp.setup {
+  on_attach = on_attach,
+  flags = lsp_flags,
+  capabilities = capabilities,
+}
+
+-- tailwind
+-- require 'lspconfig'.tailwindcss.setup {
+--   on_attach = on_attach,
+--   flags = lsp_flags,
+--   capabilities = capabilities,
+-- }
+
+-- jsonls
+require 'lspconfig'.jsonls.setup {
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,

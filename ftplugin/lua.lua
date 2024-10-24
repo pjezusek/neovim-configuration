@@ -1,5 +1,4 @@
-local lib = require('lib')
-
+local utils = require('utils.generic')
 
 --- Telescope
-lib.nmap('<C-f><C-S>', "<cmd>lua require('busted_utils').find_spec_file()<cr>")
+utils.nmap('<C-f><C-S>', "<cmd>lua require('utils.busted').find_spec_file()<cr>")

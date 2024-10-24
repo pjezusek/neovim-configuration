@@ -1,5 +1,3 @@
-local lib = require('lib')
-
 local settings = {
   focus = true, -- Focus the window when opened
   keys = {
@@ -63,10 +61,3 @@ local settings = {
 }
 
 require('trouble').setup(settings)
-
-lib.nmap('<leader>q', ':Trouble qflist toggle<CR>')
-lib.nmap("<leader>xd", ":Trouble diagnostics toggle<CR>")
-
--- Jump in trouble list
-lib.nmap(']t', ':lua require("trouble").next({skip_groups = true, jump = true})<CR>')
-lib.nmap('[t', ':lua require("trouble").previous({skip_groups = true, jump = true})<CR>')

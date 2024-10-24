@@ -8,8 +8,6 @@
 -- wildmenu is enabled
 -- incsearch is enabled
 
-local lib = require('lib')
-
 vim.g.mapleader = ' ' -- Set leader char to space
 vim.opt.clipboard = 'unnamed,unnamedplus'
 vim.opt.cmdheight = 2 -- Size of command line
@@ -34,78 +32,7 @@ vim.opt.tags = '.tags' -- Name of the tags file
 vim.opt.undofile = true -- Save history into the file
 vim.opt.wrap = false -- Do not wrap text
 vim.g.ftplugin_sql_omni_key = '<C-x>' -- fix omni key in sql files
-
--- Theme
--- vim.opt.background = 'dark'
--- vim.opt.termguicolors = true
--- vim.g.colorscheme="onedark"
-
--- Map C-c to ESC
-lib.nmap('<C-c>', '<ESC>')
-lib.imap('<C-c>', '<ESC>')
-lib.vmap('<C-c>', '<ESC>')
-lib.xmap('<C-c>', '<ESC>')
-lib.smap('<C-c>', '<ESC>')
-lib.cmap('<C-c>', '<ESC>')
-lib.omap('<C-c>', '<ESC>')
-lib.lmap('<C-c>', '<ESC>')
-
--- Remap save and quit commands
-vim.api.nvim_create_user_command('WQ', 'wq', {})
-vim.api.nvim_create_user_command('Wq', 'wq', {})
-vim.api.nvim_create_user_command('W', 'w', {})
-vim.api.nvim_create_user_command('Qa', 'qa', {})
-vim.api.nvim_create_user_command('Q', 'q', {})
-
--- Disable some default behaviour
-lib.nmap('q:', '<Nop>')
-
--- Tabs
-lib.nmap('<leader>1', '1gt')
-lib.nmap('<leader>2', '2gt')
-lib.nmap('<leader>3', '3gt')
-lib.nmap('<leader>4', '4gt')
-lib.nmap('<leader>5', '5gt')
-lib.nmap('<leader>n', ':tabnew<CR>')
-lib.nmap('<A-.>', 'gt')
-lib.nmap('<A-,>', 'gT')
-
--- Close all buffers except actual
-vim.api.nvim_create_user_command('BufOnly', 'silent! execute "%bd|e#|bd#"', {})
-lib.nmap('<A-q>', ':BufOnly<CR>')
-
--- Quickfix lists
-lib.nmap(']q', ':cnext<CR>')
-lib.nmap('[q', ':cprevious<CR>')
--- Location lists
-lib.nmap(']l', ':lnext<CR>')
-lib.nmap('[l', ':lprevious<CR>')
-
--- Resizing
-lib.nmap('<A-i>', ':vertical resize +2<CR>')
-lib.nmap('<A-d>', ':vertical resize -2<CR>')
-lib.nmap('<A-I>', ':resize +2<CR>')
-lib.nmap('<A-D>', ':resize -2<CR>')
-
--- Search
-lib.vmap('//', [[miy/\V<C-R>=escape(@",'/\')<CR><CR>`i]])
-lib.vmap('g//', [[y:silent grep <C-R>=escape(@",'/\')<CR><CR>:TroubleToggle quickfix<CR>]])
-lib.vmap('<leader>rn', [[miy/\V<C-R>=escape(@",'/\')<CR><CR>`icgn]])
--- Handled by hlslends
--- lib.nmap('*', [[:keepjumps normal! mi*`i<CR>]])
-
--- Abbrevations
--- Open help in new tab
-vim.api.nvim_command([[
-  cnoreabbrev <expr> h getcmdtype() == ":" && getcmdline() == 'h' ? 'tab help' : 'h'
-]])
--- Messages
-vim.api.nvim_command([[
-  cnoreabbrev <expr> msg getcmdtype() == ":" && getcmdline() == 'msg' ? 'messages' : 'msg'
-]])
--- Search
-vim.api.nvim_command([[
-  cnoreabbrev <expr> sr getcmdtype() == ":" && getcmdline() == 'sr' ? 'silent grep ' : 'sr'
-]])
-
-
+vim.opt.list = true
+vim.opt.listchars:append("space:⋅")
+vim.g.ranger_map_keys = 0
+vim.g.tmux_navigator_no_mappings = 1

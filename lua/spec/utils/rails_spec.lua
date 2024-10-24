@@ -1,4 +1,4 @@
-local M = require('rails_utils') -- replace with your actual module name
+local M = require('utils.rails')
 
 describe("is_controller_file function", function()
   it("returns true for controller files", function()

@@ -2,12 +2,11 @@ local utils = require('utils.tables')
 
 local default_ripgrep_command_find_files = {
   "rg",
-  "--color",
-  "never",
+  "--color=never",
   "--files",
   "--hidden",
-  "--glob",
-  "!**/.git/*"
+  "--glob=!*/*/.git/*",
+  "--sort=path"
 }
 local default_ripgrep_command_live_grep = {
   "rg",
@@ -35,6 +34,7 @@ RIPGREP_LIVE_GREP_GLOB_PATTERN = utils.clone_table(filters)
 
 local actions = require("telescope.actions")
 local trouble = require("trouble.sources.telescope")
+local sorters = require('telescope.sorters')
 
 require("telescope").setup {
   defaults = {
@@ -42,9 +42,9 @@ require("telescope").setup {
       i = {
         ["<C-c>"] = actions.close,
         ["<C-u>"] = false,
-        ["<C-J>"] = actions.move_selection_next,
-        ["<C-K>"] = actions.move_selection_previous,
-        ["<C-T>"] = trouble.open,
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
+        ["<C-t>"] = trouble.open,
         ["<C-s>"] = trouble.open,
         ["<C-q>"] = actions.send_to_qflist,
         ["<C-n>"] = actions.cycle_history_next,
@@ -71,6 +71,7 @@ require("telescope").setup {
     },
     sorting_strategy = "ascending",
     vimgrep_arguments = default_ripgrep_command_live_grep,
+    file_sorter = sorters.get_fuzzy_sorter,
   },
   pickers = {
     find_files = {

@@ -104,36 +104,9 @@ require 'lspconfig'.yamlls.setup {
 }
 
 -- Volar
-local util = require 'lspconfig.util'
-local function get_typescript_server_path(root_dir)
-  local global_ts = os.execute('yarn global dir') .. '/node_modules/typescript/lib'
-  local found_ts = ''
-  local function check_dir(path)
-    found_ts = util.path.join(path, 'node_modules', 'typescript', 'lib')
-    if util.path.exists(found_ts) then
-      return path
-    end
-  end
-
-  if util.search_ancestors(root_dir, check_dir) then
-    return found_ts
-  else
-    return global_ts
-  end
-end
-
 require 'lspconfig'.volar.setup {
   filetypes = {
-    -- 'typescript',
-    -- 'javascript',
-    -- 'javascriptreact',
-    -- 'typescriptreact',
     'vue'
-  },
-  init_options = {
-    vue = {
-      hybridMode = false,
-    },
   },
   settings = {
     typescript = {
@@ -150,9 +123,6 @@ require 'lspconfig'.volar.setup {
   end,
   flags = lsp_flags,
   capabilities = capabilities,
-  on_new_config = function(new_config, new_root_dir)
-    new_config.init_options.typescript.tsdk = get_typescript_server_path(new_root_dir)
-  end,
 }
 
 -- ts_ls
@@ -160,11 +130,19 @@ require 'lspconfig'.ts_ls.setup {
   init_options = {
     preferences = {
       importModuleSpecifierPreference = "non-relative"
-    }
+    },
+    plugins = {
+      {
+        name = "@vue/typescript-plugin",
+        location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
+        languages = { "javascript", "typescript", "vue" },
+      },
+    },
   },
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,
+  filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 }
 
 -- Eslint
@@ -255,13 +233,6 @@ require 'lspconfig'.fish_lsp.setup {
   flags = lsp_flags,
   capabilities = capabilities,
 }
-
--- tailwind
--- require 'lspconfig'.tailwindcss.setup {
---   on_attach = on_attach,
---   flags = lsp_flags,
---   capabilities = capabilities,
--- }
 
 -- jsonls
 require 'lspconfig'.jsonls.setup {

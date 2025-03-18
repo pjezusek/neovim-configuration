@@ -20,8 +20,9 @@ local default_ripgrep_command_live_grep = {
 }
 
 local filters = {
-  "!spec/**/*",
-  "!test/**/*",
+  "!**/spec/**",
+  "!**/test/**",
+  "!**/.git/**"
 }
 
 RIPGREP_FIND_FILES_COMMAND = utils.clone_table(default_ripgrep_command_find_files)

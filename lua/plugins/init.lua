@@ -50,6 +50,8 @@ require('packer').startup(function()
   use 'onsails/lspkind.nvim'
   -- Linter
   use 'mfussenegger/nvim-lint'
+  -- Formatters
+  use 'stevearc/conform.nvim'
 
   -- Pretty lists
   use {
@@ -136,6 +138,7 @@ require('plugins.nvim-lspconfig')
 require('plugins.nvim-cmp')
 require('plugins.lua_snip')
 require('plugins.nvim-lint')
+require('plugins.conform')
 require('plugins.trouble')
 require('plugins.lualine')
 require('plugins.indent-blankline')

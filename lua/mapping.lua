@@ -54,7 +54,7 @@ utils.nmap('<leader>w', "<cmd>HopWord<cr>")
 -- Lua snip plugin
 -- TODO: Change this to lua mapping
 vim.api.nvim_command([[
-  imap <silent><expr> <C-Space> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<C-Space>' 
+  imap <silent><expr> <C-Space> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<C-Space>'
 ]])
 
 -- hlslens plugin
@@ -75,7 +75,8 @@ utils.nmap(
   "<cmd>lua require('telescope.builtin').find_files({ find_command = RIPGREP_FIND_FILES_COMMAND })<cr>"
 )
 utils.nmap('<leader><C-P>', "<cmd>lua require('telescope.builtin').find_files()<cr>")
-utils.nmap('<C-S>', "<cmd>lua require('telescope.builtin').live_grep({ glob_pattern = RIPGREP_LIVE_GREP_GLOB_PATTERN })<cr>")
+utils.nmap('<C-S>',
+  "<cmd>lua require('telescope.builtin').live_grep({ glob_pattern = RIPGREP_LIVE_GREP_GLOB_PATTERN })<cr>")
 utils.nmap('<leader><C-S>', "<cmd>lua require('telescope.builtin').live_grep()<cr>")
 utils.nmap('<C-E>', "<cmd>lua require('telescope.builtin').buffers()<cr>")
 utils.nmap('<leader><C-T>', "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>")
@@ -96,3 +97,6 @@ utils.nmap('<C-l>', ':TmuxNavigateRight<CR>')
 
 -- start subvert on selected text
 utils.vmap('<leader>s', 'y:%Subvert/<C-r>"//<Left>')
+
+-- conform plugin
+utils.nmap('<leader>f', ':ConformFormat<CR>')

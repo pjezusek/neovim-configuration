@@ -30,16 +30,12 @@ local on_attach = function(client, bufnr)
 
   -- Mappings.
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
-  local function format()
-    vim.lsp.buf.format { async = true }
-  end
 
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', telescope.lsp_definitions, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', 'rn', rename_in_normal_mode, bufopts)
   vim.keymap.set('n', '<A-a>', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', '<space>f', format, bufopts)
   vim.keymap.set('n', '<S-k>', vim.lsp.buf.signature_help, bufopts)
   require 'illuminate'.on_attach(client)
 end
@@ -53,7 +49,9 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 vim.diagnostic.config({
   signs = true,
-  float = { border = "single" },
+  float = {
+    border = "rounded",
+  },
 })
 
 -- Solargraph
@@ -115,12 +113,7 @@ require 'lspconfig'.volar.setup {
       }
     }
   },
-  on_attach = function(client, bufnr)
-    local bufopts = { noremap = true, silent = true, buffer = bufnr }
-
-    on_attach(client, bufnr)
-    vim.keymap.set('n', '<space>f', ':EslintFixAll<CR>', bufopts)
-  end,
+  on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,
 }
@@ -147,12 +140,7 @@ require 'lspconfig'.ts_ls.setup {
 
 -- Eslint
 require 'lspconfig'.eslint.setup {
-  on_attach = function(client, bufnr)
-    local bufopts = { noremap = true, silent = true, buffer = bufnr }
-
-    on_attach(client, bufnr)
-    vim.keymap.set('n', '<space>f', ':EslintFixAll<CR>', bufopts)
-  end,
+  on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,
 }
@@ -166,12 +154,7 @@ require 'lspconfig'.cssls.setup {
 
 -- Pyright
 require 'lspconfig'.pyright.setup {
-  on_attach = function(client, bufnr)
-    local bufopts = { noremap = true, silent = true, buffer = bufnr }
-
-    on_attach(client, bufnr)
-    vim.keymap.set('n', '<space>f', ':Black<CR>', bufopts)
-  end,
+  on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,
 }
